@@ -56,7 +56,7 @@ function findState() {
   if (stateData[query]) {
     if (pinnedStates.has(query)) {
       message.textContent = "You have already pinned " + query;
-      input.value = "";
+      select.value = "";
       suggestionsBox.style.display = "none";
       return;
     }
