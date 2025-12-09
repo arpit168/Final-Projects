@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>India Map States and Their Capitals</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Find State with their Capitals on Map</h1>
+
+    <div class="search-container">
+      <div class="input-group">
+        <select
+          name="stateInput"
+          id="stateInput"
+          class="stateInput"
+          onchange="findState()"
+        >
+          <option value="">-Select-</option>
+          <option value="jammu and kashmir">jammu and kashmir</option>
+          <option value="punjab">punjab</option>
+          <option value="haryana">haryana</option>
+          <option value="rajasthan">rajasthan</option>
+          <option value="uttar pradesh">uttar pradesh</option>
+          <option value="bihar">bihar</option>
+          <option value="gujarat">gujarat</option>
+          <option value="madhya pradesh">madhya pradesh</option>
+          <option value="maharashtra">maharashtra</option>
+          <option value="jharkhand">jharkhand</option>
+          <option value="west bengal">west bengal</option>
+          <option value="odisha">odisha</option>
+          <option value="chhattisgarh">chhattisgarh</option>
+          <option value="telangana">telangana</option>
+          <option value="andhra pradesh">andhra pradesh</option>
+          <option value="karnataka">karnataka</option>
+          <option value="tamil nadu">tamil nadu</option>
+          <option value="kerala">kerala</option>
+          <option value="assam">assam</option>
+          <option value="meghalaya">meghalaya</option>
+          <option value="tripura">tripura</option>
+          <option value="manipur">manipur</option>
+          <option value="mizoram">mizoram</option>
+          <option value="nagaland">nagaland</option>
+          <option value="arunachal pradesh">arunachal pradesh</option>
+          <option value="sikkim">sikkim</option>
+          <option value="goa">goa</option>
+          <option value="himachal pradesh">himachal pradesh</option>
+          <option value="uttarakhand">uttarakhand</option>
+        </select>
+      </div>
+
+      <button id="reloadBtn" class="btn btn-primary">Clear</button>
+    </div>
+
+    <div id="message"></div>
+
+    <div class="map-wrapper" id="mapContainer">
+      <svg
+        class="pin"
+        id="mapPin"
+        viewBox="0 0 24 24"
+        fill="#d00"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+        />
+      </svg>
+
+      <img
+        src="Map[1].jpg"
+        alt="Map of India"
+        class="map-image"
+        id="indiaMap"
+      />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
