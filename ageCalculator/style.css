@@ -1,0 +1,88 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+    background-color: #000;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    width: 550px;
+    height: auto;
+    min-height: 100px;
+    margin: 100px auto;
+    background-color: #000;
+    border-radius: 5px;
+    border: 1px solid #0fd2ec;
+    box-shadow: inset 0 0 0.5em #0ef, 0 0 0.5em 0 #0ef;
+}
+.base h1{
+    font-size: 26px;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 0px;
+    box-shadow: 0ps 2ps #bababa;
+    font-size: 34px;
+    color: #0ef;
+
+}
+.block{
+    width: 135px;
+    padding: 5px 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.title{
+    font-size: 20px;
+    text-align: left;
+    font-weight: normal;
+    line-height: 0.5;
+    letter-spacing: 0.5px;
+    color: #0ef;
+}
+input[type=text]{
+    width: 140px;
+    margin: auto;
+    outline: none;
+    min-height: 50px;
+    border: 2px solid #333;
+    padding: 12px;
+    background-color: #111;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+}
+button{
+    width: 120px;
+    margin-left: 40%;
+    margin-top: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    background-color: #0ef;
+    color: #111;
+    border: 1px solid #0ef;
+    padding: 0.25em ;
+    box-shadow: inset 0 0 0.5em #0ef, 0 0 0.5em 0 #0ef;
+}
+button:hover{
+    color: #fff;
+    transition-property: box-shadow;
+    transition-duration: 0.5s;
+    box-shadow: inset 0 0 0.5em #0ef, 0 0 0.5em 0 #0ef;
+    
+    
+}
+#age{
+    padding: 20px;
+    overflow: hidden;
+    font-size: 23px;
+    font-weight:normal ;
+    line-height: 1.5;
+    word-spacing: 2.7px;
+    color: #fff;
+}
