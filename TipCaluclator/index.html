@@ -24,58 +24,74 @@
           <h2 class="fw-bolder">Tip Calculator</h2>
         </div>
       </div>
-      <div class="d-flex justify-content-center ">
-        <div
-          class="bg-white px-5 py-2 mt-1 w-50 rounded-top-4 shadow rounded-bottom-2 "
-        >
-          <form>
-            <label for="" class="fw-bold">Bill Amount:</label>
-            <input
-              type="number"
-              id="amount"
-              name="amount"
-              placeholder="Amount to be paid..."
-              class="form-control mb-3"
-            />
-            <hr />
-            <label for="service" class="fw-bold">How was the Service ?</label>
-            <select name="category" id="category" class="form-control mb-3">
-              <option value="">-Select-</option>
-              <option value="25%-Top Notch">25%-Top Notch</option>
-              <option value="20% - Excellent">20% - Excellent</option>
-              <option value="15% - Good">15% - Good</option>
-              <option value="10% - Bad">10% - Bad</option>
-              <option value="5% - Worst">5% - Worst</option>
-            </select>
-            <hr />
-            <label for="" class="fw-bold">Total number of persons</label>
-            <input
-              type="number"
-              id="total"
-              name="total"
-              placeholder="Number of people sharing the bill"
-              class="form-control mb-3"
-            />
+      <div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="bg-white px-4 py-3  rounded-top-4 shadow rounded-bottom-2">
+        <form>
+          <label class="fw-bold">Bill Amount:</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            placeholder="Amount to be paid..."
+            class="form-control mb-3"
+          />
+
+          <hr />
+
+          <label class="fw-bold">How was the Service?</label>
+          <select name="category" id="category" class="form-control mb-3">
+            <option value="">-Select-</option>
+            <option value="25%-Top Notch">25% - Top Notch</option>
+            <option value="20% - Excellent">20% - Excellent</option>
+            <option value="15% - Good">15% - Good</option>
+            <option value="10% - Bad">10% - Bad</option>
+            <option value="5% - Worst">5% - Worst</option>
+          </select>
+
+          <hr />
+
+          <label class="fw-bold">Total number of persons</label>
+          <input
+            type="number"
+            id="total"
+            name="total"
+            placeholder="Number of people sharing the bill"
+            class="form-control mb-3"
+          />
+
+          <div class="d-flex flex-wrap gap-2">
             <button
-              class="btn btn-info w-auto fw-bold text-light my-2"
-              id="calculatebtn"
+              type="button"
+              class="btn btn-info fw-bold text-light"
               onclick="calculate()"
             >
               Calculate
             </button>
+
             <button
-              class="btn btn-warning w-auto fw-bold text-light my-2"
-              id="clear"
-              onclick="clear()"
+              type="button"
+              class="btn btn-warning fw-bold text-light"
+              onclick="clearData()"
             >
               Clear
             </button>
-          </form>
-          <div class="result mt-3 border border-2 border-info rounded-2 " style="height: 300px; padding: 20px;" id="result" >
-            
           </div>
-        </div>
+        </form>
+
+        <div
+          class="result mt-3 border border-2 border-info rounded-2"
+          style="height: 300px; padding: 20px"
+          id="result"
+        ></div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
     </div>
 
     <script
