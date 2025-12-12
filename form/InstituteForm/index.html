@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coaching Institute Admission Form</title>
+
+    <!-- BOOTSTRAP 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-secondary">
+    <div class="container py-4">
+      <div class="p-4 bg-white shadow rounded">
+        <h2
+          class="text-center mb-4  p-2 bg-secondary rounded-2 text-light fw-bold shadow-lg"
+        >
+        Coaching Institute Admission Form
+        </h2>
+ 
+        <!-- PERSONAL INFORMATION -->
+        <h4 class="bg-secondary text-white p-2 rounded ">
+          1. Personal Information 
+        </h4>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Full Name</label>   <span class="text-danger fs-6 float-end Error" id="NameError"></span>
+            <input
+              type="text"
+              name="fullName"
+              id="fullName"
+              class="form-control bg-secondary-subtle"
+              placeholder="Enter full name"
+            />
+            <span
+              class="text-danger fs-6 float-end Error"
+              id="NameError"
+            ></span>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" id="gender" name="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Date of Birth</label>
+            <input
+              type="date"
+              name="dob"
+              id="dob"
+              class="form-control bg-secondary-subtle"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Phone Number</label>
+            <input
+              type="number"
+              name="phone"
+              id="phone"
+              class="form-control bg-secondary-subtle"
+              minlength="1"
+              maxlength="10"
+              placeholder="Enter phone number"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control bg-secondary-subtle"
+              placeholder="Enter email"
+            />
+          </div>
+        </div>
+
+        <!-- ACADEMIC DETAILS -->
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 w-25">
+          2. Academic Details
+        </h4>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Last Completed Qualification</label>
+            <select class="form-select" id="study" name="study">
+              <option>-Select-</option>
+              <option>10th</option>
+              <option>12th</option>
+              <option>Graduation</option>
+              <option>Post Graduation</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">School/College Name</label>
+            <input
+              type="text"
+              id="persuing"
+              name="persuing"
+              class="form-control bg-secondary-subtle"
+              placeholder="Enter institution name"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Percentage/Grade</label>
+            <input
+              type="text"
+              id="grade"
+              name="grade"
+              class="form-control bg-secondary-subtle"
+              placeholder="Enter % or grade"
+            />
+          </div>
+        </div>
+
+        <!-- COURSE INFORMATION -->
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 w-25">
+          3. Course Information
+        </h4>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Preferred Course</label>
+            <select class="form-select" id="prefferCourse" name="prefferCourse">
+              <option>-Select-</option>
+              <option>Java</option>
+              <option>Java+Dsa</option>
+              <option>Mern Full Stack</option>
+              <option>Python with Data Science</option>
+              <option>C,C++,C#</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Preferred Batch Timing</label>
+            <select class="form-select" id="prefferTiming" name="prefferTiming">
+              <option>-Select-</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+              <option>Weekend</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ADDRESS DETAILS -->
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 w-25">
+          4. Address Details
+        </h4>
+
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Full Address</label>
+            <textarea
+              class="form-control bg-secondary-subtle"
+              id="fullAddress"
+              name="fullAddress"
+              rows="3"
+              placeholder="Old minal flat-20 4th floor minal gate 1, Bhopal,(M.P.) "
+            ></textarea>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control bg-secondary-subtle"
+              name="city"
+              id="city"
+              placeholder="Enter your city name..."
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">State</label>
+            <input
+              type="text"
+              class="form-control bg-secondary-subtle"
+              id="state"
+              name="state"
+              placeholder="Enter your state name..."
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Pincode</label>
+            <input
+              type="number"
+              class="form-control bg-secondary-subtle"
+              id="pinCode"
+              name="pinCode"
+              placeholder="123456"
+            />
+          </div>
+        </div>
+
+        <!-- GUARDIAN DETAILS -->
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 w-25">
+          5. Guardian Details
+        </h4>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Guardian Name</label>
+            <input
+              type="text"
+              class="form-control bg-secondary-subtle"
+              id="GuardianFullName"
+              name="GuardianFullName"
+              placeholder="Your's Guardian's name"
+            />
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Relationship</label>
+            <input
+              type="text"
+              class="form-control bg-secondary-subtle"
+              id="gurRelation"
+              name="gurRelation"
+              placeholder="Father/Mother/Brother/Sister"
+            />
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Contact Number</label>
+            <input
+              type="text"
+              class="form-control bg-secondary-subtle"
+              id="GurContact"
+              name="GurContact"
+            />
+          </div>
+        </div>
+
+        <!-- Additional Info -->
+
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 w-50">
+          How did you here about us?
+        </h4>
+        <select
+          name="additional"
+          id="additional"
+          class="form-control bg-secondary-subtle"
+        >
+          <option value="">-Select-</option>
+          <option value="friends">Friends</option>
+          <option value="relative">Relative</option>
+          <option value="Call">Call from institute!</option>
+          <option value="socialMedia">Social Media</option>
+        </select>
+
+        <!-- SUBMIT BUTTON -->
+        <div class="text-center mt-4">
+          <button class="btn btn-primary px-5 py-2 fw-bold" onclick="Submit()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -68,12 +68,14 @@ button{
     border: 1px solid #0ef;
     padding: 0.25em ;
     box-shadow: inset 0 0 0.5em #0ef, 0 0 0.5em 0 #0ef;
+    
 }
 button:hover{
     color: #fff;
     transition-property: box-shadow;
     transition-duration: 0.5s;
     box-shadow: inset 0 0 0.5em #0ef, 0 0 0.5em 0 #0ef;
+   
     
     
 }
