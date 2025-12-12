@@ -21,23 +21,11 @@ function age() {
     m2 = m2 + 12;
     y2 = y2 - 1;
   }
-  if (birth < 0) {
-    alert("Please enter your date of birth first!");
+  if (birth < 0 || birth > date || m2 > 12 || d1 > 31) {
+    alert("Please check your date of birth first!");
     return;
   }
-  if (birth > date) {
-    alert("Invailid year!");
-    return;
-  }
-  if(m2 > 12){
-    alert("Please check Your month")
-    return
-  }
-  if(d1 > 31){
-    alert("Please check your date!")
-    return
-  }
-
+ 
   let d = d2 - d1;
   let m = m2 - m1;
   let y = y2 - y1;
