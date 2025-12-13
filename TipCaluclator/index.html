@@ -19,79 +19,78 @@
     <div class="container mx-5 my-1">
       <div class="mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
         <div
-          class="bg-warning text-white text-center  p-2 rounded-top-4 shadow"
+          class="bg-warning text-white text-center py-2 rounded-top-4 shadow"
         >
           <h2 class="fw-bolder">Tip Calculator</h2>
         </div>
       </div>
-      <div class="container my-3">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6">
-      <div class="bg-white px-4 py-3  rounded-top-4 shadow rounded-bottom-2">
-        <form>
-          <label class="fw-bold">Bill Amount:</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            placeholder="Amount to be paid..."
-            class="form-control mb-3"
-          />
-
-          <hr />
-
-          <label class="fw-bold">How was the Service?</label>
-          <select name="category" id="category" class="form-control mb-3">
-            <option value="">-Select-</option>
-            <option value="25%-Top Notch">25% - Top Notch</option>
-            <option value="20% - Excellent">20% - Excellent</option>
-            <option value="15% - Good">15% - Good</option>
-            <option value="10% - Bad">10% - Bad</option>
-            <option value="5% - Worst">5% - Worst</option>
-          </select>
-
-          <hr />
-
-          <label class="fw-bold">Total number of persons</label>
-          <input
-            type="number"
-            id="total"
-            name="total"
-            placeholder="Number of people sharing the bill"
-            class="form-control mb-3"
-          />
-
-          <div class="d-flex flex-wrap gap-2">
-            <button
-              type="button"
-              class="btn btn-info fw-bold text-light"
-              onclick="calculate()"
+      <div class="container my-2">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div
+              class="bg-white px-5 py-5 rounded-top-4 shadow rounded-bottom-2"
             >
-              Calculate
-            </button>
+              <form>
+                <label class="fw-bold">Bill Amount:</label>
+                <input
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  placeholder="Amount to be paid..."
+                  class="form-control mb-3"
+                />
 
-            <button
-              type="button"
-              class="btn btn-warning fw-bold text-light"
-              onclick="clearData()"
-            >
-              Clear
-            </button>
+                <hr />
+
+                <label class="fw-bold">How was the Service?</label>
+                <select name="category" id="category" class="form-control mb-3">
+                  <option value="">-Select-</option>
+                  <option value="25%-Top Notch">25% - Top Notch</option>
+                  <option value="20% - Excellent">20% - Excellent</option>
+                  <option value="15% - Good">15% - Good</option>
+                  <option value="10% - Bad">10% - Bad</option>
+                  <option value="5% - Worst">5% - Worst</option>
+                </select>
+
+                <hr />
+
+                <label class="fw-bold">Total number of persons</label>
+                <input
+                  type="number"
+                  id="total"
+                  name="total"
+                  placeholder="Number of people sharing the bill"
+                  class="form-control mb-3"
+                />
+
+                <div class="d-flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-info fw-bold text-light"
+                    onclick="calculate()"
+                  >
+                    Calculate
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-warning fw-bold text-light"
+                    onclick="clearData()"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </form>
+
+              <div
+                class="result mt-3 border border-2 border-info rounded-2"
+                style="height: 330px; padding: 15px"
+                id="result"
+              ></div>
+            </div>
           </div>
-        </form>
-
-        <div
-          class="result mt-3 border border-2 border-info rounded-2"
-          style="height: 300px; padding: 20px"
-          id="result"
-        ></div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-
-
-
     </div>
 
     <script
