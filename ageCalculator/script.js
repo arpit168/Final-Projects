@@ -20,8 +20,13 @@ function age() {
   if (m1 > m2) {
     m2 = m2 + 12;
     y2 = y2 - 1;
+  } 
+  if(m1 === "" || d1 === "" || y1==="") {
+    alert("Please fill or check all fields!")
+    return   
   }
-  if (birth < 0 || birth > date || m2 > 12 || d1 > 31) {
+
+  if (birth < 0 || birth > date || m1 > 12 || d1 > 31) {
     alert("Please check your date of birth first!");
     return;
   }
