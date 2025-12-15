@@ -1,5 +1,5 @@
-function Submit(event) {
-  event.preventDefault();
+function Submit() {
+  
 
   const fullName = document.getElementById("fullName").value.trim();
   const gender = document.getElementById("gender").value;
@@ -15,81 +15,26 @@ function Submit(event) {
   const city = document.getElementById("city").value.trim();
   const state = document.getElementById("state").value.trim();
   const pinCode = document.getElementById("pinCode").value.trim();
-  const guardianFullName = document
-    .getElementById("guardianFullName")
-    .value.trim();
+  const guardianFullName =document.getElementById("guardianFullName").value.trim();
   const gurRelation = document.getElementById("gurRelation").value.trim();
   const gurContact = document.getElementById("gurContact").value.trim();
   const additional = document.getElementById("additional").value.trim();
 
-  // Full name
+  document.querySelectorAll(".Error").forEach((element) => {
+    element.innerHTML = "";
+  });
 
-  if (!fullName) {
-    document.getElementById("NameError").innerText = "Required";
+  if(!fullName ){
+    document.getElementById("NameError").innerText = "Required" ;
     return;
-  } else if (!/^[A-Za-z ]+$/.test(fullName)) {
-    document.getElementById("NameError").innerText =
-      "Only Alphabets and Spaces are Allowed";
+    console.log("1");
+    
+  } else if (!/^[A-Za-z ]+$/.test(fullName)){
+    document.getElementById("NameError").innerText = "Only Alphabets and Spaces are Allowed"
     return;
-  }
+    console.log(2);
+    
 
-  // Gender
-
-  if (gender === "") {
-    alert("Please select gender");
-    return;
-  }
-
-  // ḌOB
-
-  if (!dob) {
-    document.getElementById("NameError").innerText = "Required";
-    return;
-  } else {
-    const currentyear = new Date().getFullYear();
-    const birthyear = Number(dob.split("-")[0]);
-    if (currentyear - birthyear < 18) {
-      document.getElementById("DOBError").innerText =
-        "You must be 18 years Old";
-      return;
-    }
-  }
-
-  // Phone
-
-  if (!phone) {
-    document.getElementById("PhoneError").innerText = "Required";
-    return;
-  } else if (!/^[6-9]\d{9}$/.test(phone)) {
-    document.getElementById("PhoneError").innerText =
-      "Only Indian Mobile Nummber allowed";
-    return;
-  }
-
-  // Email
-
-  if (!email) {
-    document.getElementById("EmailError").innerText = "Required";
-    return;
-  } else if (
-    !/^[\w.]+@(gmail|outlook|rediff|yahoo)\.(com|in|co\.in)$/.test(email)
-  ) {
-    document.getElementById("EmailError").innerText = "Use Proper Email Format";
-    return;
-  }
-
-  // Address
-
-  if (fullAddress === "" || city === "" || state === "" || pinCode === "") {
-    alert("Please complete address details");
-    return;
-  }
-
-  // guradian
-
-  if (guardianFullName === "" || gurRelation === "" || gurContact === "") {
-    alert("Please complete guardian details");
-    return;
   }
 
   const formData = {

@@ -12,6 +12,7 @@ function submit() {
     if(userGuess<1 || userGuess >10) {
         alert("Number must be between 1 and 10!")
     return;
+
     }
 
     if(userGuess === randomNum) {
