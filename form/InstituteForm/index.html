@@ -28,7 +28,7 @@
 
         <div class="row g-3">
           <div class="col-md-6">
-            <label class="form-label">Full Name:</label><span class="text-danger fs-6 float-end Error" id="NameError"></span>
+            <label class="form-label">Full Name:</label><span class="text-danger fs-6 float-end Error" id="FNameError"></span>
             <input
               type="text"
               name="fullName"
@@ -90,17 +90,17 @@
         <!-- ACADEMIC DETAILS -->
         <h4 class="bg-secondary text-white p-2 rounded mt-4 ">
           2. Academic Details
-        </h4> <span class="text-danger fs-6 float-end Error" id="StudyError"></span>
+        </h4> 
 
         <div class="row g-3">
           <div class="col-md-4">
-            <label class="form-label">Last Completed Qualification:</label>
+            <label class="form-label">Last Completed Qualification:</label><span class="text-danger fs-6 float-end Error" id="StudyError"></span>
             <select class="form-select" id="study" name="study">
-              <option>-Select-</option>
-              <option>10th</option>
-              <option>12th</option>
-              <option>Graduation</option>
-              <option>Post Graduation</option>
+              <option value="">-Select-</option>
+              <option value="10th">10th</option>
+              <option value="12th">12th</option>
+              <option value="Graduation">Graduation</option>
+              <option value="Post Graduation">Post Graduation</option>
             </select>
           </div>
 
@@ -116,7 +116,7 @@
           </div>
 
           <div class="col-md-4">
-            <label class="form-label">Percentage/Grade:</label>
+            <label class="form-label">Percentage/Grade:</label> <span class="text-danger fs-6 float-end Error" id="GradeError"></span>
             <input
               type="text"
               id="grade"
@@ -134,25 +134,25 @@
 
         <div class="row g-3">
           <div class="col-md-6">
-            <label class="form-label">Preferred Course:</label>
+            <label class="form-label">Preferred Course:</label><span class="text-danger fs-6 float-end Error" id="CourseError"></span>
             <select class="form-select" id="prefferCourse" name="prefferCourse">
-              <option>-Select-</option>
-              <option>Java</option>
-              <option>Java+Dsa</option>
-              <option>Mern Full Stack</option>
-              <option>Python with Data Science</option>
-              <option>C,C++,C#</option>
+             <option value="">-Select-</option>
+              <option value="Java">Java</option>
+              <option value="Java1+DSA">Java+DSA</option>
+              <option value="Mern Full Stack">Mern Full Stack</option>
+              <option value="Python with Data Science">Python with Data Science</option>
+              <option value="C,C++,C#">C,C++,C#</option>
             </select>
           </div>
 
           <div class="col-md-6">
-            <label class="form-label">Preferred Batch Timing:</label>
+            <label class="form-label">Preferred Batch Timing:</label><span class="text-danger fs-6 float-end Error" id="TimeError"></span>
             <select class="form-select" id="prefferTiming" name="prefferTiming">
-              <option>-Select-</option>
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
-              <option>Weekend</option>
+              <option value="">-Select-</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+              <option value="Weekend">Weekend</option>
             </select>
           </div>
         </div>
@@ -164,7 +164,7 @@
 
         <div class="row g-3">
           <div class="col-12">
-            <label class="form-label">Full Address:</label>
+            <label class="form-label">Full Address:</label><span class="text-danger fs-6 float-end Error" id="AddressError"></span>
             <textarea
               class="form-control bg-secondary-subtle"
               id="fullAddress"
@@ -175,7 +175,7 @@
           </div>
 
           <div class="col-md-4">
-            <label class="form-label">City:</label>
+            <label class="form-label">City:</label><span class="text-danger fs-6 float-end Error" id="CityError"></span>
             <input
               type="text"
               class="form-control bg-secondary-subtle"
@@ -186,7 +186,7 @@
           </div>
 
           <div class="col-md-4">
-            <label class="form-label">State:</label>
+            <label class="form-label">State:</label><span class="text-danger fs-6 float-end Error" id="StateError"></span>
             <input
               type="text"
               class="form-control bg-secondary-subtle"
@@ -197,7 +197,7 @@
           </div>
 
           <div class="col-md-4">
-            <label class="form-label">Pincode:</label>
+            <label class="form-label">Pincode:</label><span class="text-danger fs-6 float-end Error" id="PinError"></span>
             <input
               type="number"
               class="form-control bg-secondary-subtle"
@@ -215,18 +215,18 @@
 
         <div class="row g-3">
           <div class="col-md-6">
-            <label class="form-label">Guardian Name:</label>
+            <label class="form-label">Guardian Name:</label><span class="text-danger fs-6 float-end Error" id="GNameError"></span>
             <input
               type="text"
               class="form-control bg-secondary-subtle"
-              id="GuardianFullName"
-              name="GuardianFullName"
+              id="GuardianFName"
+              name="GuardianFName"
               placeholder="Your's Guardian's name"
             />
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Relationship:</label>
+            <label class="form-label">Relationship:</label><span class="text-danger fs-6 float-end Error" id="GurRelationError"></span>
             <input
               type="text"
               class="form-control bg-secondary-subtle"
@@ -237,7 +237,7 @@
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Contact Number:</label>
+            <label class="form-label">Contact Number:</label><span class="text-danger fs-6 float-end Error" id="GurContactError"></span>
             <input
               type="text"
               class="form-control bg-secondary-subtle"
@@ -247,10 +247,10 @@
           </div>
         </div>
 
-        <!-- Additional Info -->
+        <!-- Additional Info -->  
 
-        <h4 class="bg-secondary text-white p-2 rounded mt-4 ">
-          How did you here about us?
+        <h4 class="bg-secondary text-white p-2 rounded mt-4 "><span class="text-danger fs-6 float-end Error" id="AdditionalError"></span>
+          How did you hear about us?
         </h4>
         <select
           name="additional"
