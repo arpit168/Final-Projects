@@ -53,11 +53,31 @@ function Submit() {
   }
 
   if(!phone) {
-    document.getElementById("phoneError").innerText = "Required"
+    document.getElementById("PhoneError").innerText = "Required"
     return;
-  } else{
-    
+  } else if(!/^[6-9]\d{9}$/.test(phone)) {
+    document.getElementById("PhoneError").innerText = "Only India Phone Numbers are allowed!"
   }
+
+  if(!email) {
+    document.getElementById("EmailError").innerText = "Required"
+  }else if(!/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(email)){
+    document.getElementById("EmailError").innerText = "Use proper email format";
+    return;
+  }
+
+  if(!study) {
+    document.getElementById("StudyError").innerText = "Required"
+    return;
+  }
+
+  if(!persuing) {
+    document.getElementById("PersuingError").innerText = "Required"
+    return;
+  }
+  
+
+  
 
 
   
