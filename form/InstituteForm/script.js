@@ -13,9 +13,7 @@ function Submit() {
   const city = document.getElementById("city").value.trim();
   const state = document.getElementById("state").value.trim();
   const pinCode = document.getElementById("pinCode").value.trim();
-  const guardianFName = document
-    .getElementById("GuardianFName")
-    .value.trim();
+  const guardianFName = document.getElementById("GuardianFName").value.trim();
   const gurRelation = document.getElementById("gurRelation").value.trim();
   const gurContact = document.getElementById("GurContact").value.trim();
   const additional = document.getElementById("additional").value.trim();
@@ -54,8 +52,7 @@ function Submit() {
       return;
     }
   }
-    // -----------------phone-----------------
-
+  // -----------------phone-----------------
 
   if (!phone) {
     document.getElementById("PhoneError").innerText = "Required";
@@ -63,13 +60,13 @@ function Submit() {
   } else if (!/^[6-9]\d{9}$/.test(phone)) {
     document.getElementById("PhoneError").innerText =
       "Only India Phone Numbers are allowed!";
-      return
+    return;
   }
   // -----------------email-----------------
 
   if (!email) {
     document.getElementById("EmailError").innerText = "Required";
-    return
+    return;
   } else if (
     !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(email)
   ) {
@@ -77,16 +74,14 @@ function Submit() {
     return;
   }
 
-    // -----------------padhai-likhai-----------------
-
+  // -----------------padhai-likhai-----------------
 
   if (!study) {
     document.getElementById("StudyError").innerText = "Required";
     return;
   }
 
-
-    // -----------------school/college ka name-----------------
+  // -----------------school/college ka name-----------------
 
   if (!persuing) {
     document.getElementById("PersuingError").innerText =
@@ -94,8 +89,7 @@ function Submit() {
     return;
   }
 
-
-    // -----------------grade/precentage-----------------
+  // -----------------grade/precentage-----------------
 
   if (!grade) {
     document.getElementById("GradeError").innerText =
@@ -103,7 +97,7 @@ function Submit() {
     return;
   }
 
-    // -----------------preffercourse-----------------
+  // -----------------preffercourse-----------------
 
   if (!prefferCourse) {
     document.getElementById("CourseError").innerText =
@@ -111,8 +105,7 @@ function Submit() {
     return;
   }
 
-    // -----------------prefertime-----------------
-
+  // -----------------prefertime-----------------
 
   if (!prefferTiming) {
     document.getElementById("TimeError").innerText =
@@ -128,7 +121,7 @@ function Submit() {
     return;
   }
 
-    // -----------------city-----------------
+  // -----------------city-----------------
 
   if (!city) {
     document.getElementById("CityError").innerText =
@@ -143,7 +136,7 @@ function Submit() {
     return;
   }
 
-    // -----------------postal-----------------
+  // -----------------postal-----------------
 
   if (!pinCode) {
     document.getElementById("PinError").innerText =
@@ -151,8 +144,7 @@ function Submit() {
     return;
   }
 
-    // -----------------membername-----------------
-
+  // -----------------membername-----------------
 
   if (!guardianFName) {
     document.getElementById("GNameError").innerText =
@@ -164,36 +156,29 @@ function Submit() {
     return;
   }
 
-    // ----------------rishta-nata-----------------
-
+  // ----------------rishta-nata-----------------
 
   if (!gurRelation) {
-    document.getElementById("GurRelationError").innerText =
-      "Required!";
+    document.getElementById("GurRelationError").innerText = "Required!";
     return;
   }
-    // -----------------rishtedar ka phone number-----------------
-
+  // -----------------rishtedar ka phone number-----------------
 
   if (!gurContact) {
-    document.getElementById("GurContactError").innerText =
-      "Required!"
+    document.getElementById("GurContactError").innerText = "Required!";
     return;
   } else if (!/^[6-9]\d{9}$/.test(gurContact)) {
     document.getElementById("GurContactError").innerText =
       "Only India Phone Numbers are allowed!";
-      return
-  }
-
-    // -----------------adhik jankari-----------------
-
-
-  if(!additional){
-     document.getElementById("AdditionalError").innerText =
-      "Required!";
     return;
   }
-  
+
+  // -----------------adhik jankari-----------------
+
+  if (!additional) {
+    document.getElementById("AdditionalError").innerText = "Required!";
+    return;
+  }
 
   const formData = {
     fullName,
@@ -214,14 +199,12 @@ function Submit() {
     gurRelation,
     gurContact,
     additional,
+    
   };
+  
+ 
 
   alert("🎉Form submitted successfully!");
   console.log(formData);
-   location.reload();
-
-
-   
+  location.reload();
 }
-
-
