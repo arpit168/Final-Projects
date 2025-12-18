@@ -1,4 +1,5 @@
 function Submit() {
+
   const fullName = document.getElementById("fullName").value.trim();
   const gender = document.getElementById("gender").value;
   const dob = document.getElementById("dob").value;
@@ -208,3 +209,5 @@ function Submit() {
   console.log(formData);
   location.reload();
 }
+
+
