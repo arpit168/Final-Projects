@@ -1,0 +1,17 @@
+  body {
+      background-color: #f4f6f9;
+   
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+    .total {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #198754;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
