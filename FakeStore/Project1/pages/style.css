@@ -1,0 +1,101 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #0f172a;
+  color: white;
+  padding:0 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar li {
+  margin-left: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #38bdf8;
+}
+
+.hero {
+  height: 90vh;
+  background: linear-gradient(to right, #a1a8b7, #252d3a);
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+}
+.heroine{
+  background: #2d4754;
+  
+}
+
+.index.btn {
+  background: #38bdf8;
+  padding: 10px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: wheat;
+
+}
+
+.btn:hover {
+  background: rgb(220, 204, 204);
+  color: #0f172a;
+}
+
+.products {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: #f8fafc;
+  padding: 20px;
+  width: 250px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+}
+
+.page {
+  padding: 40px;
+}
+
+form input, form textarea, form select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.logoimg{
+  border-radius: 50px;
+}
+
+
+
+
+/* about page */
+
+.about{
+  background: linear-gradient(to right, rgb(2, 2, 2), #162f57);
+}
+
