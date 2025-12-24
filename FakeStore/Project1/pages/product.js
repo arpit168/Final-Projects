@@ -11,7 +11,7 @@ async function getProducts() {
 
 
       d.innerHTML = `
-        <div class="card w-75 h-75 p-2 pb-5 border rounded shadow p-3">
+        <div class="card w-75 h-75 p-2 pb-2 border rounded shadow p-3">
     <div class="h-50">
       <img src=${element.image} class="w-100 h-100" alt=${
         element.title
