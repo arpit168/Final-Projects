@@ -1,36 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import makeup from "../assets/makeup.jpeg";
-import { FcHome } from "react-icons/fc";
-import { FcAbout } from "react-icons/fc";
+import img from "../assets/makeup.jpeg";
+import { FcHome, FcAbout, FcPhone } from "react-icons/fc";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
-import { FcPhone } from "react-icons/fc";
-
-
-
-
+import { HiMenu, HiX } from "react-icons/hi";
 
 const Header = () => {
   return (
     <>
-      <div>
-        <div className=" bg-gray-700 flex justify-between px-3">
-
-         <div className="flex">
-            <img src={makeup} className="w-13 rounded-4xl" alt="" />
-             <h1 className=" text-white p-3 font-mono text-3xl"> 
-            <span className="font-extrabold text-red-300 text-4xl">M</span>akeup.com
-          </h1>
-          
-         </div>
-         <div>
-             <div className="flex gap-5 mt-3 ">
-            <Link to={"/"} className="text-white hover:text-yellow-300 hover:border-b-2 flex gap-1"> <span><FcHome className="mt-1 "/></span><span>Home</span></Link>
-            <Link to={"/about"} className="text-white hover:text-yellow-300 hover:border-b-2 flex gap-1 " ><span><FcAbout className="mt-1 "/></span><span>About</span></Link>
-            <Link to={"/product"} className="text-white hover:text-yellow-300 hover:border-b-2 flex gap-1 " ><span><MdOutlineProductionQuantityLimits className="mt-1 "/></span><span>Products</span></Link>
-            <Link to={"/contact"} className="text-white hover:text-yellow-300 hover:border-b-2 flex gap-1 " ><span><FcPhone className="mt-1 "/></span><span>Contact US</span></Link>
-          </div>
-         </div>
+      <div className="flex justify-between bg-gray-950 text-light p-5 sticky top-0 z-50 ">
+       <div className="flex">
+         <img src={img}  className="rounded-full w-15 me-2" alt="" />
+        <h1 className="text-5xl text-gray-300 font-semibold "><span className="text-pink-600 animate-pulse text-6xl">M</span>ake<span className="border-b-2 border-gray-600">up.Com   </span></h1>
+       </div>
+        <div className="fs-5 flex gap-5 text-light mt-2 animate-pulse">
+          <Link to={"/"} className="text-decoration-none text-2xl text-amber-400 flex">
+           <FcHome className="mt-1"/> Home
+          </Link>
+          <Link to={"/about"} className="text-decoration-none text-2xl text-amber-400 flex">
+           <FcAbout className="mt-1"/> About
+          </Link>
+          <Link to={"/product"} className="text-decoration-none text-2xl text-amber-400 flex">
+           <MdOutlineProductionQuantityLimits className="mt-1"/> Product
+          </Link>
+          <Link to={"/contact"} className="text-decoration-none text-2xl text-amber-400 flex">
+            <FcPhone className="mt-1"/>Contact
+          </Link>
         </div>
       </div>
     </>
@@ -38,3 +33,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
