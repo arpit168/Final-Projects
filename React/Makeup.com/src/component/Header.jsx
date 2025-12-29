@@ -26,6 +26,9 @@ const Header = () => {
           <div><Link to={"/contact"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
             <FcPhone className="mt-1"/>Contact
           </Link></div>
+          <div><Link to={"/login_signup"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
+            Login/SignUp
+          </Link></div>
         </div>
         
       </div>

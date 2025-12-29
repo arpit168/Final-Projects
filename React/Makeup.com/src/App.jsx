@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import Home from "../src/pages/Home";
-import About from "../src/pages/About";
-import Product from "../src/pages/Product";
+import Home from "../src/Pages/Home";
+import About from "../src/Pages/About";
+import Product from "../src/Pages/Product";
 import Contact from "../src/Pages/Contact";
 import AOS from "aos";
+import Login_Signup from "./Pages/Login_Signup";
 
 const App = () => {
   useEffect(() => {
@@ -21,6 +22,9 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login_signup" element={<Login_Signup />} />
+          
+
         </Routes>
         <Footer />
       </BrowserRouter>

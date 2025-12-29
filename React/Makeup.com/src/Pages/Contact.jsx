@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { data } from "react-router-dom";
 import kit from "../assets/Makeupkit.jpg";
-import bg from "../assets/aboutmakeup.jpeg"
+import bg from "../assets/aboutmakeup.jpeg";
 
 const Contact = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [contactData, setContactData] = useState({
+    fullName: "",
+    email: "",
+    phone:"", 
+    city: "",
+    subject: "",
+    message: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContactData((previousData) => ({ ...previousData, [name]: value }));
+  };
 
   const handleClearForm = () => {
-    setFullName("");
-    setEmail("");
-    setMessage("");
+
   };
 
   const handleSubmit = async (e) => {
@@ -22,24 +30,21 @@ const Contact = () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = {
-        fullName,
-        email,
-        message,
+        
       };
-      console.log(data);
+     
     } catch (error) {
       console.log(error.message);
     } finally {
       setIsLoading(false);
     }
-
     handleClearForm();
   };
 
   return (
     <>
       <div className="bg-gray-700">
-        <img src={bg} alt=""  className="absolute opacity-55" />
+        <img src={bg} alt="" className="absolute opacity-55" />
         <h1
           className="text-center text-4xl pt-5 text-gray-200 font-bold animate-bounce"
           data-aos="fade-down"
@@ -101,7 +106,7 @@ const Contact = () => {
                 onReset={handleClearForm}
                 onSubmit={handleSubmit}
               >
-                <div>
+                <div> 
                   <label
                     htmlFor="fullName"
                     className="block text-gray-600 mb-1"
@@ -113,8 +118,8 @@ const Contact = () => {
                     type="text"
                     name="fullName"
                     id="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    value={contactData.fullName}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
@@ -129,9 +134,54 @@ const Contact = () => {
                     type="email"
                     name="email"
                     id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={contactData.email}
+                    onChange={handleChange}
                     placeholder="Enter your email"
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-gray-600 mb-1">
+                    Phone
+                  </label>
+                  <input
+                    required
+                    type="phone"
+                    name="phone"
+                    id="phone"
+                    value={contactData.phone}
+                    onChange={handleChange}
+                    placeholder="Enter your Contact number"
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-gray-600 mb-1">
+                    Subject
+                  </label>
+                  <input
+                    required
+                    type="subject"
+                    name="subject"
+                    id="subject"
+                    value={contactData.subject}
+                   onChange={handleChange}
+                    placeholder="Enter your subject"
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="city" className="block text-gray-600 mb-1">
+                   City
+                  </label>
+                  <input
+                    required
+                    type="city"
+                    name="city"
+                    id="city"
+                    value={contactData.city}
+                    onChange={handleChange}
+                    placeholder="Enter your city"
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
@@ -145,8 +195,8 @@ const Contact = () => {
                     name="message"
                     rows="4"
                     id="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={contactData.message}
+                    onChange={handleChange}
                     placeholder="Write your message..."
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   ></textarea>
