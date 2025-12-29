@@ -3,7 +3,7 @@ import { data } from 'react-router-dom'
 import  bg from "../assets/aboutmakeup.jpeg"
 
 
-const Login_Signup = () => {
+const Login = () => {
 
   const [loginData,setLogindata]= useState({
     email:"",
@@ -108,4 +108,4 @@ const Login_Signup = () => {
   )
 }
 
-export default Login_Signup
+export default Login

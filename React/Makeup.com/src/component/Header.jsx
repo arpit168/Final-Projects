@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/makeup.jpeg";
-import { FcHome, FcAbout, FcPhone } from "react-icons/fc";
+import { CiHome } from "react-icons/ci";
+import { LuNotebookPen } from "react-icons/lu";
+import { LuPhone } from "react-icons/lu";
+
+import { BsCart2 } from "react-icons/bs";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
+import { HiOutlineLogin } from "react-icons/hi";
+import { BsSignIntersectionSideFill } from "react-icons/bs";
+
+
 
 const Header = () => {
   return (
@@ -13,21 +21,24 @@ const Header = () => {
          <img src={img}  className="rounded-full w-15 me-2" alt="" />
         <h1 className="text-5xl text-gray-300 font-semibold "><span className="text-pink-600 animate-pulse text-6xl">M</span>ake<span className="border-b-2 border-gray-600">up.Com   </span></h1>
        </div>
-        <div className="fs-5 flex gap-5 text-light mt-2 animate-pulse">
-          <div><Link to={"/"} className="text-decoration-none text-2xl text-amber-400 flex hover:border-b-2 border-amber-400">
-           <FcHome className="mt-1"/> Home
+        <div className="   flex gap-5 text-light mt-2 animate-pulse">
+          <div><Link to={"/"} className="text-decoration-none text-xl text-amber-400 flex hover:border-b-2 border-amber-400">
+           <CiHome className="mt-1"/> Home
           </Link></div>
-          <div><Link to={"/about"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
-           <FcAbout className="mt-1"/> About
+          <div><Link to={"/about"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400">
+           <LuNotebookPen className="mt-1"/> About
           </Link></div>
-          <div><Link to={"/product"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
-           <MdOutlineProductionQuantityLimits className="mt-1"/> Product
+          <div><Link to={"/product"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400">
+           <BsCart2 className="mt-1"/> Product
           </Link></div>
-          <div><Link to={"/contact"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
-            <FcPhone className="mt-1"/>Contact
+          <div><Link to={"/contact"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400">
+            <LuPhone className="mt-1"/>Contact
           </Link></div>
-          <div><Link to={"/login_signup"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
-            Login/SignUp
+          <div><Link to={"/login"} className="text-decoration-none text-xl text-amber-400 flex border hover:bg-yellow-300 hover:text-black rounded-xl px-2  hover:border-b-2 border-amber-400">
+            <HiOutlineLogin className="mt-1"/>Login
+          </Link></div>
+          <div><Link to={"/signup"} className="text-decoration-none text-xl text-amber-400 flex border  hover:border-b-2 hover:bg-yellow-300 hover:text-black rounded-xl px-2 border-amber-400">
+           <BsSignIntersectionSideFill className="mt-1"/>SignUp
           </Link></div>
         </div>
         

@@ -7,7 +7,8 @@ import About from "../src/Pages/About";
 import Product from "../src/Pages/Product";
 import Contact from "../src/Pages/Contact";
 import AOS from "aos";
-import Login_Signup from "./Pages/Login_Signup";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 const App = () => {
   useEffect(() => {
@@ -22,7 +23,9 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login_signup" element={<Login_Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup/>} />
+
           
 
         </Routes>
