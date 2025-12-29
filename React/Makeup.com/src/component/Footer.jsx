@@ -1,4 +1,5 @@
 import React from "react";
+import { FaHeart } from "react-icons/fa";
 
 
 const Footer = () => {
@@ -82,9 +83,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm">
-          Copyright © {new Date().getFullYear()} ShoppingCart. All rights
+        <div className="border-t flex justify-between border-gray-700 mt-10 pt-6 text-center text-sm">
+          <span>
+            Copyright © {new Date().getFullYear()} Makeup.com. All rights
           reserved.
+          </span>
+          <span className="flex">Made with <FaHeart className="text-red-700  mx-1 text-xl" /> by Anokha Arpit. </span>
         </div>
       </div>
     </footer>
