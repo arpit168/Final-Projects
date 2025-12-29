@@ -4,10 +4,20 @@ import pic from "../assets/aboutmakeup.jpeg"
 const About = () => {
   return (
     <section className="bg-gray-500 py-16">
+       <h1
+          className="text-center text-4xl pt-5 text-gray-200 mb-10 font-bold animate-bounce"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+        >
+          <span className="border-b-2 border-gray-400 ">
+            Welcome to  <span className="text-red-700">About</span>
+          </span>
+        </h1>
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         
         
-        <div>
+        <div data-aos="fade-down-left">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-10">
             <span className=" animate-pulse">About </span><span className="text-pink-500">Makeup.com</span>
           </h2>
@@ -36,7 +46,7 @@ const About = () => {
         </div>
 
        
-        <div className="relative">
+        <div className="relative"  data-aos="fade-down-right">
           <div className="bg-white rounded-3xl shadow-2xl p-8">
             <img
               src={pic}
@@ -61,7 +71,8 @@ const About = () => {
           </div>
 
           
-          
+          <div className="absolute -top-6 -right-6 w-24 h-24 bg-pink-300 rounded-full opacity-30"></div>
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-300 rounded-full opacity-30"></div>
         </div>
       </div>
     </section>

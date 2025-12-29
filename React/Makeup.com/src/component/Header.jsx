@@ -14,19 +14,20 @@ const Header = () => {
         <h1 className="text-5xl text-gray-300 font-semibold "><span className="text-pink-600 animate-pulse text-6xl">M</span>ake<span className="border-b-2 border-gray-600">up.Com   </span></h1>
        </div>
         <div className="fs-5 flex gap-5 text-light mt-2 animate-pulse">
-          <Link to={"/"} className="text-decoration-none text-2xl text-amber-400 flex">
+          <div><Link to={"/"} className="text-decoration-none text-2xl text-amber-400 flex hover:border-b-2 border-amber-400">
            <FcHome className="mt-1"/> Home
-          </Link>
-          <Link to={"/about"} className="text-decoration-none text-2xl text-amber-400 flex">
+          </Link></div>
+          <div><Link to={"/about"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
            <FcAbout className="mt-1"/> About
-          </Link>
-          <Link to={"/product"} className="text-decoration-none text-2xl text-amber-400 flex">
+          </Link></div>
+          <div><Link to={"/product"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
            <MdOutlineProductionQuantityLimits className="mt-1"/> Product
-          </Link>
-          <Link to={"/contact"} className="text-decoration-none text-2xl text-amber-400 flex">
+          </Link></div>
+          <div><Link to={"/contact"} className="text-decoration-none text-2xl text-amber-400 flex  hover:border-b-2 border-amber-400">
             <FcPhone className="mt-1"/>Contact
-          </Link>
+          </Link></div>
         </div>
+        
       </div>
     </>
   );
