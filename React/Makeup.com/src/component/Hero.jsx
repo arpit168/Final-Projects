@@ -2,12 +2,11 @@ import React from "react";
 import heropic from "../assets/makeup Hero.jpeg";
 import bgpic from "../assets/aboutmakeup.jpeg";
 
-
 const Hero = () => {
   return (
     <>
       <div className=" ">
-        <img src={bgpic} className="absolute opacity-30"  alt="" />
+        <img src={bgpic} className="absolute opacity-30" alt="" />
         <div className="">
           <div className=" ">
             <div className="min-h-screen flex items-center justify-center ">
@@ -98,11 +97,18 @@ const Hero = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="absolute top-60 right-35 w-24 h-24 bg-pink-300 rounded-full opacity-30"></div>
                 <div className="absolute -bottom-15 right-170 w-32 h-32 bg-purple-300 rounded-full opacity-30"></div>
               </div>
+              
               <div className="absolute top-180 left-5 w-24 h-24 bg-pink-300 rounded-full opacity-30"></div>
-                <div className="absolute top-80 left-50 w-32 h-32 bg-purple-300 rounded-full opacity-30"></div>
+              <div className="absolute top-80 left-50 w-32 h-32 bg-purple-300 rounded-full opacity-30"></div>
+            </div>
+            <div className="mb-10 text-center relative ">
+               <button className="border-2 w-50 border-black text-black  hover:bg-indigo-600 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-500">
+              <a href="/product">Explore More</a>
+            </button>
             </div>
           </div>
         </div>

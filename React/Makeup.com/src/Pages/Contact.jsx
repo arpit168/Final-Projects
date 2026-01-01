@@ -2,25 +2,76 @@ import React, { useState } from "react";
 import { data } from "react-router-dom";
 import kit from "../assets/Makeupkit.jpg";
 import bg from "../assets/aboutmakeup.jpeg";
+import arp from "../assets/signmakeup.jpeg";
+import toast from "react-hot-toast";
 
 const Contact = () => {
-
   const [contactData, setContactData] = useState({
     fullName: "",
     email: "",
-    phone:"", 
+    phone: "",
     city: "",
     subject: "",
     message: "",
+    religion: "",
+    gender: "",
+    skill: [],
   });
+  console.log(contactData);
+
   const [isLoading, setIsLoading] = useState(false);
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setContactData((previousData) => {
+        let updateSkill = [...previousData.skill];
+
+        if (checked) {
+          updateSkill.push(value);
+        } else {
+          updateSkill = updateSkill.filter((skill) => skill !== value);
+        }
+        return {
+          ...previousData,
+          skill: updateSkill,
+        };
+      });
+      return;
+
+      setContactData((previousData) => ({
+        ...previousData,
+        [name]: value,
+      }));
+    }
+    // if (type === "checkbox") {
+    //   let temp = contactData.skill;
+    //   if (checked) {
+    //     console.log(temp);
+
+    //     temp = Object.values(temp);
+    //     temp.push(value);
+    //     setContactData((previousData) => ({ ...previousData, [name]: temp }));
+    //   } else {
+    //     temp = Object.values(temp); //convert to Array
+    //     temp = temp.filter((word) => word !== value); //Remove the undesired value
+    //     setContactData((perviousData) => ({ ...perviousData, [name]: temp }));
+    //   }
+    // }
     setContactData((previousData) => ({ ...previousData, [name]: value }));
   };
 
   const handleClearForm = () => {
-
+    setContactData({
+      fullName: "",
+      email: "",
+      phone: "",
+      city: "",
+      subject: "",
+      message: "",
+      religion: "",
+      gender: "",
+      skill: [],
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -29,15 +80,15 @@ const Contact = () => {
 
     try {
       const response = await fetch("https://fakestoreapi.com/products");
-      const data = {
-        
-      };
-     
+      const data = {};
     } catch (error) {
       console.log(error.message);
     } finally {
       setIsLoading(false);
     }
+    console.log(contactData);
+    toast.success("Congrats");
+    
     handleClearForm();
   };
 
@@ -84,8 +135,13 @@ const Contact = () => {
                 <img
                   src={kit}
                   alt=""
-                  className="rounded-2xl animate-pulse hover:animate-none"
+                  className="rounded-2xl  h-75 animate-pulse hover:animate-none"
                   data-aos="fade-left"
+                />
+                <img
+                  src={arp}
+                  alt=""
+                  className="rounded-2xl object-cover w-125 h-100 animate-pulse hover:animate-none"
                 />
               </div>
             </div>
@@ -106,7 +162,7 @@ const Contact = () => {
                 onReset={handleClearForm}
                 onSubmit={handleSubmit}
               >
-                <div> 
+                <div>
                   <label
                     htmlFor="fullName"
                     className="block text-gray-600 mb-1"
@@ -156,6 +212,105 @@ const Contact = () => {
                   />
                 </div>
                 <div>
+                  <label
+                    htmlFor="religion"
+                    className="block text-gray-600 mb-1"
+                  >
+                    Religion
+                  </label>
+                  <select
+                    name="religion"
+                    id="religion"
+                    onChange={handleChange}
+                    value={contactData.religion}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value="">--Select Religion--</option>
+                    <option value="islam">Islam</option>
+                    <option value="hinduism">Hinduism</option>
+                    <option value="christianity">Christianity</option>
+                    <option value="buddhism">Buddhism</option>
+                    <option value="jainism">Jainism</option>
+                    <option value="sikhism">Sikhism</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="gender" className="block text-gray-600 mb-1">
+                    Gender
+                  </label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    onChange={handleChange}
+                    checked={contactData.gender === "male"}
+                    className="p-5 mt-2 "
+                  />{" "}
+                  <span className="border px-3 py-1 cursor-pointer me-3 rounded">
+                    {" "}
+                    Male
+                  </span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    onChange={handleChange}
+                    checked={contactData.gender === "female"}
+                  />{" "}
+                  <span className="border px-3 py-1 cursor-pointer me-3 rounded">
+                    Female
+                  </span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    onChange={handleChange}
+                    checked={contactData.gender === "other"}
+                  />{" "}
+                  <span className="border px-3 py-1 cursor-pointer me-3 rounded">
+                    {" "}
+                    Other
+                  </span>
+                </div>
+                <div>
+                  <label htmlFor="skill" className="block text-gray-600 mb-1">
+                    Skill known
+                  </label>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="html"
+                    onChange={handleChange}
+                    checked={contactData.skill.includes("html")}
+                  />{" "}
+                  <span className="border  px-3 py-1">HTML</span>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="css"
+                    onChange={handleChange}
+                    checked={contactData.skill.includes("css")}
+                  />{" "}
+                  <span className="border  px-3 py-1">CSS</span>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="js"
+                    onChange={handleChange}
+                    checked={contactData.skill.includes("js")}
+                  />{" "}
+                  <span className="border  px-3 py-1">JS</span>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="react"
+                    onChange={handleChange}
+                    checked={contactData.skill.includes("react")}
+                  />{" "}
+                  <span className="border  px-3 py-1">React</span>
+                </div>
+                <div>
                   <label htmlFor="subject" className="block text-gray-600 mb-1">
                     Subject
                   </label>
@@ -165,14 +320,14 @@ const Contact = () => {
                     name="subject"
                     id="subject"
                     value={contactData.subject}
-                   onChange={handleChange}
+                    onChange={handleChange}
                     placeholder="Enter your subject"
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
                 <div>
                   <label htmlFor="city" className="block text-gray-600 mb-1">
-                   City
+                    City
                   </label>
                   <input
                     required

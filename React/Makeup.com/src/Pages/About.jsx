@@ -3,7 +3,7 @@ import pic from "../assets/aboutmakeup.jpeg"
 
 const About = () => {
   return (
-    <section className="bg-gray-500 py-16">
+    <section className="bg-gray-400 py-16">
        <h1
           className="text-center text-4xl pt-5 text-gray-200 mb-10 font-bold animate-bounce"
           data-aos="fade-down"
@@ -19,28 +19,28 @@ const About = () => {
         
         <div data-aos="fade-down-left">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-10">
-            <span className=" animate-pulse">About </span><span className="text-pink-500">Makeup.com</span>
+            <span className=" animate-pulse">About </span><span className="text-indigo-500">Makeup.com</span>
           </h2>
 
-          <p className="text-gray-50 text-lg mb-6">
+          <p className="text-gray-950 text-lg mb-6">
             Welcome to <span className="font-semibold">Makeup.com</span>, your
             trusted destination for premium beauty and cosmetic products.
             We believe makeup is not just about beauty — it's about confidence,
             self-expression, and empowerment.
           </p>
 
-          <p className="text-gray-50 text-lg  mb-8">
+          <p className="text-gray-950 text-lg  mb-8">
             From everyday essentials to luxury glam, we carefully curate
             products from top brands to ensure quality, authenticity, and
             affordability — all in one place.
           </p>
 
           <div className="flex gap-4">
-            <button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300">
-              Explore Products
+            <button className="bg-black hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300">
+             <a href=".product"> Explore Products</a>
             </button>
-            <button className="border-2 border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-300">
-              Learn More
+            <button className="border-2 border-black text-black  hover:bg-indigo-600 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-500">
+              <a href="/product">Learn More</a>
             </button>
           </div>
         </div>

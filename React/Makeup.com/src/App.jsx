@@ -9,6 +9,7 @@ import Contact from "../src/Pages/Contact";
 import AOS from "aos";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import {Toaster} from "react-hot-toast"
 
 const App = () => {
   useEffect(() => {
@@ -17,6 +18,8 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+      
+      <Toaster position="top-center" reverseOrder={false}/>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,9 +28,6 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup/>} />
-
-          
-
         </Routes>
         <Footer />
       </BrowserRouter>

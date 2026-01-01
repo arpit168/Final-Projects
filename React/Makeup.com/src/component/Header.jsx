@@ -16,31 +16,37 @@ import { BsSignIntersectionSideFill } from "react-icons/bs";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-between bg-gray-950 text-light p-5 sticky top-0 z-50 ">
-       <div className="flex">
+      <div className=" border-b-6 text-light bg-gray-100 p-2 px-5 sticky top-0 z-100 ">
+      <div className="flex justify-around shadow-2xl "> 
+         <div className="flex">
          <img src={img}  className="rounded-full w-15 me-2" alt="" />
-        <h1 className="text-5xl text-gray-300 font-semibold "><span className="text-pink-600 animate-pulse text-6xl">M</span>ake<span className="border-b-2 border-gray-600">up.Com   </span></h1>
+        <h1 className="text-4xl mt-3  font-bold text-indigo-700 font-serif ">Makeup.Com</h1>
        </div>
-        <div className="   flex gap-5 text-light mt-2 ">
-          <div><Link to={"/"} className="text-decoration-none text-xl text-amber-400 flex hover:border-b-2 border-amber-400 hover:text-red-700 hover:border-b-red-700">
-           <CiHome className="mt-1"/> Home
+        <div className="   flex   gap-5 text-light mt-5 me-15">
+          <div><Link to={"/"} className="text-decoration-none text-xl text-black font-serif flex hover:border-b-2 border-black  ">
+           <CiHome className=" text-indigo-700 text-2xl"/><p>Home</p>
+            
           </Link></div>
-          <div><Link to={"/about"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400  hover:text-red-700 hover:border-b-red-700">
-           <LuNotebookPen className="mt-1"/> About
+          <div><Link to={"/about"} className="text-decoration-none text-xl text-black  flex  hover:border-b-2 border-black font-serif  ">
+           <LuNotebookPen className="text-2xl text-indigo-700 font-bold"/> About
           </Link></div>
-          <div><Link to={"/product"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400  hover:text-red-700 hover:border-b-red-700">
-           <BsCart2 className="mt-1"/> Product
+          <div><Link to={"/product"} className="text-decoration-none text-xl text-black font-serif flex  hover:border-b-2 border-black  ">
+           <BsCart2 className="text-2xl text-indigo-700 font-bold"/> Product
           </Link></div>
-          <div><Link to={"/contact"} className="text-decoration-none text-xl text-amber-400 flex  hover:border-b-2 border-amber-400  hover:text-red-700 hover:border-b-red-700">
-            <LuPhone className="mt-1"/>Contact
+          <div><Link to={"/contact"} className="text-decoration-none text-xl text-black flex  hover:border-b-2 border-black font-serif  ">
+            <LuPhone className="text-2xl text-indigo-700 font-bold"/>Contact
           </Link></div>
-          <div><Link to={"/login"} className="text-decoration-none text-xl text-amber-400 flex border hover:bg-yellow-300 hover:text-black rounded-xl px-2  hover:border-b-2 border-amber-400">
-            <HiOutlineLogin className="mt-1"/>Login
+         
+        </div>
+        <div className="flex gap-5 mt-5">
+           <div><Link to={"/login"} className="text-decoration-none text-xl font-serif bg-indigo-700 text-white flex border hover:bg-yellow-300 hover:text-black rounded-xl px-2  hover:border-b-2 border-black ">
+            <HiOutlineLogin className="mt-1 font-bold"/>Login
           </Link></div>
-          <div><Link to={"/signup"} className="text-decoration-none text-xl text-amber-400 flex border  hover:border-b-2 hover:bg-yellow-300 hover:text-black rounded-xl px-2 border-amber-400">
-           <BsSignIntersectionSideFill className="mt-1"/>SignUp
+          <div><Link to={"/signup"} className="text-decoration-none text-xl  bg-indigo-700 text-white  flex border  hover:border-b-2 hover:bg-yellow-300 hover:text-black rounded-xl px-2 border-black font-serif">
+           <BsSignIntersectionSideFill className="mt-1  font-bold"/>SignUp
           </Link></div>
         </div>
+      </div>
         
       </div>
     </>
