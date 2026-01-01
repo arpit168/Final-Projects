@@ -50,6 +50,7 @@ const Register = () => {
   const validate = () => {
     let Error = {};
 
+    // fullName
     if (formData.fullName.length < 3) {
       Error.fullName = "Name should be More Than 3 Characters";
     } else {
@@ -57,6 +58,8 @@ const Register = () => {
         Error.fullName = "Only Contain A-Z , a-z and space";
       }
     }
+
+    // email
 
     if (
       !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
@@ -66,12 +69,18 @@ const Register = () => {
       Error.email = "Use Proper Email Format";
     }
 
+    // mobile number
     if (!/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
       Error.mobileNumber = "Only Indian Mobile Number allowed";
     }
 
-    setValidationError(Error);
+    // Date Of Birth
+   
+    if (formData.dateOfBirth === "" ) {
+      Error.dateOfBirth = "DOB is required";
+    } 
 
+    setValidationError(Error);
     return Object.keys(Error).length > 0 ? false : true;
   };
 
@@ -123,15 +132,14 @@ const Register = () => {
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b-2 border-indigo-500">
                   Personal Information
                 </h2>
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
+                <div className="grid  grid-cols-2 gap-6">
+                  <div className="sm:grid-cols-1 ">
                     <input
                       type="text"
                       name="fullName"
                       placeholder="Full Name"
                       value={formData.fullName}
                       onChange={handleChange}
-                      
                       className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                     />
                     {validationError.fullName && (
@@ -140,33 +148,52 @@ const Register = () => {
                       </span>
                     )}
                   </div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    
-                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
-                  />
-                  <input
-                    type="tel"
-                    name="mobileNumber"
-                    placeholder="Mobile Number"
-                    maxLength="10"
-                    value={formData.mobileNumber}
-                    onChange={handleChange}
-                    
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
-                  />
-                  <input
-                    type="date"
-                    name="dateOfBirth"
-                    value={formData.dateOfBirth}
-                    onChange={handleChange}
-                    
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
-                  />
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                    />
+                    {validationError.email && (
+                      <span className="text-xs text-red-500">
+                        {validationError.email}
+                      </span>
+                    )}
+                  </div>
+
+                  <div>
+                    <input
+                      type="tel"
+                      name="mobileNumber"
+                      placeholder="Mobile Number"
+                      maxLength="10"
+                      value={formData.mobileNumber}
+                      onChange={handleChange}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                    />
+                    {validationError.mobileNumber && (
+                      <span className="text-xs text-red-500">
+                        {validationError.mobileNumber}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      type="date"
+                      name="dateOfBirth"
+                      value={formData.dateOfBirth}
+                      onChange={handleChange}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                    />
+                    {validationError.dateOfBirth && (
+                      <span className="text-xs text-red-500">
+                        {validationError.dateOfBirth}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -180,7 +207,6 @@ const Register = () => {
                     name="lastQualification"
                     value={formData.lastQualification}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition bg-white"
                   >
                     <option value="">Select Qualification</option>
@@ -195,7 +221,6 @@ const Register = () => {
                     placeholder="Percentage/Grade"
                     value={formData.percentageGrade}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                   />
                 </div>
@@ -211,7 +236,6 @@ const Register = () => {
                     name="preferredCourse"
                     value={formData.preferredCourse}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition bg-white"
                   >
                     <option value="">Select Course</option>
@@ -224,7 +248,6 @@ const Register = () => {
                     name="batchTiming"
                     value={formData.batchTiming}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition bg-white"
                   >
                     <option value="">Select Batch Timing</option>
@@ -248,7 +271,6 @@ const Register = () => {
                     rows="3"
                     value={formData.residentialAddress}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition resize-none"
                   ></textarea>
                   <div className="grid grid-cols-2 gap-6">
@@ -258,7 +280,6 @@ const Register = () => {
                       placeholder="City"
                       value={formData.city}
                       onChange={handleChange}
-                      
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                     />
                     <input
@@ -268,7 +289,6 @@ const Register = () => {
                       maxLength="6"
                       value={formData.pinCode}
                       onChange={handleChange}
-                      
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                     />
                   </div>
@@ -287,7 +307,6 @@ const Register = () => {
                     placeholder="Guardian's Full Name"
                     value={formData.guardianName}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                   />
                   <input
@@ -297,7 +316,6 @@ const Register = () => {
                     maxLength="10"
                     value={formData.guardianContact}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
                   />
                 </div>
@@ -313,7 +331,6 @@ const Register = () => {
                     name="hearAboutUs"
                     value={formData.hearAboutUs}
                     onChange={handleChange}
-                    
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition bg-white"
                   >
                     <option value="">How did you hear about us?</option>
