@@ -27,6 +27,10 @@ const Currency = () => {
       toast.error("Some Fields Missing");
       return;
     }
+    if (from === to) {
+      toast.error("Both Fields are same! ");
+      return;
+    }
     try {
       const res = await axios.get(
         `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from
@@ -36,39 +40,39 @@ const Currency = () => {
       console.log(res.data);
 
       setToAmt(
-       ( fromAmt *
+        (
+          fromAmt *
           res.data[from.split(" ")[0].toLowerCase()][
             to.split(" ")[0].toLowerCase()
-          ]).toFixed(3  )
+          ]
+        ).toFixed(3)
       );
     } catch (error) {}
   };
 
   return (
     <>
-      <div className="w-full  py-20  ">
+      <div className="w-full  py-15  ">
         <div className=" w-full  p-5 pt-20   ">
           <div className="md:w-3xl bg-white rounded shadow border p-3 mx-auto space-y-5 w-75  ">
             <div className=" ">
               <div className="bg-blue-500 px-4 py-2  md:text-3xl text-white text-center flex justify-center items-center gap-4">
-                
                 <span className="font-bold">Currency Convertor</span>
-                
               </div>
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-5  ">
-             <div className=" bg-red-100 border">
-               <input
-                type="text"
-                name="fromAmt"
-                value={fromAmt}
-                onChange={(e) => setFromAmt(e.target.value)}
-                placeholder="Enter the Amount to Convert"
-                className="  p-3 w-full"
-              />
-             </div>
-              <div className=" border p-2 rounded  ">
-                <label htmlFor="toAmt">
+              <div className=" bg-gray-100 border">
+                <input
+                  type="text"
+                  name="fromAmt"
+                  value={fromAmt}
+                  onChange={(e) => setFromAmt(e.target.value)}
+                  placeholder="Enter the Amount to Convert"
+                  className="  p-3 w-full"
+                />
+              </div>
+              <div className=" border p-2 rounded bg-gray-100  ">
+                <label htmlFor="toAmt" >
                   Converted Amount : {toAmt ? toAmt : " "}
                 </label>
               </div>
@@ -91,7 +95,6 @@ const Currency = () => {
                   onChange={(e) => setFrom(e.target.value)}
                   className=" p-3 overflow-hidden w-full focus:outline-none"
                 >
-                  
                   {CountryData.map((country, idx) => (
                     <option
                       value={country.CurrencyCode + " " + country.CountryCode}
@@ -101,7 +104,7 @@ const Currency = () => {
                     </option>
                   ))}
                 </select>
-                <p className="absolute md:bottom-14 bottom-14 px-1 bg-white">
+                <p className="absolute md:bottom-14 bottom-14 px-1 bg-white animate-pulse">
                   From
                 </p>
               </div>
@@ -119,7 +122,6 @@ const Currency = () => {
                   onChange={(e) => setTo(e.target.value)}
                   className=" p-3 overflow-hidden w-full focus:outline-none"
                 >
-                  
                   {CountryData.map((country, idx) => (
                     <option
                       value={country.CurrencyCode + " " + country.CountryCode}
@@ -129,7 +131,7 @@ const Currency = () => {
                     </option>
                   ))}
                 </select>
-                <p className="absolute md:bottom-14 bottom-9 px-2 bg-white">
+                <p className="absolute md:bottom-14 bottom-9 px-2 bg-white animate-pulse">
                   To
                 </p>
               </div>

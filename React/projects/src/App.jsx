@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Currency from "./pages/Currency";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Toaster />
         <Header/>
        <Routes>
+        <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/currency" element={<Currency/>}/>
        </Routes>
