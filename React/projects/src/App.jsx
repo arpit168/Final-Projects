@@ -2,15 +2,22 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Register from "./pages/Register";
+import Currency from "./pages/Currency";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Toaster />
+        <Header/>
        <Routes>
-        <Route path="/" element={<Register/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/currency" element={<Currency/>}/>
        </Routes>
+       <Footer/>
       </BrowserRouter>
     </>
   );
