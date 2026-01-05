@@ -1,41 +1,54 @@
-import React from "react";
-import Hero from "../component/Hero";
-import bg from "../assets/sundari.avif"
+// import React from "react";
+// import Hero from "../component/Hero";
+// import bg from "../assets/sundari.avif";
 
-const Home = () => {
-  return (
-    <>
-      <div className=" mb-30">
-        <img src={bg} className=" absolute" alt="" />
-        <div className="w-200 relative p-10  ">
-          <div className="ms-25">
-            <h1 className="text-5xl my-10 font-bold font-serif">Your beauty is Our Responsibility and Now digitally secured...</h1>
-            <div>
-              <p className="text-xl my-10">Store, access and share your medical records securly with your beauty life.  </p>
-              <ol className="list-disc list-inside text-xl font-xl">
-                <li>Access your products anytime, anywhere.</li>
-                <li>Share files securly with your Makeup artist. </li>
-                <li>Track your beauty health history in one place. </li>
-                <li>purchese your cosmatic products instantly withing few times.</li>
-              </ol>
-            </div>
-          
-             <button className=" my-10 px-8 border-2 py-4 rounded-full hover:bg-indigo-600 bg-black text-pink-100 shadow-2xln transition duration-700 "><a href="/products">Get Started</a></button>
-            <button className="border-2 border-black text-black  hover:bg-indigo-600 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-500">
-              Learn More
-            </button> 
-         
-          </div>
-          
-          <div> 
+// const Home = () => {
+//   return (
+//     <>
+//       <div className="relative w-full overflow-hidden">
+//         {/* Background Image */}
+//         <img
+//           src={bg}
+//           alt=""
+//           className="absolute inset-0 w-full h-full object-cover -z-10"
+//         />
 
-          </div>
-        </div>
-      </div>
-      <Hero/>
-     
-    </>
-  );
-};
+//         {/* Content Wrapper */}
+//         <div className="md:w-7xl  md:mx-auto px-4 sm:px-6 md:px-12 py-10 md:py-20">
+//           <div className="md:max-w-3xl">
+//             <h1 className="text-xl md:w-auto w-55 sm:text-2xl md:text-5xl font-bold font-serif leading-tight md:my-10">
+//               Your beauty is Our Responsibility and Now digitally secured...
+//             </h1>
 
-export default Home;
+//             <p className="text-sm sm:text-base md:text-2xl md:my-10 md:w-auto w-55">
+//               Store, access and share your medical records securely with your
+//               beauty life.
+//             </p>
+
+//             <ol className="list-disc list-inside text-sm sm:text-base md:text-xl space-y-2 md:w-auto w-55">
+//               <li>Access your products anytime, anywhere.</li>
+//               <li>Share files securely with your Makeup artist.</li>
+//               <li>Track your beauty health history in one place.</li>
+//               <li>Purchase your cosmetic products instantly within few times.</li>
+//             </ol>
+
+//             {/* Buttons */}
+//             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+//               <button className="border-2 py-3 sm:py-4 rounded-2xl md:rounded-full bg-black text-pink-100 hover:bg-indigo-600 shadow-2xl transition duration-700">
+//                 <a href="/products">Get Started</a>
+//               </button>
+
+//               <button className="border-2 py-3 sm:py-4 rounded-2xl md:rounded-full  text-pink-500 hover:bg-gray-900 shadow-2xl transition duration-700">
+//                 <a href="/products">Learn More</a>
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Hero />
+//     </>
+//   );
+// };
+
+// export default Home;

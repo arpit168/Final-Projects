@@ -176,12 +176,15 @@ const Signup = () => {
                         <IoLockClosedOutline className="relative right-10 text-white top-3 text-2xl" />
                       </div>
                     </div>
-                    <button
+                   <div>
+                     <button
                       type="submit"
                       className="w-100 bg-indigo-950 animate-bounce hover:animate-none hover:text-red-500 hover:bg-indigo-800 text-white py-3 mt-5 rounded-lg font-semibold transition "
                     >
                       {isLoading ? "Loading" : "Sign Up"}
                     </button>
+                    <p className="text-center text-white">I have an Account. <a href="/login" className="text-blue-400">Login here!</a></p>
+                   </div>
                   </div>
                   <div className="absolute -bottom-16 right-95 w-24 h-24 bg-pink-800 rounded-full opacity-30"></div>
                   <div className="absolute bottom-95 left-86 w-32 h-32 bg-red-300 rounded-full opacity-30"></div>

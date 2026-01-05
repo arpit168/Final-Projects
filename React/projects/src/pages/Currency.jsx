@@ -52,9 +52,9 @@ const Currency = () => {
 
   return (
     <>
-      <div className="w-full  py-15  ">
+      <div className="w-full  py-15   ">
         <div className=" w-full  p-5 pt-20   ">
-          <div className="md:w-3xl bg-white rounded shadow border p-3 mx-auto space-y-5 w-75  ">
+          <div className="md:w-3xl bg-orange-100 rounded-br-full  rounded-tl-full shadow border p-3 mx-auto space-y-5 w-75  ">
             <div className=" ">
               <div className="bg-blue-500 px-4 py-2  md:text-3xl text-white text-center flex justify-center items-center gap-4">
                 <span className="font-bold">Currency Convertor</span>
