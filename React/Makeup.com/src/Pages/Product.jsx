@@ -2,6 +2,8 @@ import React from "react";
 import img from "../assets/aboutmakeup.jpeg";
 
 const Product = () => {
+  
+
   return (
     <div className="font-serif">
       {" "}

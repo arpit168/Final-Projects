@@ -50,8 +50,8 @@ const Login = () => {
     <div>
       <div className=" flex justify-center bg-gray-800">
         <div className="bg-gray-200 p-2  flex  border-2 border-gray-4 my-5   ">
-          <div data-aos="fade-right" ><img src={one} className="w-75 h-115 rounded-s-2xl me-2 object-cover" alt="" /></div>
-          <div data-aos="fade-left" className=" inline-flex  rounded-e-2xl p-5 bg-gray-900">
+          <div data-aos="fade-right" ><img src={one} className="w-75 md:flex hidden h-125 rounded-s-2xl me-2 object-cover" alt="" /></div>
+          <div data-aos="fade-right" className=" inline-flex  rounded-e-2xl p-5 bg-gray-900">
         
             <div>
               <h2 className="text-4xl text-indigo-400 text-center mb-10 font-bold shadow animate-bounce hover:text-indigo-700">
