@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/makeup.jpeg";
 import { CiHome } from "react-icons/ci";
 import { LuNotebookPen } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { BsCart2 } from "react-icons/bs";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { MdOpacity, MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
 import { HiOutlineLogin } from "react-icons/hi";
 import { BsSignIntersectionSideFill } from "react-icons/bs";
 import { TiThMenu } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
-import {motion} from "motion/react";
+import { motion,AnimatePresence } from "motion/react";
+import useUiStore from "../store/useUiStore";
+import { SiLucide } from "react-icons/si";
 
 
 const Header = () => {
-  const [show, setShow] = useState(false);
-  const [user, setUser] = useState(false)
+  const { showHeader, setShowHeader } = useUiStore();
+  const [user, setUser] = useState(false);
 
   return (
     <>
@@ -68,62 +70,117 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <div >
-           
-          <button  className="text-2xl md:flex hidden "><a href="/login"><FaRegUserCircle/></a></button>
-           
+          <div>
+            <button className="text-2xl md:flex hidden ">
+              <a href="/login">
+                <FaRegUserCircle />
+              </a>
+            </button>
           </div>
-          <motion.button drag dragMomentum={false} whileTap={{scale:0.9}}
+          <motion.button
+            drag
+            dragMomentum={false}
+            whileTap={{ scale: 0.9 }}
             className="md:hidden  text-pink-500"
-            onClick={() => setShow(!show)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowHeader(!showHeader);
+            }}
           >
-            {show ? <RxCross2 size={30} /> : <TiThMenu size={30} />}
+            {showHeader ? <RxCross2 size={30} /> : <TiThMenu size={30} />}
           </motion.button>
         </div>
-        {show && (
-          <div className="  mt-5 w-full  ">
+        <AnimatePresence>
+        {showHeader && (
+          <motion.div exit={{y:-200 }} transition={{duration:0.2}} ref={menubar} className="mt-5 w-full  ">
             <div className=" md:hidden grid grid-cols-1 rounded  gap-2  bg-white   ">
-              <button onClick={() => setShow(false)}>
-                <Link to={"/"} className="  font-serif float-start  px-4 text-sm  py-1   ">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/"}
+                  className="  font-serif float-start  px-4 text-sm  py-1   "
+                >
                   Home
                 </Link>
               </button>
 
-              <button onClick={() => setShow(false)}>
-                <Link to={"/about"} className="  font-serif float-start  px-4 text-sm  py-1  ">
-                   About
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/about"}
+                  className="  font-serif float-start  px-4 text-sm  py-1  "
+                >
+                  About
                 </Link>
               </button>
 
-              <button onClick={() => setShow(false)}>
-                <Link to={"/product"} className="  font-serif float-start  px-4 text-sm  py-1     ">
-               Product
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/product"}
+                  className="  font-serif float-start  px-4 text-sm  py-1     "
+                >
+                  Product
                 </Link>
               </button>
 
-              <button onClick={() => setShow(false)}>
-                <Link to={"/contact"} className="    font-serif float-start  px-4 text-sm  py-1     ">
-                 
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/contact"}
+                  className="    font-serif float-start  px-4 text-sm  py-1     "
+                >
                   Contact
                 </Link>
               </button>
 
-              <button onClick={() => setShow(false)}>
-                <Link to={"/login"} className="  font-serif float-start  px-4 text-sm  py-1    ">
-                 
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/login"}
+                  className="  font-serif float-start  px-4 text-sm  py-1    "
+                >
                   Login
                 </Link>
               </button>
 
-              <button onClick={() => setShow(false)}>
-                <Link to={"/signup"} className="  font-serif float-start  px-4 text-sm  py-1  ">
-                  
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowHeader(!showHeader);
+                }}
+              >
+                <Link
+                  to={"/signup"}
+                  className="  font-serif float-start  px-4 text-sm  py-1  "
+                >
                   SignUp
                 </Link>
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
     </>
   );

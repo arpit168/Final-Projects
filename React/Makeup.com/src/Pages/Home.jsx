@@ -1,16 +1,15 @@
 import React from "react";
 import Hero from "../component/Hero";
 import bg from "../assets/sundari.avif";
-
 const Home = () => {
   return (
     <>
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full  overflow-hidden">
         {/* Background Image */}
         <img
           src={bg}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover -z-10"
+          className="absolute inset-0 w-full h-full object-contain -z-10"
         />
 
         {/* Content Wrapper */}

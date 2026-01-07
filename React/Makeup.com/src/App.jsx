@@ -10,13 +10,16 @@ import AOS from "aos";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import {Toaster} from "react-hot-toast"
+import Error from "./Pages/error";
+import useUiStore from "./store/useUiStore";
 
 const App = () => {
+  const {setShowHeader}= useUiStore();
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
   }, []);
   return (
-    <>
+    <div onClick={()=>setShowHeader(false)}>
       <BrowserRouter>
       
       <Toaster position="top-center" reverseOrder={false}/>
@@ -28,10 +31,13 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup/>} />
+          <Route path="/*" element={<Error/>} />
+          
+
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 
