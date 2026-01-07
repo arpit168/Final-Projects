@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import Home from "../src/pages/Home";
-import About from "../src/pages/About";
-import Product from "../src/pages/Product";
-import Contact from "../src/pages/Contact";
+import Home from "../src/Pages/Home";
+import About from "../src/Pages/About";
+import Product from "../src/Pages/Product";
+import Contact from "../src/Pages/Contact";
 import AOS from "aos";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 import {Toaster} from "react-hot-toast"
-import Error from "./pages/Error";
+import Error from "./Pages/Error";
 import useUiStore from "./store/useUiStore";
 
 const App = () => {
