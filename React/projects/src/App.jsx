@@ -16,8 +16,9 @@ function App() {
         <Header/>
        <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/register" element={<Register/>}/>
         <Route path="/currency" element={<Currency/>}/>
+        <Route path="/register" element={<Register/>}/>
+        
        </Routes>
        <Footer/>
       </BrowserRouter>
