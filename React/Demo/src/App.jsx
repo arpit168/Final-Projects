@@ -13,6 +13,7 @@ import Counter from "./Usestate/Counter";
 import Form from "./Usestate/Form";
 import Toggle from "./Usestate/Toggle";
 import checkapi from "./Usestate/checkapi";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/form" element={<Form />} />
            <Route path="/toggle" element={<Toggle />} />
            <Route path="/checkapi" element={<checkapi/>}/>
+           <Route path="/login" element={<Login/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>
