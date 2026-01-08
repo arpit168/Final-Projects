@@ -1,5 +1,5 @@
 import React from "react";
-import heropic from "../assets/makeup Hero.jpeg";
+import heropic from "../assets/makeupHero.jpeg";
 import bgpic from "../assets/aboutmakeup.jpeg";
 
 const Hero = () => {
@@ -80,11 +80,12 @@ const Hero = () => {
                 <img
                   src={heropic}
                   alt="Makeup"
-                  className=" md:w-175 w-sm  rounded mb-16"
+                  className="md:w-175 w-[320px] rounded mb-16"
+
                 />
 
                 {/* STATS */}
-                <div className="absolute flex gap-4 sm:gap-8 bottom-4  md:right-33">
+                <div className="absolute flex gap-4 sm:gap-8 bottom-4 md:right-33">
                   <div className="text-center">
                     <span className="text-pink-500 text-xl sm:text-2xl font-bold">
                       10K+
@@ -109,7 +110,7 @@ const Hero = () => {
                       Authentic
                     </p>
                   </div>
-                </div>
+                 </div>
               </div>
             </div>
 

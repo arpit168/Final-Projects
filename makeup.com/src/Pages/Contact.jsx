@@ -127,7 +127,7 @@ const Contact = () => {
                   📍 <span>Bhopal, India</span>
                 </p>
                 <p className="flex items-center gap-3">
-                  📧 <span>Makeup@example.com</span>
+                  📧 <span>Makeuparpit@gmailcom</span>
                 </p>
                 <p className="flex items-center gap-3 border-b-2 pb-2">
                   📞 +91 9516010142

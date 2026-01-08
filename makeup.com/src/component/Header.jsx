@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/makeup.jpeg";
 import { CiHome } from "react-icons/ci";
-import { LuNotebookPen } from "react-icons/lu";
-import { LuPhone } from "react-icons/lu";
+import { LuNotebookPen, LuPhone } from "react-icons/lu";
 import { BsCart2 } from "react-icons/bs";
-import { MdOpacity, MdOutlineProductionQuantityLimits } from "react-icons/md";
-import { HiMenu, HiX } from "react-icons/hi";
-import { HiOutlineLogin } from "react-icons/hi";
-import { BsSignIntersectionSideFill } from "react-icons/bs";
 import { TiThMenu } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
-import { motion,AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import useUiStore from "../store/useUiStore";
-import { SiLucide } from "react-icons/si";
+
 
 
 const Header = () => {
