@@ -9,7 +9,13 @@ const Login = () => {
         email:"",
         password:"",
      })
+     const [errors,setErrors] = useState({})
 
+     const handleChange = (e) =>{
+        setFormData({formData,[e.target.name]: e.target.value})
+     }
+
+    
      
      
 
