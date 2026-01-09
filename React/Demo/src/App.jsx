@@ -14,6 +14,7 @@ import Form from "./Usestate/Form";
 import Toggle from "./Usestate/Toggle";
 import checkapi from "./Usestate/checkapi";
 import Login from "./pages/Login";
+import Timer from "./Usestate/Timer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
            <Route path="/toggle" element={<Toggle />} />
            <Route path="/checkapi" element={<checkapi/>}/>
            <Route path="/login" element={<Login/>}/>
+           <Route path="/timer" element={<Timer/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>
