@@ -7,7 +7,7 @@ const connectDB = async () => {
          ${conn.connection.host} : ${conn.connection.host} : ${conn.connection.port} `
 
     );
-    console.log("Batabase Name :", conn.connection.name);
+    console.log("Database Name :", conn.connection.name);
     
   } catch (error) {
     console.log(error);
