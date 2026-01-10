@@ -27,9 +27,9 @@ const Header = () => {
         <div className="flex md:justify-around justify-between items-center shadow-2xl ">
           <div className="flex">
             <img src={img} className="rounded-full md:w-15 w-8 me-2" alt="" />
-            <h1 className="md:text-4xl text-2xl mt-3  font-bold text-indigo-700 font-serif ">
-              <a href="/">Makeup.Com</a>
-            </h1>
+            < div className="md:text-4xl text-2xl mt-3  font-bold text-indigo-700 font-serif ">
+              <Link to={"/"}>Makeup.com</Link>
+            </div>
           </div>
 
           <div className="md:flex hidden md:gap-5 text-light me-15">
