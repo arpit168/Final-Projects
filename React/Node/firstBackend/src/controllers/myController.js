@@ -1,4 +1,3 @@
-import { Error } from "mongoose";
 import User from "../models/userModel.js";
 
 export const UserRegister = async (req, res, next) => {
@@ -40,17 +39,20 @@ export const UserLogin = async (req, res, next) => {
     if (!email || !password) {
       const error = new Error("All FIelds Required");
       error.statusCode = 400;
+      return next(error);
     }
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("User Not Found");
       error.statusCode = 404;
+      return next(error);
     }
     const isVerified = password === existingUser.password;
     if (!isVerified) {
       const error = new Error("User Not authorized");
       error.statusCode = 402;
+      return next(error);
     }
     console.log(existingUser);
 
@@ -64,8 +66,8 @@ export const UserLogin = async (req, res, next) => {
 export const UserLogout = async (req, res, next) => {
   try {
     res.status(200).json({ message: "Logout successful" });
-    return;
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -76,14 +78,14 @@ export const UserUpdate = async (req, res, next) => {
     if (!fullName || !email || !phone) {
       const error = new Error("All FIelds Required");
       error.statusCode = 400;
-      return next(error)
+      return next(error);
     }
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("User Not Found");
       error.statusCode = 404;
-      return next(error)
+      return next(error);
     }
     existingUser.fullName = fullName;
     existingUser.phone = phone;

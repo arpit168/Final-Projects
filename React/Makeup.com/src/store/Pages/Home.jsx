@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../component/Hero";
+import Hero from "../../component/Hero";
 import bg from "../assets/sundari.avif";
 const Home = () => {
   return (
