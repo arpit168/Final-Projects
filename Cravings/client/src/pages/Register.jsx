@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import api from "../config/Api"
+import api from "../config/Api";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     mobileNumber: "",
-    dateOfBirth: "",
-    lastQualification: "",
-    percentageGrade: "",
-    preferredCourse: "",
-    batchTiming: "",
-    residentialAddress: "",
-    city: "",
-    pinCode: "",
-    guardianName: "",
-    guardianContact: "",
-    hearAboutUs: "",
-    specialRequirements: "",
+    password: "",
+    confirmPassword: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({});
@@ -33,10 +23,8 @@ const Register = () => {
       fullName: "",
       email: "",
       mobileNumber: "",
-      city: "",
-      pinCode: "",
-      hearAboutUs: "",
-      specialRequirements: "",
+      password: "",
+      confirmPassword: "",
     });
   };
 
@@ -67,33 +55,11 @@ const Register = () => {
       Error.mobileNumber = "Only Indian Mobile Number allowed!";
     }
 
-    // Date Of Birth
-    const today = new Date();
-    const age =
-      today.toISOString().split("-")[0] - formData.dateOfBirth.split("-")[0];
-    if (age < 15) {
-      Error.dateOfBirth = "You must be at least 15 years old!";
-    }
-
-    // Guardian Full name
-    if (formData.guardianName.length < 3) {
-      Error.guardianName = "Name should be More Than 3 Characters!";
-    } else {
-      if (!/^[A-Za-z ]+$/.test(formData.guardianName)) {
-        Error.guardianName = "Only Contain A-Z , a-z and space!";
-      }
-    }
-
-    // Guardian Contact
-    if (!/^[6-9]\d{9}$/.test(formData.guardianContact)) {
-      Error.guardianContact = "Only Indian Mobile Number allowed!";
-    }
-
     setValidationError(Error);
     return Object.keys(Error).length > 0 ? false : true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -104,11 +70,11 @@ const Register = () => {
     }
 
     try {
-      console.log(formData);
-      toast.success("Regisrtation Successfull");
+      const res = await api.post("/auth/register", formData);
+      toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       toast.error(error.message);
     } finally {
       setIsLoading(false);
@@ -117,11 +83,11 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4 overflow-x-scroll scrollbar-hide">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-linear-to-br from-cyan-50  to-indigo-500 py-6 px-4 overflow-x-scroll scrollbar-hide">
+        <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-neutral-700  mb-2">
               Registration
             </h1>
             <p className="text-lg text-gray-600">
@@ -138,10 +104,7 @@ const Register = () => {
             >
               {/* Personal Information */}
               <div className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b-2 border-indigo-500">
-                  Personal Information
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className=" space-y-4">
                   <div>
                     <label htmlFor="fullName">Name:</label>
                     <input
@@ -195,6 +158,61 @@ const Register = () => {
                       </span>
                     )}
                   </div>
+
+                  {/* password */}
+                  <div>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                      required
+                      type="password"
+                      name="password"
+                      placeholder="Create Password"
+                      minLength="5"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                    />
+                    {validationError.password && (
+                      <span className="text-xs text-red-500 float-end">
+                        {validationError.password}
+                      </span>
+                    )}
+                  </div>
+                  {/* Confirm Password */}
+
+                  <div>
+                    <label htmlFor="confirmPassword">Password:</label>
+                    <input
+                      required
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm Your Password"
+                      minLength="5"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                    />
+                    {validationError.ConfirmPassword && (
+                      <span className="text-xs text-red-500 float-end">
+                        {validationError.confirmPassword}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                '{/* Submit Button */}
+                <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    Submit Registration
+                  </button>
+                  <button
+                    type="reset"
+                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105"
+                  >
+                    Clear Form
+                  </button>
                 </div>
               </div>
             </form>

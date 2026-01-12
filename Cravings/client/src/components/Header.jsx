@@ -1,14 +1,13 @@
 import React from "react";
-import tranparentLogo from "../assets/transparentlogo.png";
+import tranparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { use } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center">
+      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center sticky top-0 z-50">
         <Link to={"/"}>
           <img
             src={tranparentLogo}
