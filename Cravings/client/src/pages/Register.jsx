@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
+import {Link} from "react-router-dom"
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -221,6 +222,13 @@ const Register = () => {
                     {isLoading ? "Submitting..." : " Submit"}
                   </button>
                 </div>
+                 <div className="flex space-x-1 justify-center mt-3">
+                      <p>I have an account. </p>
+                      <Link to={"/login"}>
+                        {" "}
+                        <p className="hover:text-blue-700 text-blue-400">Login here!</p>
+                      </Link>
+                    </div>
               </div>
             </form>
           </div>
