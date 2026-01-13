@@ -74,7 +74,7 @@ const Register = () => {
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       toast.error(error.message);
     } finally {
       setIsLoading(false);
@@ -83,11 +83,11 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-cyan-50  to-indigo-500 py-6 px-4 overflow-x-scroll scrollbar-hide">
+      <div className="min-h-screen bg-linear-to-br from-cyan-50 to-indigo-500 py-6 px-4 overflow-x-scroll scrollbar-hide  ">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-neutral-700  mb-2">
+            <h1 className="text-4xl font-bold text-neutral-600  mb-2">
               Registration
             </h1>
             <p className="text-lg text-gray-600">
@@ -113,8 +113,9 @@ const Register = () => {
                       name="fullName"
                       placeholder="Full Name"
                       value={formData.fullName}
+                      disabled={isLoading}
                       onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.fullName && (
                       <span className="text-xs text-red-500 float-end">
@@ -131,7 +132,8 @@ const Register = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                      disabled={isLoading}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.email && (
                       <span className="text-xs text-red-500 float-end">
@@ -150,7 +152,8 @@ const Register = () => {
                       maxLength="10"
                       value={formData.mobileNumber}
                       onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                      disabled={isLoading}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.mobileNumber && (
                       <span className="text-xs text-red-500 float-end">
@@ -170,7 +173,8 @@ const Register = () => {
                       minLength="5"
                       value={formData.password}
                       onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                      disabled={isLoading}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.password && (
                       <span className="text-xs text-red-500 float-end">
@@ -190,7 +194,8 @@ const Register = () => {
                       minLength="5"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition"
+                      disabled={isLoading}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition  disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.ConfirmPassword && (
                       <span className="text-xs text-red-500 float-end">
@@ -202,16 +207,18 @@ const Register = () => {
                 '{/* Submit Button */}
                 <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
                   <button
-                    type="submit"
-                    className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    Submit Registration
-                  </button>
-                  <button
+                    disabled={isLoading}
                     type="reset"
-                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105"
+                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 "
                   >
                     Clear Form
+                  </button>
+                  <button
+                    disabled={isLoading}
+                    type="submit"
+                    className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
+                  >
+                    {isLoading ? "Submitting..." : " Submit"}
                   </button>
                 </div>
               </div>
