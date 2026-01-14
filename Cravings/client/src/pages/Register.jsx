@@ -210,14 +210,14 @@ const Register = () => {
                   <button
                     disabled={isLoading}
                     type="reset"
-                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 "
+                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 cursor-pointer "
                   >
                     Clear Form
                   </button>
                   <button
                     disabled={isLoading}
                     type="submit"
-                    className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
+                    className="flex-1 bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
                   >
                     {isLoading ? "Submitting..." : " Submit"}
                   </button>
@@ -225,7 +225,6 @@ const Register = () => {
                  <div className="flex space-x-1 justify-center mt-3">
                       <p>I have an account. </p>
                       <Link to={"/login"}>
-                        {" "}
                         <p className="hover:text-blue-700 text-blue-400">Login here!</p>
                       </Link>
                     </div>

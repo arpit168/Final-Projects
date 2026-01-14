@@ -38,13 +38,13 @@ const Header = () => {
         <div className="flex gap-4">
           <button
             onClick={() => navigate("/login")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
+            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded cursor-pointer "
           >
             Login
           </button>
           <button
             onClick={() => navigate("/register")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
+            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded cursor-pointer"
           >
             Register
           </button>

@@ -73,7 +73,7 @@ const Login = () => {
             <div className="">
               <div className=" flex  justify-center items-center my-5 ">
                 <form onReset={handleClearForm} onSubmit={handleSubmit}>
-                  <div className="bg-gray-100  md:w-xl sm:w-auto   p-10  rounded-xl">
+                  <div className="bg-white  md:w-xl sm:w-auto   p-10  rounded-xl">
                     <div className="grid  space-y-4">
                       <div className="grid">
                         <label htmlFor="email">Email:</label>
@@ -84,8 +84,8 @@ const Login = () => {
                           value={formData.email}
                           onChange={handleChange}
                           disabled={isLoading}
-                          placeholder="Enter Email Address Here!"
-                          className="border px-2 py-3 rounded focus:bg-gray-300 disabled:cursor-not-allowed disabled:bg-gray-200"
+                          placeholder="Enter Email Address"
+                          className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                         />
                         {validateError.email && (
                           <span className="text-xs text-red-500 float-end">
@@ -103,7 +103,7 @@ const Login = () => {
                           onChange={handleChange}
                           disabled={isLoading}
                           placeholder="Enter a Password "
-                          className="border px-2 py-3 rounded focus:bg-gray-300 disabled:cursor-not-allowed disabled:bg-gray-200"
+                          className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                         />
                         {validateError.password && (
                           <span className="text-xs text-red-500 float-end">
@@ -117,7 +117,7 @@ const Login = () => {
                           <p>Remember me</p>
                         </span>
                         <p className="text-blue-700 hover:text-blue-900 ">
-                          <a href="#">Forgot Password!</a>
+                          <Link to={"/"}>Forgot Password!</Link>
                         </p>
                       </span>
                     </div>
@@ -125,14 +125,14 @@ const Login = () => {
                       <button
                         disabled={isLoading}
                         type="reset"
-                        className="px-5 py-2 w-1/3 bg-gray-400 rounded"
+                        className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 cursor-pointer"
                       >
                         Clear
                       </button>
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="px-5 py-2 w-1/2 bg-indigo-700 text-white rounded"
+                        className="flex-1 bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
                       >
                         {isLoading ? "Login..." : "Login"}
                       </button>
@@ -140,8 +140,9 @@ const Login = () => {
                     <div className="flex space-x-1 justify-center mt-3">
                       <p>Don't have an account. </p>
                       <Link to={"/register"}>
-                        {" "}
-                        <p className="hover:text-blue-700 text-blue-400">Register Now!</p>
+                        <p className="hover:text-blue-700 text-blue-400 ">
+                          Register Now!
+                        </p>
                       </Link>
                     </div>
                   </div>
