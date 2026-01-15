@@ -1,13 +1,16 @@
 import React from "react";
 import tranparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineLogout } from "react-icons/ai";
+import { RiLogoutBoxRLine } from "react-icons/ri";
+
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center sticky top-0 z-50">
+      <div className="bg-(--color-primary) px-8 py-2 flex justify-between items-center sticky top-0 z-50">
         <Link to={"/"}>
           <img
             src={tranparentLogo}
@@ -47,6 +50,12 @@ const Header = () => {
             className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded cursor-pointer"
           >
             Register
+          </button>
+          <button
+            onClick={() => navigate("#")}
+            className=" py-2 hover:text-orange-400 hover:scale-105 font-bold text-2xl text-white rounded cursor-pointer"
+          >
+            <RiLogoutBoxRLine/>
           </button>
         </div>
       </div>
