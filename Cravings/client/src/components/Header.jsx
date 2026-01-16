@@ -3,6 +3,7 @@ import tranparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import toast from "react-hot-toast";
 
 
 const Header = () => {
@@ -38,7 +39,7 @@ const Header = () => {
             Contact
           </Link>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <button
             onClick={() => navigate("/login")}
             className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded cursor-pointer "
@@ -53,9 +54,9 @@ const Header = () => {
           </button>
           <button
             onClick={() => navigate("#")}
-            className=" py-2 hover:text-orange-400 hover:scale-105 font-bold text-2xl text-white rounded cursor-pointer"
+            className=" py-2 hover:text-orange-400  hover:scale-105 font-bold text-2xl text-white rounded cursor-pointer"
           >
-            <RiLogoutBoxRLine/>
+            {/* <RiLogoutBoxRLine/> */}
           </button>
         </div>
       </div>

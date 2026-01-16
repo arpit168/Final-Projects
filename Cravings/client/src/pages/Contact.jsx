@@ -9,110 +9,102 @@ import { LiaPrayingHandsSolid } from "react-icons/lia";
 import api from "../config/Api"
 
 const Contact = () => {
-  const [contactData, setContactData] = useState({
+ const [contactData, setContactData] = useState({
+  fullName: "",
+  email: "",
+  sub: "",
+  message: "",
+});
+
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState({});
+
+// 🔹 Handle input change
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setContactData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+// 🔹 Clear form
+const handleClearForm = () => {
+  setContactData({
     fullName: "",
     email: "",
     sub: "",
     message: "",
   });
+  setError({});
+};
 
-  const [isloading, setIsLoading] = useState(false);
-  const [error, setError] = useState({});
+// 🔹 Validation (CORRECT)
+const validate = () => {
+  const err = {};
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setContactData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // Name
+  if (!contactData.fullName.trim()) {
+    err.fullName = "Name is required";
+  } else if (contactData.fullName.trim().length < 3) {
+    err.fullName = "Name must be at least 3 characters";
+  } else if (!/^[A-Za-z ]+$/.test(contactData.fullName.trim())) {
+    err.fullName = "Name should contain only letters";
+  }
 
-  const handleClearForm = () => {
-    setContactData({
-      fullName: "",
-      email: "",
-      sub: "",
-      message: "",
-    });
-  };
+  // Email
+  if (!contactData.email.trim()) {
+    err.email = "Email is required";
+  } else if (!/^\S+@\S+\.\S+$/.test(contactData.email.trim())) {
+    err.email = "Enter a valid email";
+  }
 
-  const validate = () => {
-    let isvalid = true;
-    const err = {};
-    // Name validation
-    if (!contactData.fullName.trim()) {
-      err.fullName = "Name is required";
-    } else if (contactData.fullName.length < 3) {
-      err.fullName = "Name should be at least 3 characters";
-    } else if (!/^[A-Za-z ]+$/.test(contactData.fullName)) {
-      err.fullName = "Name should contain only letters";
-      return;
-    }
+  // Subject
+  if (!contactData.sub.trim()) {
+    err.sub = "Subject is required";
+  } else if (contactData.sub.trim().length < 15) {
+    err.sub = "Subject must be at least 15 characters";
+  }
 
-    // Email validation
-    if (!/^\S+@\S+\.\S+$/.test(contactData.email)) {
-      err.email = "Enter a valid email";
-      isvalid = false;
-      return;
-    }
+  // Message
+  if (!contactData.message.trim()) {
+    err.message = "Message is required";
+  } else if (contactData.message.trim().length < 10) {
+    err.message = "Message must be at least 10 characters";
+  }
 
-    // Subject validation
+  setError(err);
+  return Object.keys(err).length === 0;
+};
 
-    if (contactData.sub.length < 15) {
-      err.sub = "subject should be at least 15 Characters";
-      isvalid = false;
-      return;
-    }
+// 🔹 Submit handler (CORRECT)
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Message validation
+  if (!validate()) {
+    toast.error("Please fix the errors");
+    return;
+  }
 
-    if (contactData.message.length < 10) {
-      err.message = "Tell us in brief (at least 10 characters)";
-      isvalid = false;
-      return;
-    }
-
-    setError(err);
-    return isvalid;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    if (!validate()) {
-      setIsLoading(false);
-      toast.error(" Some Field missing ");
-      return;
-    }
-    try {
-      const res = await api.post("/public/new-Contact", contactData);
-      toast.success(res.data.message);
-      handleClearForm();
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-
-    if (!validate()) {
-      toast.error("Please Check all Fields");
-      return;
-    }
+  try {
     setIsLoading(true);
 
-    setTimeout(() => {
-      console.log(contactData);
-      setContactData({
-        fullName: "",
-        email: "",
-        sub: "",
-        message: "",
-      });
-      setIsLoading(false);
-      toast.success("We will contact you via mail");
-    }, 2000);
-  };
+    const res = await api.post("/public/new-Contact", contactData);
+
+    toast.success(res.data.message || "Message sent successfully");
+    handleClearForm();
+  } catch (err) {
+    toast.error(
+      err?.response?.data?.message || "Something went wrong"
+    );
+  } finally {
+    setIsLoading(false);
+  }
+
+  console.log(contactData);
+  
+};  
+
 
   return (
     <>
@@ -169,7 +161,7 @@ const Contact = () => {
                   <input
                     name="fullName"
                     type="text"
-                    disabled={isloading}
+                    disabled={isLoading}
                     value={contactData.fullName}
                     onChange={handleChange}
                     required
@@ -182,7 +174,7 @@ const Contact = () => {
                   <input
                     name="email"
                     type="email"
-                    disabled={isloading}
+                    disabled={isLoading}
                     value={contactData.email}
                     onChange={handleChange}
                     required
@@ -198,7 +190,7 @@ const Contact = () => {
                 <input
                   type="text"
                   name="sub"
-                  disabled={isloading}
+                  disabled={isLoading}
                   value={contactData.sub}
                   onChange={handleChange}
                   required
@@ -213,7 +205,7 @@ const Contact = () => {
 
                 <textarea
                   name="message"
-                  disabled={isloading}
+                  disabled={isLoading}
                   value={contactData.message}
                   onChange={handleChange}
                   required
@@ -236,10 +228,10 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    disabled={isloading}
+                    disabled={isLoading}
                     className="w-3/4 bg-indigo-700 text-white hover:text-gray-600 cursor-pointer py-3 rounded-lg font-semibold hover:bg-indigo-900 transition duration-300 disabled:cursor-not-allowed disabled:bg-gray-500 "
                   >
-                    {isloading ? "Sending..." : "Book Your Table"}
+                    {isLoading ? "Sending..." : "Book Your Table"}
                   </button>
                 </div>
               </div>
