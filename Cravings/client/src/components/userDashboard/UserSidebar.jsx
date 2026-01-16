@@ -9,7 +9,7 @@ const UserSidebar = ({ active, setActive }) => {
   return (
     <>
       <div className="p-3">
-        <div className="text-xl font-bold ">User Dashboard</div>
+        <div className="md:text-xl test-sm font-bold text-center ms-5  ">User Dashboard</div>
         <hr />
 
         <div className="grid gap-2 ms-2 font-semibold  mt-5 ">

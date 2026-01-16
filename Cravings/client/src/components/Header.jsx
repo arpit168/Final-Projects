@@ -56,7 +56,7 @@ const Header = () => {
             onClick={() => navigate("#")}
             className=" py-2 hover:text-orange-400  hover:scale-105 font-bold text-2xl text-white rounded cursor-pointer"
           >
-            {/* <RiLogoutBoxRLine/> */}
+            <RiLogoutBoxRLine/>
           </button>
         </div>
       </div>
