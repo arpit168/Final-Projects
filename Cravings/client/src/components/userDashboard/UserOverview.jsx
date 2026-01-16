@@ -37,7 +37,7 @@ const stats = [
 
 const UserOverview = () => {
   return (
-    <div className="min-h-[200vh] bg-gradient-to-br from-orange-50 via-red-50 to-pink-100 p-6 space-y-20">
+    <div className="min-h-[200vh] bg-linear-to-br from-orange-50 via-red-50 to-pink-100 p-6 space-y-20">
 
       {/* Welcome Section */}
       <motion.section
@@ -72,7 +72,7 @@ const UserOverview = () => {
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
             whileHover={{ y: -10, scale: 1.05 }}
-            className={`rounded-3xl p-6 text-white bg-gradient-to-r ${stat.color} shadow-2xl`}
+            className={`rounded-3xl p-6 text-white bg-linear-to-r ${stat.color} shadow-2xl`}
           >
             <div className="text-4xl mb-4">{stat.icon}</div>
             <p className="text-sm opacity-90">{stat.title}</p>
@@ -148,7 +148,7 @@ const UserOverview = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-3xl p-12 shadow-2xl text-center"
+        className="bg-linear-to-r from-orange-500 to-red-500 text-white rounded-3xl p-12 shadow-2xl text-center"
       >
         <h2 className="text-4xl font-bold">🎉 Flat 30% OFF</h2>
         <p className="mt-4 text-lg">
