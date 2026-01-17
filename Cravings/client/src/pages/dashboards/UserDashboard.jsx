@@ -21,7 +21,7 @@ const UserDashboard = () => {
   const sidebarVariants = {
   closed: {
     width: "5%",
-    opacity: 1,
+    opacity: 0.5,
     transition: { duration: 0.5 }
   },
   open: {
