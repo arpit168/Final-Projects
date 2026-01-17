@@ -20,7 +20,7 @@ const UserDashboard = () => {
   const sidebarVariants = {
   closed: {
     width: "5%",
-    opacity: 0.8,
+    opacity: 0.5,
     transition: { duration: 0.3 }
   },
   open: {
@@ -31,18 +31,18 @@ const UserDashboard = () => {
 };
 
   return (
-    <div className="w-full h-[90vh] flex relative overflow-hidden">
+    <div className="w-full  h-[90vh] flex relative overflow-hidden">
       <AnimatePresence>
   <motion.div
     variants={sidebarVariants}
     initial="closed"
     animate={open ? "open" : "closed"}
     exit="closed"
-    className="h-full w-3/6 bg-white-500 overflow-hidden"
+    className="h-full w-full  bg-white overflow-hidden"
     onMouseEnter={() => setOpen(true)}
     onMouseLeave={() => setOpen(false)}
   >
-    {/* Full Sidebar */}
+   
     {open && (
       <UserSidebar
         active={active}
@@ -53,9 +53,9 @@ const UserDashboard = () => {
 
     {/* Icon Sidebar */}
     {!open && (
-      <div className="mt-14 flex flex-col gap-3 text-2xl ms-4 md:w-auto w-full  ">
+      <div className="mt-14 flex flex-col gap-3 text-2xl ms-4  ">
         <TbChartTreemap
-          className="bg-cyan-100 w-8 h-8 p-1.5 rounded cursor-pointer"
+          className="bg-cyan-100 w-8  h-8 p-1.5 rounded cursor-pointer"
           onClick={() => setActive("overview")}
         />
         <RiProfileLine
@@ -80,7 +80,7 @@ const UserDashboard = () => {
 </AnimatePresence>
 
 
-      <div className="flex-1 w-3/6  overflow-auto">
+      <div className="flex-1  overflow-auto">
         {active === "overview" && <UserOverview />}
         {active === "profiles" && <UserProfile />}
         {active === "orders" && <UserOrders />}

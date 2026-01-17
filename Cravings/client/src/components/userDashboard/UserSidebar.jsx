@@ -11,7 +11,7 @@ const UserSidebar = ({ active, setActive,open }) => {
   return (
     <>
       <div className="p-3">
-        <div className="md:text-xl text-xs w-full font-bold   ">
+        <div className="md:text-xl text-xs  font-bold   ">
           User Dashboard 
         </div>
         <hr />
@@ -27,7 +27,7 @@ const UserSidebar = ({ active, setActive,open }) => {
     }`}
           >
             <TbChartTreemap  />
-            {open&& "Overview"}
+            {open && "Overview"}
           </button>
 
           <button
