@@ -99,7 +99,7 @@ const UserDashboard = () => {
 {/* Sidebar's Content area  */}
 
 
-      <div className="flex-1  overflow-auto">
+      <div className="flex-1 ms-3  overflow-auto">
         {active === "overview" && <UserOverview />}
         {active === "profiles" && <UserProfile />}
         {active === "orders" && <UserOrders />}
