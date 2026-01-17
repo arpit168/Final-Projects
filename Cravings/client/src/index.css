@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  font-family: sans-serif;
   
   /* Primary */
   --color-primary: #161E54;
