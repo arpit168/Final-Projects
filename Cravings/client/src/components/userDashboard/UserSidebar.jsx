@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { TbChartTreemap } from "react-icons/tb";
 import { RiProfileLine } from "react-icons/ri";
 import { LuShoppingCart } from "react-icons/lu";
 import { TbTransactionRupee } from "react-icons/tb";
 import { RiCustomerService2Fill } from "react-icons/ri";
 
-const UserSidebar = ({ active, setActive }) => {
+
+
+const UserSidebar = ({ active, setActive,open }) => {
   return (
     <>
       <div className="p-3">
-        <div className="md:text-xl test-sm font-bold text-center ms-5  ">
-          User Dashboard
+        <div className="md:text-xl text-xs w-full font-bold   ">
+          User Dashboard 
         </div>
         <hr />
 
@@ -24,20 +26,20 @@ const UserSidebar = ({ active, setActive }) => {
         : "bg-cyan-100 hover:bg-white"
     }`}
           >
-            <TbChartTreemap />
-            Overview
+            <TbChartTreemap  />
+            {open&& "Overview"}
           </button>
 
           <button
             onClick={() => setActive("profiles")}
-            className={`flex gap-2 items-center p-2 rounded transition
+            className={`flex gap-2 items-center p-2 rounded transition 
     ${
       active === "profiles"
         ? "bg-cyan-600 text-white"
         : "bg-cyan-100 hover:bg-white"
     }`}
           >
-            <RiProfileLine />
+            <RiProfileLine  />
             Profile
           </button>
 
