@@ -1,11 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaCheckCircle,
-  FaHamburger,
-  FaTruck,
-  FaFire,
-} from "react-icons/fa";
+import { FaCheckCircle, FaHamburger, FaTruck, FaFire } from "react-icons/fa";
 
 const orders = [
   {
@@ -100,11 +95,7 @@ const UserOrders = () => {
               {steps.map((step, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center">
                   <motion.div
-                    animate={
-                      i < order.progress
-                        ? { scale: [1, 1.2, 1] }
-                        : {}
-                    }
+                    animate={i < order.progress ? { scale: [1, 1.2, 1] } : {}}
                     transition={{ repeat: Infinity, duration: 2 }}
                     className={`w-10 h-10 flex items-center justify-center rounded-full
                       ${

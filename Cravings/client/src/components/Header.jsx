@@ -5,7 +5,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 
-
 const Header = () => {
   const navigate = useNavigate();
 
@@ -56,7 +55,7 @@ const Header = () => {
             onClick={() => navigate("#")}
             className=" py-2 hover:text-orange-400  hover:scale-105 font-bold text-2xl text-white rounded cursor-pointer"
           >
-            <RiLogoutBoxRLine/>
+            <RiLogoutBoxRLine />
           </button>
         </div>
       </div>

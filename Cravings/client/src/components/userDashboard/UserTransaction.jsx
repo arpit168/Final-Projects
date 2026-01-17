@@ -95,9 +95,7 @@ const UserTransaction = () => {
               </div>
 
               {/* Content */}
-              <h2 className="text-xl font-semibold text-gray-800">
-                {tx.item}
-              </h2>
+              <h2 className="text-xl font-semibold text-gray-800">{tx.item}</h2>
 
               <p className="text-gray-400 text-sm mt-1">{tx.date}</p>
 

@@ -9,7 +9,10 @@ import { FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-(--color-primary) text-gray-300 z-50" data-aos="fade-up">
+    <footer
+      className="bg-(--color-primary) text-gray-300 z-50"
+      data-aos="fade-up"
+    >
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div className=" ">
@@ -56,7 +59,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-white mb-3 hover:text-gray-">Support</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 hover:text-gray-">
+              Support
+            </h3>
             <ul className="space-y-2 text-sm ">
               <li>Taste Gurantee</li>
               <li>Time Actuallity</li>

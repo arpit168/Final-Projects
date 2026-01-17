@@ -38,7 +38,6 @@ const stats = [
 const UserOverview = () => {
   return (
     <div className="min-h-[200vh] bg-linear-to-br from-orange-50 via-red-50 to-pink-100 p-6 space-y-20">
-
       {/* Welcome Section */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
@@ -151,9 +150,7 @@ const UserOverview = () => {
         className="bg-linear-to-r from-orange-500 to-red-500 text-white rounded-3xl p-12 shadow-2xl text-center"
       >
         <h2 className="text-4xl font-bold">🎉 Flat 30% OFF</h2>
-        <p className="mt-4 text-lg">
-          On your next 3 orders. Don’t miss out!
-        </p>
+        <p className="mt-4 text-lg">On your next 3 orders. Don’t miss out!</p>
 
         <motion.button
           whileHover={{ scale: 1.1 }}

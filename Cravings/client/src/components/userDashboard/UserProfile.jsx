@@ -1,11 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaUserEdit, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaUserEdit,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 const UserProfile = () => {
   return (
     <div className="min-h-[85vh] flex items-center justify-center bg-linear-to-br from-orange-100 via-pink-100 to-red-200 p-6">
-
       {/* Profile Card */}
       <motion.div
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -41,10 +45,26 @@ const UserProfile = () => {
 
         {/* Info */}
         <div className="grid sm:grid-cols-2 gap-6 mt-10">
-          <ProfileItem icon={<FaEnvelope />} label="Email" value="arpit@email.com" />
-          <ProfileItem icon={<FaPhoneAlt />} label="Phone" value="+91 98765 43210" />
-          <ProfileItem icon={<FaMapMarkerAlt />} label="Location" value="India" />
-          <ProfileItem icon={<FaUserEdit />} label="Membership" value="Premium" />
+          <ProfileItem
+            icon={<FaEnvelope />}
+            label="Email"
+            value="arpit@email.com"
+          />
+          <ProfileItem
+            icon={<FaPhoneAlt />}
+            label="Phone"
+            value="+91 98765 43210"
+          />
+          <ProfileItem
+            icon={<FaMapMarkerAlt />}
+            label="Location"
+            value="India"
+          />
+          <ProfileItem
+            icon={<FaUserEdit />}
+            label="Membership"
+            value="Premium"
+          />
         </div>
 
         {/* Button */}
