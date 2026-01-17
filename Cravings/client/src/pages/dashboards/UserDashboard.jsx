@@ -14,13 +14,14 @@ import { TbTransactionRupee } from "react-icons/tb";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { AnimatePresence , motion } from "motion/react";
 
+
 const UserDashboard = () => {
   const [active, setActive] = useState("overview");
   const [open, setOpen] = useState(true); // 👈 default open
   const sidebarVariants = {
   closed: {
     width: "5%",
-    opacity: 0.5,
+    opacity: 1,
     transition: { duration: 0.3 }
   },
   open: {
@@ -38,7 +39,7 @@ const UserDashboard = () => {
     initial="closed"
     animate={open ? "open" : "closed"}
     exit="closed"
-    className="h-full w-full  bg-white overflow-hidden"
+    className="h-full w-1/10  bg-cyan-50 border-e border-cyan-300  overflow-hidden"
     onMouseEnter={() => setOpen(true)}
     onMouseLeave={() => setOpen(false)}
   >
@@ -50,12 +51,15 @@ const UserDashboard = () => {
         open={open}
       />
     )}
+    
 
     {/* Icon Sidebar */}
     {!open && (
       <div className="mt-14 flex flex-col gap-3 text-2xl ms-4  ">
+        
+        
         <TbChartTreemap
-          className="bg-cyan-100 w-8  h-8 p-1.5 rounded cursor-pointer"
+          className="bg-cyan-100 w-8 h-8 p-1.5 rounded cursor-pointer"
           onClick={() => setActive("overview")}
         />
         <RiProfileLine

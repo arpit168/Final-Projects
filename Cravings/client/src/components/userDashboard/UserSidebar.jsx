@@ -4,6 +4,8 @@ import { RiProfileLine } from "react-icons/ri";
 import { LuShoppingCart } from "react-icons/lu";
 import { TbTransactionRupee } from "react-icons/tb";
 import { RiCustomerService2Fill } from "react-icons/ri";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 
 
 
@@ -11,8 +13,8 @@ const UserSidebar = ({ active, setActive,open }) => {
   return (
     <>
       <div className="p-3">
-        <div className="md:text-xl text-xs  font-bold   ">
-          User Dashboard 
+        <div className="md:text-xl text-xs  font-bold flex ms-3 items-center gap-2  ">
+             <span> User Dashboard </span>
         </div>
         <hr />
 
