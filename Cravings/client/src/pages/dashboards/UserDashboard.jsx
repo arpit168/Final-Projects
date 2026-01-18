@@ -14,7 +14,7 @@ const UserDashboard = () => {
     <>
       <div className="w-full h-[90vh] flex overflow-hidden">
         <div
-          className={`bg-blue-950 text-white duration-300  ${isCollapsed ? "w-2/60" : "w-10/60"}`}
+          className={`bg-blue-950 text-white duration-300  ${isCollapsed ? "w-3/60" : "w-10/60"}`}
         >
           <UserSideBar
             active={active}
