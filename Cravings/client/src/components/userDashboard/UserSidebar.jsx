@@ -17,31 +17,27 @@ const UserSidebar = ({ active, setActive, open }) => {
   return (
     <>
       <div className="p-3">
+        
         <div className="md:text-xl text-xs  font-bold flex ms-3 items-center gap-2  ">
-          <span className="font-serif "> User_dashboard </span>
+          <span className="font-serif text-white"> User_dashboard </span>
         </div>
         <hr />
 
         <div className="grid gap-2 ms-2 font-semibold mt-5 ">
-          {menuItems.map((item, idx)=>(
+          {menuItems.map((item, idx) => (
             <button
-            onClick={() => setActive(item.key )}
-            className={`flex gap-2 items-center p-2 rounded transition
+              onClick={() => setActive(item.key)}
+              className={`flex gap-2 items-center p-2 rounded transition
     ${
       active === item.key
-        ? "bg-cyan-600 text-white"
-        : "bg-cyan-100 hover:bg-white"
+        ? "bg-blue-900 text-white"
+        : "bg-blue-100 hover:bg-white"  
     }`}
-          >
-            {item.icon}
-            {open && item.title}
-            
-            
-          </button>
+            >
+              {item.icon}
+              {open && item.title}
+            </button>
           ))}
-          
-
-         
         </div>
       </div>
     </>

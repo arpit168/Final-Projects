@@ -14,7 +14,7 @@ import useUiStore from "../store/useUiStore";
 
 const Header = () => {
   const { showHeader, setShowHeader } = useUiStore();
-  const [user, setUser] = useState(false);
+  
 
   return (
     <>
