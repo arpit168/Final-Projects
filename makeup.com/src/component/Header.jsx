@@ -87,7 +87,7 @@ const Header = () => {
         </div>
         <AnimatePresence>
         {showHeader && (
-          <motion.div exit={{y:-200 }} transition={{duration:0.2}} ref={menubar} className="mt-5 w-full  ">
+          <motion.div exit={{y:-200 }} transition={{duration:0.2}}  className="mt-5 w-full  ">
             <div className=" md:hidden grid grid-cols-1 rounded  gap-2  bg-white   ">
               <button
                 onClick={(e) => {

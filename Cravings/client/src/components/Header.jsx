@@ -9,12 +9,10 @@ import { motion } from "motion/react";
 const Header = () => {
   const navigate = useNavigate();
 
-  // ✅ CORRECT zustand usage
   const { showHeader, setShowHeader } = useUiStore();
 
   return (
     <>
-      {/* HEADER BAR */}
       <div className="bg-(--color-primary) px-8 py-2 flex justify-between items-center sticky top-0 z-99">
         <Link to="/">
           <img
@@ -26,9 +24,18 @@ const Header = () => {
 
         {/* DESKTOP MENU */}
         <div className="hidden md:flex gap-4">
-          <Link to="/" className="text-white hover:text-(--color-accent)">Home</Link>
-          <Link to="/about" className="text-white hover:text-(--color-accent)">About</Link>
-          <Link to="/contact" className="text-white hover:text-(--color-accent)">Contact</Link>
+          <Link to="/" className="text-white hover:text-(--color-accent)">
+            Home
+          </Link>
+          <Link to="/about" className="text-white hover:text-(--color-accent)">
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className="text-white hover:text-(--color-accent)"
+          >
+            Contact
+          </Link>
         </div>
 
         {/* DESKTOP AUTH */}
@@ -49,12 +56,11 @@ const Header = () => {
 
         {/* MOBILE TOGGLE */}
         <motion.button
-          whileTap={{ scale: 1 }
-        
-        }
+          whileTap={{ scale: 1 }}
           className="md:hidden text-pink-500 "
-          
-          onClick={() => setShowHeader(!showHeader)}
+          onClick={(e) => {
+            setShowHeader(!showHeader);
+          }}
         >
           {showHeader ? <RxCross2 size={30} /> : <GiHamburgerMenu size={30} />}
         </motion.button>
@@ -62,15 +68,55 @@ const Header = () => {
 
       {/* MOBILE MENU */}
       {showHeader && (
-       <div className="bg-blue-950" >
-         <div className="md:hidden text-white bg-blue-950 ms-5  flex flex-col gap-4 p-6 ">
-         <Link to="/" onClick={() => setShowHeader(false)}>Home</Link>
-         <Link to="/about" onClick={() => setShowHeader(false)}>About</Link>
-         <Link to="/contact" onClick={() => setShowHeader(false)}>Contact</Link>
-         <Link to="/login" onClick={() => setShowHeader(false)}>Login</Link>
-         <Link to="/register" onClick={() => setShowHeader(false)}>Register</Link>
+        <div className="bg-blue-950">
+          <div className="md:hidden text-white bg-blue-950 ms-5  flex flex-col gap-4 p-6 ">
+            <Link
+              to="/"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowHeader(!showHeader);
+              }}
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowHeader(!showHeader);
+              }}
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowHeader(!showHeader);
+              }}
+            >
+              Contact
+            </Link>
+            <Link
+              to="/login"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowHeader(!showHeader);
+              }}
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowHeader(!showHeader);
+              }}
+            >
+              Register
+            </Link>
+          </div>
         </div>
-       </div>
       )}
     </>
   );
