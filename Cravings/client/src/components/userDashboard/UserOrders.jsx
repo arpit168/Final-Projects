@@ -17,7 +17,7 @@ const UserOrders = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-8">
+      <div className="flex md:flex-row flex-col gap-4 mb-8">
         {["all", "active", "completed"].map((tab) => (
           <button
             key={tab}

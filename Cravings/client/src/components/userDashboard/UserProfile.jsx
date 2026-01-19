@@ -29,7 +29,7 @@ const UserProfile = () => {
 
         {/* Profile Card */}
         <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col items-center text-center">
-          <div className="w-28 h-28 rounded-full bg-[#161E54] text-white flex items-center justify-center text-4xl font-semibold">
+          <div className="md:w-28 w-14 md:h-28 h-14 rounded-full bg-[#161E54] text-white flex items-center justify-center md:text-4xl text-2xl font-semibold">
             AG
           </div>
 

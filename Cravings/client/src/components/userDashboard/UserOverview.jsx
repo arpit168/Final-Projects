@@ -3,7 +3,6 @@ import React from "react";
 const UserOverview = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#161E54]">
@@ -16,7 +15,6 @@ const UserOverview = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-
         <div className="bg-white rounded-xl p-6 shadow-sm border">
           <h3 className="text-sm text-gray-500">Total Orders</h3>
           <p className="text-3xl font-semibold text-[#161E54] mt-2">124</p>
@@ -40,7 +38,6 @@ const UserOverview = () => {
 
       {/* Content Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
         {/* Recent Activity */}
         <div className="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border">
           <h2 className="text-xl font-semibold text-[#161E54] mb-4">
@@ -56,7 +53,10 @@ const UserOverview = () => {
               <span>Payment successful</span>
               <span className="text-sm">Yesterday</span>
             </li>
-            <li className="flex justify-between">
+            <li
+              className="flex justify-between
+            "
+            >
               <span>Profile updated</span>
               <span className="text-sm">3 days ago</span>
             </li>
@@ -70,16 +70,21 @@ const UserOverview = () => {
           </h2>
 
           <div className="space-y-3 text-gray-600">
-            <p><span className="font-medium">Name:</span> Arpit Gupta</p>
-            <p><span className="font-medium">Email:</span> arpit@email.com</p>
-            <p><span className="font-medium">Status:</span> Active</p>
+            <p>
+              <span className="font-medium">Name:</span> Arpit Gupta
+            </p>
+            <p>
+              <span className="font-medium">Email:</span> arpit@email.com
+            </p>
+            <p>
+              <span className="font-medium">Status:</span> Active
+            </p>
           </div>
 
           <button className="mt-6 w-full bg-[#161E54] text-white py-2 rounded-lg hover:bg-[#0F163F] transition">
             Edit Profile
           </button>
         </div>
-
       </div>
     </div>
   );

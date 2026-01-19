@@ -5,6 +5,8 @@ import { TiShoppingCart } from "react-icons/ti";
 import { TbTransactionRupee } from "react-icons/tb";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
+
 
 const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
   const menuItems = [
@@ -23,8 +25,8 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
             className="ms-2 hover:scale-105"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
-            <GiHamburgerMenu />
-          </button>{" "}
+           {!isCollapsed ? <RxCross2 className="text-2xl"/> :  <GiHamburgerMenu />}
+          </button>
           {!isCollapsed && (
             <span className="overflow-hidden text-nowrap">User Dashboard</span>
           )}

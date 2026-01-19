@@ -42,13 +42,13 @@ const Header = () => {
         <div className="hidden md:flex gap-3">
           <button
             onClick={() => navigate("/login")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold rounded"
+            className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
           >
             Login
           </button>
           <button
             onClick={() => navigate("/register")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold rounded"
+            className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
           >
             Register
           </button>
@@ -57,7 +57,7 @@ const Header = () => {
         {/* MOBILE TOGGLE */}
         <motion.button
           whileTap={{ scale: 1 }}
-          className="md:hidden text-pink-500 "
+          className="md:hidden text-white "
           onClick={(e) => {
             setShowHeader(!showHeader);
           }}
@@ -68,8 +68,8 @@ const Header = () => {
 
       {/* MOBILE MENU */}
       {showHeader && (
-        <div className="bg-blue-950">
-          <div className="md:hidden text-white bg-blue-950 ms-5  flex flex-col gap-4 p-6 ">
+        <div className="bg-blue-950 ">
+          <div className="md:hidden absolute z-99 w-full text-white bg-blue-950   flex flex-col gap-4 p-6 ">
             <Link
               to="/"
               onClick={(e) => {
@@ -97,7 +97,7 @@ const Header = () => {
             >
               Contact
             </Link>
-            <Link
+            <L  ink
               to="/login"
               onClick={(e) => {
                 e.stopPropagation();
@@ -105,7 +105,7 @@ const Header = () => {
               }}
             >
               Login
-            </Link>
+            </L>
             <Link
               to="/register"
               onClick={(e) => {
