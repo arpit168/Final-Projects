@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-(--color-primary) px-8 py-2 flex justify-between items-center sticky top-0 z-99">
+      <div className="bg-(--color-primary) px-8 py-4 flex justify-between items-center sticky top-0 z-99">
         <Link to="/">
           <img
             src={tranparentLogo}
@@ -97,7 +97,7 @@ const Header = () => {
             >
               Contact
             </Link>
-            <L  ink
+            <Link
               to="/login"
               onClick={(e) => {
                 e.stopPropagation();
@@ -105,7 +105,7 @@ const Header = () => {
               }}
             >
               Login
-            </L>
+            </Link>
             <Link
               to="/register"
               onClick={(e) => {
