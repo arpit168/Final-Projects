@@ -5,8 +5,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import useUiStore from "../stores/useUiStore";
 import { motion } from "motion/react";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const {user,isLogin} = useAuth();
   const navigate = useNavigate();
 
   const { showHeader, setShowHeader } = useUiStore();
@@ -40,7 +42,7 @@ const Header = () => {
 
         {/* DESKTOP AUTH */}
         <div className="hidden md:flex gap-3">
-          <button
+         {isLogin? <span className="text-white font-bold">{user.fullName}</span>:(<> <button
             onClick={() => navigate("/login")}
             className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
           >
@@ -51,7 +53,7 @@ const Header = () => {
             className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
           >
             Register
-          </button>
+          </button></>)}
         </div>
 
         {/* MOBILE TOGGLE */}

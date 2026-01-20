@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import { genToken } from "../utils/authToken.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
@@ -13,7 +14,7 @@ export const UserRegister = async (req, res, next) => {
     }
 
     console.log({ fullName, email, mobileNumber, password });
-    
+
     // check for duplicate user before registration
 
     const existingUser = await User.findOne({ email });
@@ -22,8 +23,6 @@ export const UserRegister = async (req, res, next) => {
       error.statusCode = 409;
       return next(error);
     }
-
-    
 
     // encrypt the password
 
@@ -41,14 +40,13 @@ export const UserRegister = async (req, res, next) => {
 
     // Send response to frontend
     console.log(newUser);
-    
 
     res.status(201).json({ message: "Registration Successful" });
 
     // End
   } catch (error) {
     console.log(error);
-    
+
     next(error);
   }
 };
@@ -71,7 +69,6 @@ export const UserLogin = async (req, res, next) => {
       error.statusCode = 401;
       return next(error);
       console.log(existingUser);
-      
     }
 
     // verify the password
@@ -82,8 +79,10 @@ export const UserLogin = async (req, res, next) => {
       error.statusCode = 401;
       return next(error);
       console.log(isVerified);
-      
     }
+
+    // Token Generation will be done here
+    genToken(existingUser, res);
 
     // send message to frontend
     res.status(200).json({ message: "Login Successful", data: existingUser });
