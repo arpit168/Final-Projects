@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserSideBar from "../../components/userDashboard/UserSideBar";
+import UserSideBar from"../../components/userDashboard/UserSidebar";
 import UserOverview from "../../components/userDashboard/userOverview";
 import UserProfile from "../../components/userDashboard/UserProfile";
 import UserOrders from "../../components/userDashboard/UserOrders";
