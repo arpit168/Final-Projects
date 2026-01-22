@@ -8,9 +8,8 @@ import { motion } from "motion/react";
 import { useAuth } from "../context/AuthContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
 
-
 const Header = () => {
-  const {user,isLogin} = useAuth();
+  const { user, isLogin } = useAuth();
   const navigate = useNavigate();
 
   const { showHeader, setShowHeader } = useUiStore();
@@ -44,19 +43,29 @@ const Header = () => {
 
         {/* DESKTOP AUTH */}
         <div className="hidden md:flex gap-3">
-         {isLogin? <span className="text-white font-bold text-3xl hover:text-indigo-700 hover:scale-105 duration-300  "><Link to={"/userDashboard"}><HiOutlineUserCircle/></Link></span>:(<> <button
-         
-            onClick={() => navigate("/login")}
-            className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
-          >
-            Login
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
-          >
-            Register
-          </button></>)}
+          {isLogin ? (
+            <div className="text-white font-bold text-xl hover:text-indigo-700 hover:scale-105 cursor-pointer duration-300 " onClick={()=>navigate("/userDashboard")}>
+              
+                {user.fullName}
+             
+            </div>
+          ) : (
+            <>
+              
+              <button
+                onClick={() => navigate("/login")}
+                className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
+              >
+                Register
+              </button>
+            </>
+          )}
         </div>
 
         {/* MOBILE TOGGLE */}
@@ -102,25 +111,31 @@ const Header = () => {
             >
               Contact
             </Link>
-             {isLogin?"":(<> <Link
-              to="/login"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHeader(!showHeader);
-              }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHeader(!showHeader);
-              }}
-            >
-              Register
-            </Link></>)}
-            
+            {isLogin ? (
+              ""
+            ) : (
+              <>
+                {" "}
+                <Link
+                  to="/login"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowHeader(!showHeader);
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowHeader(!showHeader);
+                  }}
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
