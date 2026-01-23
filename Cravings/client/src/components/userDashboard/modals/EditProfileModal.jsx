@@ -34,7 +34,7 @@ const EditProfileModal = ({ onClose }) => {
   return (
     <>
       <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-100">
-        <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto sticky top-0 px-10 ">
+        <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto sticky top-0 px-10 rounded-xl ">
           {/* Header */}
           <div className="flex justify-between bg-white items-center mb-5 sticky top-0">
             <div>
@@ -113,6 +113,7 @@ const EditProfileModal = ({ onClose }) => {
                   Save Changes
                 </button>
               </div>
+              
             </form>
         </div>
       </div>
