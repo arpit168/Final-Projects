@@ -1,14 +1,13 @@
-import React from "react";
+import React , { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useAuth } from "../../../context/AuthContext";
 import edit from "../../../assets/animation/EditNote.json";
 import Lottie from "lottie-react";
 import api from "../../../config/Api";
-import { useState } from "react";
 
 const EditProfileModal = ({ onClose }) => {
   const { user, setUser } = useAuth();
-  const [formData,setFormData,setIsLogin]=useState({
+  const [formData,setFormData]=useState({
     fullName:user.fullName,
     email:user.email,
     mobileNumber:user.mobileNumber,
