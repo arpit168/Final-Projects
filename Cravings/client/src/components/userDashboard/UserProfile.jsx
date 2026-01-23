@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import EditProfileModal from "./modals/EditProfileModal";
 
+
 const UserProfile = () => {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const { user, setUser } = useAuth();
@@ -19,7 +20,7 @@ const UserProfile = () => {
           {/* Profile Card */}
           <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col items-center text-center">
             <div className="md:w-28 w-14 md:h-28 h-14 rounded-full bg-[#161E54] text-white flex items-center justify-center  text-2xl font-semibold">
-             AG
+             {user.fullName}
             </div>
 
             <h2 className="mt-4 text-xl font-semibold text-gray-800">
@@ -28,9 +29,9 @@ const UserProfile = () => {
 
             <p className="text-gray-500 text-sm">{user.email}</p>
 
-            <button className="mt-4 text-sm text-[#F16D34] hover:underline">
-              Change Photo
-            </button>
+            <input type="file" className="mt-4 text-sm text-[#F16D34] ms-20 hover:underline"/>
+             
+            
           </div>
 
           {/* Profile Form */}
