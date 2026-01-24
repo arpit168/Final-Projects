@@ -3,18 +3,22 @@ import { useAuth } from "../../context/AuthContext";
 import EditProfileModal from "./modals/EditProfileModal";
 
 
+
 const UserProfile = () => {
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const { user, setUser } = useAuth();
 
+
   return (
-    <>
+    <>  
       <div className="min-h-screen bg-gray-50 p-6">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-[#161E54]">My Profile</h1>
           <p className="text-gray-500 mt-1">Manage your personal information</p>
         </div>
+
+
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Profile Card */}
@@ -85,6 +89,8 @@ const UserProfile = () => {
                   />
                 </div>
               </div>
+
+              
 
              
                 <button
