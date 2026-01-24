@@ -39,6 +39,7 @@ const EditProfileModal = ({ onClose }) => {
             <div>
               <Lottie animationData={edit} loop={true} className="w-15" />
             </div>
+            <h1 className="text-3xl">Edit Profile </h1>
             <div>
               <button
                 type="button"

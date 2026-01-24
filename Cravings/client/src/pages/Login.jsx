@@ -10,7 +10,7 @@ const Login = () => {
   const { setUser, setIsLogin } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData,setRole] = useState({
     email: "",
     password: "",
   });
@@ -57,6 +57,25 @@ const Login = () => {
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
+      switch (res.data.data.role) {
+        case manager:
+          setRole("manager")
+          navigate("/restaurant-dashboard")
+          break;
+      }
+       switch (res.data.data.role) {
+        case manager:
+          setRole("partner")
+          navigate("/rider-dashboard")
+          break;
+      }
+       switch (res.data.data.role) {
+        case manager:
+          setRole("admin")
+          navigate("/admin")
+          break;
+      }
+
       navigate("/userDashboard");
     } catch (error) {
       console.log(error);
