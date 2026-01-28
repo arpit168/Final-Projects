@@ -7,10 +7,10 @@ import { useAuth } from "../context/AuthContext";
 import { TbRuler2Off } from "react-icons/tb";
 
 const Login = () => {
-  const { setUser, setIsLogin } = useAuth();
+  const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData,setRole] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -58,28 +58,33 @@ const Login = () => {
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
       switch (res.data.data.role) {
-        case manager:
-          setRole("manager")
-          navigate("/restaurant-dashboard")
+        case "manager": {
+          setRole("manager");
+          navigate("/restaurantDashboard");
           break;
-      }
-       switch (res.data.data.role) {
-        case manager:
-          setRole("partner")
-          navigate("/rider-dashboard")
+        }
+        case "partner": {
+          setRole("partner");
+          navigate("/riderDashboard");
           break;
-      }
-       switch (res.data.data.role) {
-        case manager:
-          setRole("admin")
-          navigate("/admin")
+        }
+        case "customer": {
+          setRole("customer");
+          navigate("/userDashboard");
           break;
-      }
+        }
+        case "admin": {
+          setRole("admin");
+          navigate("/adminDashboard");
+          break;
+        }
 
-      navigate("/userDashboard");
+        default:
+          break;
+      }
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
     }
