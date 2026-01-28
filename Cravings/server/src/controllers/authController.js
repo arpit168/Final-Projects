@@ -5,15 +5,15 @@ import { genToken } from "../utils/authToken.js";
 export const UserRegister = async (req, res, next) => {
   try {
     // accept all from frontend
-    const { fullName, email, mobileNumber, password } = req.body;
+    const { fullName, email, mobileNumber, password, role } = req.body;
 
-    if (!fullName || !email || !mobileNumber || !password) {
+    if (!fullName || !email || !mobileNumber || !password || !role) {
       const error = new Error("All fields required");
       error.statusCode = 400;
       return next(error);
     }
 
-    console.log({ fullName, email, mobileNumber, password });
+    console.log({ fullName, email, mobileNumber, password, role });
 
     // check for duplicate user before registration
 
@@ -24,10 +24,19 @@ export const UserRegister = async (req, res, next) => {
       return next(error);
     }
 
+    console.log("Sending Data to db");
+
     // encrypt the password
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
+
+    // Photo
+
+    const photoURL = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
+    const photo = {
+      url: photoURL,
+    };
 
     // save data to database
 

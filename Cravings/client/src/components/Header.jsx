@@ -14,6 +14,30 @@ const Header = () => {
 
   const { showHeader, setShowHeader } = useUiStore();
 
+   const handleNavigate = () => {
+    switch (role) {
+      case "manager": {
+        navigate("/resturant-dashboard");
+        break;
+      }
+      case "partner": {
+        navigate("/rider-dashboard");
+        break;
+      }
+      case "customer": {
+        navigate("/user-dashboard");
+        break;
+      }
+      case "admin": {
+        navigate("/admin-dashboard");
+        break;
+      }
+      default:
+        break;
+    }
+  };
+  
+
   return (
     <>
       <div className="bg-(--color-primary) px-8 py-4 flex justify-between items-center sticky top-0 z-99">

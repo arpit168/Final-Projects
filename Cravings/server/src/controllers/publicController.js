@@ -18,13 +18,11 @@ export const NewContact = async (req, res, next) => {
 
     console.log(newContact);
 
-    
       res.status(201)
       .json({
         message:
           "Thanks for Contacting us.We Will Get Back to you in 24-48 Hours",
       });
-
 
   } catch (error) {
     next(error);

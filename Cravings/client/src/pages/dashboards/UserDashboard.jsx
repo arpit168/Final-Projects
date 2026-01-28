@@ -6,22 +6,22 @@ import UserOrders from "../../components/userDashboard/UserOrders";
 import UserTransactions from "../../components/userDashboard/UserTransaction"
 import UserHelpDesk from "../../components/userDashboard/UserHelpDesk";
 import { useAuth } from "../../context/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
 
 
 const UserDashboard = () => {
   const {role,isLogin}= useAuth();
-  const nevigate = useNavigate();
+  const navigate = useNavigate();
   const [active, setActive] = useState("overview");
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   useEffect(()=>{
     if(!isLogin){
-      Navigate("/login");
+      navigate("/login")
     }
-  })
+  },[isLogin,navigate])
 
   if(role !=="customer"){
     return(

@@ -16,7 +16,7 @@ const EditProfileModal = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault;
     console.log("Form Submitted");
-    console.log(user);
+    console.log(formData  );
 
     try {
       const res = await api.put("/user/update", formData);
