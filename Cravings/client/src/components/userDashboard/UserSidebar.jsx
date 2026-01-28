@@ -8,9 +8,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
+import { MdLogout } from "react-icons/md";
+
 
 const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
-  const { setUser, setIsLogin } = useAuth();
+  
+  const { setUser, setIsLogin } = useAuth ();
   const menuItems = [
     { key: "overview", title: "Overview", icon: <TbChartTreemap /> },
     { key: "profile", title: "Profiles", icon: <ImProfile /> },

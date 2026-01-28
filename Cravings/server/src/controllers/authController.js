@@ -89,7 +89,6 @@ export const UserLogin = async (req, res, next) => {
       return next(error);
       console.log(isVerified);
     }
-
     // Token Generation will be done here
     genToken(existingUser, res);
 
@@ -102,6 +101,7 @@ export const UserLogin = async (req, res, next) => {
 
 export const UserLogout = async (req, res, next) => {
   try {
+    res.clearCookie("parleG")
     res.status(200).json({ message: "Logout Successful" });
   } catch (error) {
     next(error);
