@@ -4,7 +4,7 @@ import { ImProfile } from "react-icons/im";
 import { TiShoppingCart } from "react-icons/ti";
 import { TbTransactionRupee } from "react-icons/tb";
 import { RiCustomerService2Fill } from "react-icons/ri";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { HiMenuAlt2 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
@@ -46,7 +46,7 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
             {!isCollapsed ? (
               <RxCross2 className="text-2xl" />
             ) : (
-              <GiHamburgerMenu />
+              <HiMenuAlt2 className="text-2xl" />
             )}
           </button>
           {!isCollapsed && (
