@@ -21,6 +21,7 @@ export const AuthProvider = (props) => {
   );
 };
 
+
 export const useAuth = () => {
   return useContext(AuthContext);
 };

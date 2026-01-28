@@ -49,12 +49,12 @@ const UserProfile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 shadow-2xl">
           {/* Profile Card */}
           <div className="bg-white rounded-xl shadow-2xl border p-6 flex flex-col items-center text-center">
-            <div className="flex justify-between border p-3 rounded-3xl items-center border-gray-300 bg-white">
+            <div className="flex justify-between  p-3 rounded-3xl items-center border-gray-300 bg-white">
               <div className="flex gap-5 items-center">
                 <div className="relative">
                   <div className=" border rounded-full w-36 h-36 overflow-hidden">
                     <img
-                      src={preview || user.photo.url || UserImage}
+                      src={preview || user?.photo?.url || UserImage}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -75,8 +75,17 @@ const UserProfile = () => {
                     />
                   </div>
                 </div>
+                
               </div>
+              
             </div>
+            <button
+                type="button"
+                className="border my-auto px-4 py-2 bg-indigo-700  text-white"
+                onClick={() => setIsEditProfileModalOpen(true)}
+              >
+                Edit Profile
+              </button>
           </div>
 
           {/* Profile Form */}
@@ -130,13 +139,7 @@ const UserProfile = () => {
                 </div>
               </div>
 
-              <button
-                type="button"
-                className="border px-4 py-2 bg-indigo-700  text-white"
-                onClick={() => setIsEditProfileModalOpen(true)}
-              >
-                Edit Profile
-              </button>
+              
             </form>
           </div>
           {isEditProfileModalOpen && (
