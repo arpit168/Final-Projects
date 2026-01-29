@@ -11,12 +11,31 @@ const EditProfileModal = ({ onClose }) => {
     fullName: user.fullName,
     email: user.email,
     mobileNumber: user.mobileNumber,
+    gender: user.gender,
+    dob: user.dob,
+    address: user.address,
+    city: user.city,
+    pin: user.pin,
+    address: user.address,
+    ducuments: {
+      uidai: user.documents.uidai,
+      pan: user.documents.pan,
+    },
+    paymentDetails: {
+      upi: user.paymentDetails.upi,
+      account_number: user.paymentDetails.account_number,
+      ifs_Code: user.paymentDetails.ifs_Code,
+    },
+    Geolocation: {
+      lat: user.Geolocation.lat,
+      lon: user.Geolocation.lon,
+    },
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted");
-    console.log(formData  );
+    console.log(formData);
 
     try {
       const res = await api.put("/user/update", formData);
@@ -109,7 +128,6 @@ const EditProfileModal = ({ onClose }) => {
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-                
               >
                 Save Changes
               </button>
@@ -122,3 +140,12 @@ const EditProfileModal = ({ onClose }) => {
 };
 
 export default EditProfileModal;
+
+
+
+
+
+
+
+
+
