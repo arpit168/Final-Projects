@@ -14,7 +14,7 @@ const EditProfileModal = ({ onClose }) => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault;
+    e.preventDefault();
     console.log("Form Submitted");
     console.log(formData  );
 
