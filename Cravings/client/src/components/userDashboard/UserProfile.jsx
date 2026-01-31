@@ -5,10 +5,15 @@ import { FaCamera } from "react-icons/fa";
 import UserImage from "../../assets/user.jpeg";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
+import ResetPasswordModal from "./modals/ResetPasswordModal";
+
+
 
 const UserProfile = () => {
   const { user, setUser } = useAuth();
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [isResetPasswordModelOpen, setIsResetPasswordModelOpen] =
+    useState(false);
 
   const [preview, setPreview] = useState("");
 
@@ -75,17 +80,8 @@ const UserProfile = () => {
                     />
                   </div>
                 </div>
-                
               </div>
-              
             </div>
-            <button
-                type="button"
-                className="border my-auto px-4 py-2 bg-indigo-700  text-white"
-                onClick={() => setIsEditProfileModalOpen(true)}
-              >
-                Edit Profile
-              </button>
           </div>
 
           {/* Profile Form */}
@@ -138,13 +134,33 @@ const UserProfile = () => {
                   />
                 </div>
               </div>
-
-              
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  className="border my-auto font-bold px-4 py-2 w-50 rounded bg-indigo-700  text-white"
+                  onClick={() => setIsEditProfileModalOpen(true)}
+                >
+                  Edit Profile
+                </button>
+                <button
+                  type="button"
+                  className="border my-auto px-4 font-bold py-2 w-50 rounded bg-yellow-600  text-white"
+                  onClick={() => setIsResetPasswordModelOpen(true)}
+                >
+                  Reset
+                </button>
+              </div>
             </form>
           </div>
           {isEditProfileModalOpen && (
             <EditProfileModal
               onClose={() => setIsEditProfileModalOpen(false)}
+            />
+          )}
+
+          {isResetPasswordModelOpen && (
+            <ResetPasswordModal
+              onClose={() => setIsResetPasswordModelOpen(false)}
             />
           )}
         </div>

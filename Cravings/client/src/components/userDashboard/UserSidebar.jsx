@@ -11,10 +11,8 @@ import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import { MdLogout } from "react-icons/md";
 
-
 const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
-  
-  const { setUser, setIsLogin } = useAuth ();
+  const { setUser, setIsLogin } = useAuth();
   const menuItems = [
     { key: "overview", title: "Overview", icon: <TbChartTreemap /> },
     { key: "profile", title: "Profiles", icon: <ImProfile /> },
@@ -68,13 +66,12 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
               onClick={() => setActive(item.key)}
               key={idx}
             >
-             
               {item.icon}
               {!isCollapsed && item.title}
             </button>
           ))}
         </div>
-         <div>
+        <div>
           <button
             className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300 hover:bg-red-500 hover:text-white text-red-600"
             onClick={handleLogout}
@@ -84,8 +81,6 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
           </button>
         </div>
       </div>
-      
-     
     </>
   );
 };

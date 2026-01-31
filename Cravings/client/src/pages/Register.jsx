@@ -257,7 +257,7 @@ const Register = () => {
                     )}
                   </div>
                 </div>
-                '{/* Submit Button */}
+                {/* Submit Button */}
                 <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
                   <button
                     disabled={isLoading}
