@@ -10,6 +10,8 @@ const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
 
+  const [isForgetPasswordModal,setISForgetPasswordModal]= useState()
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -57,6 +59,8 @@ const Login = () => {
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
+      console.log(res.data.data.role);
+      
       switch (res.data.data.role) {
         case "manager": {
           setRole("manager");

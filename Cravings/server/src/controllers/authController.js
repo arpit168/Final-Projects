@@ -45,6 +45,7 @@ export const UserRegister = async (req, res, next) => {
       email,
       mobileNumber,
       password: hashPassword,
+      role,
     });
 
     // Send response to frontend
@@ -107,3 +108,12 @@ export const UserLogout = async (req, res, next) => {
     next(error);
   }
 };
+
+export const UserGenPass = async (req,res,next)=<{
+  try {
+    
+    
+  } catch (error) {
+    
+  }
+}
