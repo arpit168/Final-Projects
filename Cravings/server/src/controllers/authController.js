@@ -152,3 +152,8 @@ export const UserGenOTP = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const UserVerifyOtp = async (req,res,next)=>{
+  
+}

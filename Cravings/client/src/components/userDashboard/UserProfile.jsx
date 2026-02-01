@@ -137,17 +137,17 @@ const UserProfile = () => {
               <div className="flex gap-3">
                 <button
                   type="button"
-                  className="border my-auto font-bold px-4 py-2 w-50 rounded bg-indigo-700  text-white"
+                  className="border my-auto font-bold px-4 py-2 w-50 rounded hover:bg-indigo-800 bg-indigo-600 cursor-pointer text-white"
                   onClick={() => setIsEditProfileModalOpen(true)}
                 >
                   Edit Profile
                 </button>
                 <button
                   type="button"
-                  className="border my-auto px-4 font-bold py-2 w-50 rounded bg-yellow-600  text-white"
+                  className="border my-auto px-4 font-bold py-2 w-50 rounded bg-yellow-600 hover:bg-yellow-700 cursor-pointer  text-white"
                   onClick={() => setIsResetPasswordModelOpen(true)}
                 >
-                  Reset
+                  Reset Password
                 </button>
               </div>
             </form>
