@@ -131,7 +131,7 @@ export const UserGenOTP = async (req, res, next) => {
       return next(error);
     }
 
-    const otp = Math.floor(math.random() * 1000000).toString();
+    const otp = Math.floor(Math.random() * 1000000).toString();
     console.log(typeof otp);
 
     // encrypt the otp

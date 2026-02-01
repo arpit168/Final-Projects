@@ -5,12 +5,14 @@ import api from "../config/Api";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { TbRuler2Off } from "react-icons/tb";
+import forgetPasswordModal from "../components/publicModals/ForgetPasswordModal"
+import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
 
-  const [isForgetPasswordModal,setISForgetPasswordModal]= useState()
+  const [isForgetPasswordModalOpen,setIsForgetPasswordModalOpen]= useState(false)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -151,9 +153,15 @@ const Login = () => {
                           <input type="checkbox" />
                           <p>Remember me</p>
                         </span>
-                        <p className="text-blue-700 hover:text-blue-900 ">
-                          <Link to={"/"}>Forgot Password!</Link>
-                        </p>
+                        <button
+                    className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsForgetPasswordModalOpen(true);
+                    }}
+                  >
+                    Forget Password?
+                  </button>
                       </span>
                     </div>
                     <div className="flex space-x-5 mt-5 justify-center">
@@ -184,9 +192,15 @@ const Login = () => {
                 </form>
               </div>
             </div>
+            {isForgetPasswordModalOpen && (
+        <ForgetPasswordModal
+          onClose={() => setIsForgetPasswordModalOpen(false)}
+        />
+      )}
           </div>
         </div>
       </div>
+      
     </>
   );
 };
