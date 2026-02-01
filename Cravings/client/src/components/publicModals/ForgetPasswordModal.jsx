@@ -24,7 +24,7 @@ const ForgetPasswordModal = ({ onClose }) => {
       let res;
       if (isOtpSent) {
         if (isOtpVerified) {
-          res = await api.post("/auth/forgetPasword", formData);
+          res = await api.post("/auth/forgetPassword", formData);
           toast.success(res.data.message);
           onClose();
         } else {
