@@ -36,5 +36,5 @@ export default SendEmail;
 SendEmail(
   "pgupta4222@gmail.com",
   "testEmail",
-  "<p style={color:red;}>test Message</p>",
+  "<p style='color: red;'>Your Cravings Server is running. please check is everything fine.</p>"
 );
