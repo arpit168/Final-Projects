@@ -16,6 +16,11 @@ const ForgetPasswordModal = ({ onClose }) => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
 
+  if (formData.newPassword !== formData.cfNewPassword) {
+    toast.error("New password and confirm New password must be same");
+    return;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

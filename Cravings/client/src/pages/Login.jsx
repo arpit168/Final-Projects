@@ -154,6 +154,7 @@ const Login = () => {
                           <p>Remember me</p>
                         </span>
                         <button
+                        type="button"
                     className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
                     onClick={(e) => {
                       e.preventDefault();

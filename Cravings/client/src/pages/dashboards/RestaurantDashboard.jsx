@@ -8,6 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import ManagerSidebar from "../../components/restaurantDashboard/ManagerSidebar";
 import ManagerTransaction from "../../components/restaurantDashboard/ManagerTransaction";
 import ManagerHelpDesk from "../../components/restaurantDashboard/ManagerHelpDesk";
+import RestaurantMenu from "../../components/restaurantDashboard/RestaurantMenu";
 
 
 
@@ -63,6 +64,7 @@ const ManagerDashboard = () => {
           {active === "orders" && <ManagerOrders />}
           {active === "transactions" && <ManagerTransaction />}
           {active === "helpdesk" && <ManagerHelpDesk />}
+          {active === "menu" && <RestaurantMenu />}
          
         </div>
       </div>

@@ -10,6 +10,8 @@ import api from "../../config/Api";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import { MdLogout } from "react-icons/md";
+import { MdOutlineMenuBook } from "react-icons/md";
+
 
 const ManagerSidebar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
   const { setUser, setIsLogin } = useAuth();
@@ -19,6 +21,7 @@ const ManagerSidebar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
     { key: "orders", title: "Order", icon: <TiShoppingCart /> },
     { key: "transactions", title: "Transaction", icon: <TbTransactionRupee /> },
     { key: "helpdesk", title: "Help Desk", icon: <RiCustomerService2Fill /> },
+    { key: "menu", title: "Menu", icon: <MdOutlineMenuBook/> },
   ];
 
   const handleLogout = async () => {
