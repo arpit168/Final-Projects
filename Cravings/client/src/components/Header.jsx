@@ -6,7 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import useUiStore from "../stores/useUiStore";
 import { motion } from "motion/react";
 import { useAuth } from "../context/AuthContext";
-import { HiOutlineUserCircle } from "react-icons/hi";
+
 
 const Header = () => {
   const { user, isLogin } = useAuth();
@@ -18,7 +18,7 @@ const Header = () => {
     customer: "/userDashboard",
     manager: "/restaurantDashboard",
     admin: "/adminDashboard",
-    rider: "/riderDashboard",
+    partner: "/riderDashboard",
   };
 
   const handleClick = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import EditProfileModal from "../userDashboard/modals/EditProfileModal";
+import EditManagerProfileModal from "./managerModels/EditManagerProfileModal";
 import { FaCamera } from "react-icons/fa";
 import UserImage from "../../assets/user.jpeg";
 import api from "../../config/Api";
@@ -139,7 +139,7 @@ const ManagerProfile = () => {
                   className="border my-auto font-bold px-4 py-2 w-50 rounded hover:bg-indigo-800 bg-indigo-600 cursor-pointer text-white"
                   onClick={() => setIsEditProfileModalOpen(true)}
                 >
-                  Edit Profile
+                  Edit Manager Profile
                 </button>
                 <button
                   type="button"
@@ -152,7 +152,7 @@ const ManagerProfile = () => {
             </form>
           </div>
           {isEditProfileModalOpen && (
-            <EditProfileModal
+            <EditManagerProfileModal
               onClose={() => setIsEditProfileModalOpen(false)}
             />
           )}
