@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import EditRestaurantProfileModal from "./modals/EditRestaurantProfileModal";
-import UserImage from "../../assets/userImage.jpg";
+import UserImage from "../../assets/user.jpeg";
 import {
   FaCamera,
   FaMapLocationDot,
