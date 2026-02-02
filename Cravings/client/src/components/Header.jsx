@@ -12,9 +12,24 @@ const Header = () => {
   const { user, isLogin } = useAuth();
   const navigate = useNavigate();
 
+  const swap = JSON.parse(localStorage.getItem("swap"));
+
+  const dashboardRoutes = {
+    customer: "/customerDashboard",
+    manager: "/restaurantDashboard",
+    admin: "/adminDashboard",
+    rider: "/riderDashboard",
+  };
+
+  const handleClick = () => {
+    navigate(
+      localStorage.getItem("lastDashboard") || dashboardRoutes[user?.role],
+    );
+  };
+
   const { showHeader, setShowHeader } = useUiStore();
 
-   const handleNavigate = () => {
+  const handleNavigate = () => {
     switch (role) {
       case "manager": {
         navigate("/resturant-dashboard");
@@ -36,7 +51,6 @@ const Header = () => {
         break;
     }
   };
-  
 
   return (
     <>
@@ -70,7 +84,7 @@ const Header = () => {
           {isLogin ? (
             <div
               className="text-white font-bold text-xl hover:text-indigo-700 hover:scale-105 cursor-pointer duration-300 "
-              onClick={() => navigate("/userDashboard")}
+              onClick={() => handleClick()}
             >
               {user.fullName}
             </div>
