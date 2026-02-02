@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
             Menu Management
           </h2>
           <button
-            className="px-4 py-2 bg-(--color-secondary) text-white rounded-lg hover:bg-(--color-secondary-hover) transition font-semibold"
+            className="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-950 transition font-semibold"
             onClick={() => setIsAddItemModalOpen(true)}
           >
             Add Item

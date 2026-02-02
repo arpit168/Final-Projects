@@ -35,6 +35,8 @@ const RestaurantProfile = () => {
     }
   };
 
+  
+
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -77,7 +79,7 @@ const RestaurantProfile = () => {
                 </div>
                 <label
                   htmlFor="imageUpload"
-                  className="absolute bottom-2 right-2 bg-(--color-secondary) text-white p-3 rounded-full hover:bg-(--color-secondary-hover) cursor-pointer transition transform hover:scale-110"
+                  className="absolute bottom-2 right-2 bg-blue-900 text-white p-3 rounded-full hover:bg-blue-950 cursor-pointer transition transform hover:scale-110"
                 >
                   <FaCamera size={18} />
                 </label>
@@ -102,7 +104,7 @@ const RestaurantProfile = () => {
                     {user?.fullName || "Manager Name"}
                   </h1>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="bg-(--color-secondary) text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">
+                    <span className="bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">
                       {user?.role || "manager"}
                     </span>
                     <span
@@ -137,7 +139,7 @@ const RestaurantProfile = () => {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsEditProfileModalOpen(true)}
-                    className="px-6 py-2 bg-(--color-secondary) text-white rounded-lg hover:bg-(--color-secondary-hover) transition font-semibold"
+                    className="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-950 transition font-semibold"
                   >
                     Edit Profile
                   </button>
@@ -156,7 +158,7 @@ const RestaurantProfile = () => {
         {/* Personal Information Section */}
         <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
           <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-(--color-secondary) rounded"></span>
+            <span className="w-1 h-6 bg-blue-900 rounded"></span>
             Personal Information
           </h2>
           <div className="space-y-1">
@@ -173,7 +175,7 @@ const RestaurantProfile = () => {
           user?.geoLocation?.lon !== "N/A") && (
           <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaMapLocationDot className="text-(--color-secondary)" />
+              <FaMapLocationDot className="text-blue-900" />
               Geo Location
             </h2>
             <div className="space-y-1">
@@ -187,7 +189,7 @@ const RestaurantProfile = () => {
         {user?.paymentDetails?.upi !== "N/A" && (
           <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaWallet className="text-(--color-secondary)" />
+              <FaWallet className="text-blue-900" />
               Payment Details
             </h2>
             <div className="space-y-1">
@@ -201,7 +203,7 @@ const RestaurantProfile = () => {
           user?.paymentDetails?.ifs_Code !== "N/A") && (
           <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <BiSolidBank className="text-(--color-secondary)" />
+              <BiSolidBank className="text-blue-900" />
               Bank Account Details
             </h2>
             <div className="space-y-1">
@@ -231,7 +233,7 @@ const RestaurantProfile = () => {
         {Object.values(user?.documents || {}).some((doc) => doc !== "N/A") && (
           <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
             <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaFileAlt className="text-(--color-secondary)" />
+              <FaFileAlt className="text-blue-900" />
               Business Documents
             </h2>
             <div className="space-y-1">
