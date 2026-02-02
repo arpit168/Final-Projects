@@ -15,7 +15,7 @@ const Header = () => {
   const swap = JSON.parse(localStorage.getItem("swap"));
 
   const dashboardRoutes = {
-    customer: "/customerDashboard",
+    customer: "/userDashboard",
     manager: "/restaurantDashboard",
     admin: "/adminDashboard",
     rider: "/riderDashboard",
