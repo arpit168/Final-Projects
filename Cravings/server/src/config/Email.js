@@ -33,8 +33,8 @@ const SendEmail = async (to, subject, message) => {
 
 export default SendEmail;
 
-SendEmail(
-  "pgupta4222@gmail.com",
-  "testEmail",
-  "<p style='color: red;'>Your Cravings Server is running. please check is everything fine.</p>"
-);
+// SendEmail(
+//   "pgupta4222@gmail.com",
+//   "testEmail",
+//   "<p style='color: red;'>Your Cravings Server is running. please check is everything fine.</p>"
+// );

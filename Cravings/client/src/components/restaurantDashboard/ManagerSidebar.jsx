@@ -17,7 +17,8 @@ const ManagerSidebar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
     { key: "overview", title: "Overview", icon: <TbChartTreemap /> },
     { key: "profile", title: "Profiles", icon: <ImProfile /> },
     { key: "orders", title: "Order", icon: <TiShoppingCart /> },
-   
+    { key: "transactions", title: "Transaction", icon: <TbTransactionRupee /> },
+    { key: "helpdesk", title: "Help Desk", icon: <RiCustomerService2Fill /> },
   ];
 
   const handleLogout = async () => {
@@ -47,7 +48,9 @@ const ManagerSidebar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
             )}
           </button>
           {!isCollapsed && (
-            <span className="overflow-hidden text-nowrap">User Dashboard</span>
+            <span className="overflow-hidden text-nowrap">
+              Manager Dashboard
+            </span>
           )}
         </div>
         <hr />

@@ -1,13 +1,13 @@
 import React, { useState ,  useEffect  } from "react";
-import UserTransactions from "../../components/userDashboard/UserTransaction"
 import ManagerProfile from "../../components/restaurantDashboard/ManagerProfile";
 import ManagerOverview from "../../components/restaurantDashboard/MAnagerOverview";
 import ManagerOrders from "../../components/restaurantDashboard/ManagerOrders";
-import UserHelpDesk from "../../components/userDashboard/UserHelpDesk";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import ManagerSidebar from "../../components/restaurantDashboard/ManagerSidebar";
+import ManagerTransaction from "../../components/restaurantDashboard/ManagerTransaction";
+import ManagerHelpDesk from "../../components/restaurantDashboard/ManagerHelpDesk";
 
 
 
@@ -61,6 +61,8 @@ const ManagerDashboard = () => {
           {active === "overview" && <ManagerOverview />}
           {active === "profile" && <ManagerProfile />}
           {active === "orders" && <ManagerOrders />}
+          {active === "transactions" && <ManagerTransaction />}
+          {active === "helpdesk" && <ManagerHelpDesk />}
          
         </div>
       </div>
