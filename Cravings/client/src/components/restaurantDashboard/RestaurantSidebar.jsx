@@ -48,10 +48,10 @@ const RestaurantSideBar = ({
 
   return (
     <>
-      <div className="p-2">
-             <div className="h-10 text-xl font-bold flex gap-5 items-center mb-3">
+      <div className="p-2 ">
+             <div className="h-10 text-xl font-bold flex gap-2 items-center ">
                <button
-                 className="ms-2 hover:scale-105"
+                 className=" hover:scale-105 ms-3 "
                  onClick={() => setIsCollapsed(!isCollapsed)}
                >
                  {!isCollapsed ? (
@@ -61,7 +61,7 @@ const RestaurantSideBar = ({
                  )}
                </button>
                {!isCollapsed && (
-                 <span className="overflow-hidden text-nowrap">User Dashboard</span>
+                 <span className="overflow-hidden text-nowrap ">Restaurant Dashboard</span>
                )}
              </div>
              <hr />

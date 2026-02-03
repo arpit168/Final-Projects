@@ -91,19 +91,17 @@ const RestaurantProfile = () => {
                   onChange={handlePhotoChange}
                 />
               </div>
-              <p className="text-gray-500 text-sm mt-2">
-                Click camera to change photo
-              </p>
+             
             </div>
 
             {/* Basic Info Section */}
             <div className="flex justify-between w-full">
               <div>
-                <div className="mb-6">
+                <div className="mb-6  ">
                   <h1 className="text-4xl font-bold text-(--color-primary) mb-2">
                     {user?.fullName || "Manager Name"}
                   </h1>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-2 ">
                     <span className="bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">
                       {user?.role || "manager"}
                     </span>
