@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
@@ -61,7 +60,10 @@ const AddMenuItemModal = ({ onClose }) => {
       form_data.append("cuisine", formData.cuisine);
       form_data.append("type", formData.type);
       form_data.append("preparationTime", formData.preparationTime);
-      form_data.append("availability", formData.availability);
+      form_data.append(
+        "availability",
+        formData.availability ? "available" : "unavailable",
+      );
       images.forEach((img) => {
         form_data.append("itemImages", img);
       });
@@ -69,7 +71,7 @@ const AddMenuItemModal = ({ onClose }) => {
       //trasnfer MenuData to formData
       const res = await api.post("/restaurant/addMenuItem", form_data);
       toast.success(res.data.message);
-
+      console.log(res.data.data);
       setTimeout(handleClose, 1500);
     } catch (error) {
       console.log(error);
@@ -150,7 +152,10 @@ const AddMenuItemModal = ({ onClose }) => {
               {imagePreviews.length !== 0 && (
                 <div className="mt-3 grid grid-cols-5 gap-1">
                   {imagePreviews.map((itemImg, idx) => (
-                    <div className="border rounded-md w-30 h-30 overflow-hidden" key={idx}>
+                    <div
+                      className="border rounded-md w-30 h-30 overflow-hidden"
+                      key={idx}
+                    >
                       <img
                         src={itemImg}
                         alt=""

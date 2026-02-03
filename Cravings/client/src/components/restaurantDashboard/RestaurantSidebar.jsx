@@ -48,8 +48,9 @@ const RestaurantSideBar = ({
 
   return (
     <>
-      <div className="p-2 ">
-             <div className="h-10 text-xl font-bold flex gap-2 items-center ">
+      <div className="p-2 flex flex-col justify-between h-full ">
+       <div>
+              <div className="h-10 text-xl font-bold flex gap-2 items-center ">
                <button
                  className=" hover:scale-105 ms-3 "
                  onClick={() => setIsCollapsed(!isCollapsed)}
@@ -84,14 +85,15 @@ const RestaurantSideBar = ({
                  </button>
                ))}
              </div>
+       </div>
              <div>
-               <button
-                 className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300 hover:bg-red-500 hover:text-white text-red-600"
-                 onClick={handleLogout}
-               >
-                 <MdLogout />
-                 {!isCollapsed && "Logout"}
-               </button>
+                <button
+            className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300 hover:bg-red-500 hover:text-white text-red-600"
+            onClick={handleLogout}
+          >
+            <MdLogout />
+            {!isCollapsed && "Logout"}
+          </button>
              </div>
            </div>
     </>
