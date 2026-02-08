@@ -93,7 +93,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-linear-to-r from-orange-500 to-orange-600 text-white py-20">
+      <section className="relative bg-(--color-primary) text-white py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left Content */}
@@ -101,20 +101,20 @@ const Home = () => {
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Order Your Favorite Food
               </h1>
-              <p className="text-lg md:text-xl text-orange-50">
+              <p className="text-lg md:text-xl text-(--color-accent)">
                 Discover delicious meals from the best restaurants in your area.
                 Fast delivery, great quality, amazing taste!
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <button
                   onClick={() => navigate("/order-now")}
-                  className="px-8 py-3 bg-white text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition duration-300 transform hover:scale-105"
+                  className="px-8 py-3 bg-(--color-card-bg) text-(--color-accent) font-semibold rounded-lg hover:bg-orange-50 transition duration-300 transform hover:scale-105"
                 >
                   Order Now
                 </button>
                 <button
                   onClick={() => navigate("/contact")}
-                  className="px-8 py-3 bg-orange-700 text-white font-semibold rounded-lg hover:bg-orange-800 transition duration-300 border-2 border-white"
+                  className="px-8 py-3 bg-(--color-accent) text-(--color-card-bg) font-semibold rounded-lg hover:bg-(--text-secondary) transition duration-300 border-2 border-white"
                 >
                   Contact Us
                 </button>
