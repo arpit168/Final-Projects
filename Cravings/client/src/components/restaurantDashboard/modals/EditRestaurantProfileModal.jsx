@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
+import { RxCross2 } from "react-icons/rx";
+
 
 const EditRestaurantProfileModal = ({ onClose }) => {
   const { user, setUser, setIsLogin } = useAuth();
@@ -167,11 +169,12 @@ const EditRestaurantProfileModal = ({ onClose }) => {
               Edit Restaurant Profile
             </h2>
             <button
-              onClick={() => onClose()}
-              className="text-gray-600 hover:text-red-600 text-2xl transition"
-            >
-              ⊗
-            </button>
+                         type="button"
+                         onClick={() => onClose()}
+                         className="text-gray-600 border hover:text-white rounded-bl-2xl rounded-tr-2xl hover:bg-red-600 text-3xl transition"
+                       >
+                         <RxCross2/>
+                       </button>
           </div>
 
           {message.text && (

@@ -48,7 +48,7 @@ const ResetPasswordModal = ({ onClose }) => {
             <button
               type="button"
               onClick={() => onClose()}
-              className="text-gray-600 border hover:text-red-600 text-2xl transition"
+              className="text-gray-600 border hover:text-white rounded-bl-2xl rounded-tr-2xl hover:bg-red-600 text-3xl transition"
             >
               <RxCross2/>
             </button>
