@@ -1,8 +1,7 @@
+
 import React, { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
-import { RxCross2 } from "react-icons/rx";
-
 
 const EditRestaurantProfileModal = ({ onClose }) => {
   const { user, setUser, setIsLogin } = useAuth();
@@ -141,7 +140,7 @@ const EditRestaurantProfileModal = ({ onClose }) => {
     setMessage({ type: "", text: "" });
 
     try {
-      const res = await api.put("/user/update", formData);
+      const res = await api.put("/restaurant/update", formData);
       if (res.data?.data) {
         sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
         setUser(res.data.data);
@@ -169,12 +168,11 @@ const EditRestaurantProfileModal = ({ onClose }) => {
               Edit Restaurant Profile
             </h2>
             <button
-                         type="button"
-                         onClick={() => onClose()}
-                         className="text-gray-600 border hover:text-white rounded-bl-2xl rounded-tr-2xl hover:bg-red-600 text-3xl transition"
-                       >
-                         <RxCross2/>
-                       </button>
+              onClick={() => onClose()}
+              className="text-gray-600 hover:text-red-600 text-2xl transition"
+            >
+              ⊗
+            </button>
           </div>
 
           {message.text && (
@@ -254,7 +252,22 @@ const EditRestaurantProfileModal = ({ onClose }) => {
                   )}
                 </div>
 
-             
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Gender
+                  </label>
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -597,3 +610,4 @@ const EditRestaurantProfileModal = ({ onClose }) => {
 };
 
 export default EditRestaurantProfileModal;
+  
