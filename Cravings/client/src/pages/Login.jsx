@@ -47,22 +47,22 @@ const Login = () => {
       switch (res.data.data.role) {
         case "manager": {
           setRole("manager");
-          navigate("/resturant-dashboard");
+          navigate("/restaurantDashboard");
           break;
         }
         case "partner": {
           setRole("partner");
-          navigate("/rider-dashboard");
+          navigate("/riderDashboard");
           break;
         }
         case "customer": {
           setRole("customer");
-          navigate("/user-dashboard");
+          navigate("/userDashboard");
           break;
         }
         case "admin": {
           setRole("admin");
-          navigate("/admin-dashboard");
+          navigate("/adminDashboard");
           break;
         }
 
@@ -94,9 +94,7 @@ const Login = () => {
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
               Welcome Back
             </h1>
-            {/* <p className="text-lg text-gray-600">
-              You are 1 step away to stop your Cavings
-            </p> */}
+           
           </div>
 
           {/* Form Container */}
@@ -133,6 +131,7 @@ const Login = () => {
                 </div>
                 <div className="w-full flex justify-end">
                   <button
+                  type="button"
                     className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
                     onClick={(e) => {
                       e.preventDefault();

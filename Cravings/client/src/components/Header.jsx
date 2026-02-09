@@ -7,12 +7,10 @@ import useUiStore from "../stores/useUiStore";
 import { motion } from "motion/react";
 import { useAuth } from "../context/AuthContext";
 
-
 const Header = () => {
   const { user, isLogin } = useAuth();
   const navigate = useNavigate();
-
-  const swap = JSON.parse(localStorage.getItem("swap"));
+  const { showHeader, setShowHeader } = useUiStore();
 
   const dashboardRoutes = {
     customer: "/userDashboard",
@@ -23,68 +21,50 @@ const Header = () => {
 
   const handleClick = () => {
     navigate(
-      localStorage.getItem("lastDashboard") || dashboardRoutes[user?.role],
+      localStorage.getItem("lastDashboard") || dashboardRoutes[user?.role]
     );
-  };
-
-  const { showHeader, setShowHeader } = useUiStore();
-
-  const handleNavigate = () => {
-    switch (role) {
-      case "manager": {
-        navigate("/resturant-dashboard");
-        break;
-      }
-      case "partner": {
-        navigate("/rider-dashboard");
-        break;
-      }
-      case "customer": {
-        navigate("/user-dashboard");
-        break;
-      }
-      case "admin": {
-        navigate("/admin-dashboard");
-        break;
-      }
-      default:
-        break;
-    }
   };
 
   return (
     <>
-      <div className="bg-(--color-primary-hover) px-8 py-4 flex justify-between items-center sticky top-0 z-99">
+      {/* HEADER */}
+      <div className="bg-(--color-primary) px-8 py-4 flex justify-between items-center sticky top-0 z-50">
         <Link to="/">
           <img
             src={tranparentLogo}
             alt="logo"
-            className="h-12 w-20 object-cover invert-100"
+            className="h-12 w-20 object-cover invert"
           />
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-4">
-          <Link to="/" className="text-white hover:text-(--color-accent)">
+        <div className="hidden md:flex gap-6">
+          <Link
+            to="/"
+            className="text-(--color-text) hover:text-(--color-secondary) transition"
+          >
             Home
           </Link>
-          <Link to="/about" className="text-white hover:text-(--color-accent)">
+          <Link
+            to="/about"
+            className="text-(--color-text) hover:text-(--color-secondary) transition"
+          >
             About
           </Link>
           <Link
             to="/contact"
-            className="text-white hover:text-(--color-accent)"
+            className="text-(--color-text) hover:text-(--color-secondary) transition"
           >
             Contact
           </Link>
         </div>
 
         {/* DESKTOP AUTH */}
-        <div className="hidden md:flex gap-3">
+        <div className="hidden md:flex gap-3 items-center">
           {isLogin ? (
             <div
-              className="text-white font-bold text-xl hover:text-indigo-700 hover:scale-105 cursor-pointer duration-300 "
-              onClick={() => handleClick()}
+              onClick={handleClick}
+              className="text-(--color-text) font-semibold cursor-pointer hover:text-(--color-secondary) transition"
             >
               {user.fullName}
             </div>
@@ -92,13 +72,13 @@ const Header = () => {
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
+                className="bg-(--color-secondary) hover:bg-(--color-secondary-hover) text-white px-4 py-2 rounded transition"
               >
                 Login
               </button>
               <button
                 onClick={() => navigate("/register")}
-                className="bg-blue-800 py-2 px-4 text-white font-bold rounded"
+                className="bg-(--color-secondary) hover:bg-(--color-secondary-hover) text-white px-4 py-2 rounded transition"
               >
                 Register
               </button>
@@ -108,11 +88,9 @@ const Header = () => {
 
         {/* MOBILE TOGGLE */}
         <motion.button
-          whileTap={{ scale: 1 }}
-          className="md:hidden text-white "
-          onClick={(e) => {
-            setShowHeader(!showHeader);
-          }}
+          whileTap={{ scale: 0.95 }}
+          className="md:hidden text-(--color-text)"
+          onClick={() => setShowHeader(!showHeader)}
         >
           {showHeader ? <RxCross2 size={30} /> : <GiHamburgerMenu size={30} />}
         </motion.button>
@@ -120,56 +98,24 @@ const Header = () => {
 
       {/* MOBILE MENU */}
       {showHeader && (
-        <div className="bg-blue-950 ">
-          <div className="md:hidden absolute z-99 w-full text-white bg-blue-950   flex flex-col gap-4 p-6 ">
-            <Link
-              to="/"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHeader(!showHeader);
-              }}
-            >
+        <div className="md:hidden absolute w-full bg-(--color-background) text-(--color-text) z-50">
+          <div className="flex flex-col gap-4 p-6">
+            <Link to="/" onClick={() => setShowHeader(false)}>
               Home
             </Link>
-            <Link
-              to="/about"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHeader(!showHeader);
-              }}
-            >
+            <Link to="/about" onClick={() => setShowHeader(false)}>
               About
             </Link>
-            <Link
-              to="/contact"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowHeader(!showHeader);
-              }}
-            >
+            <Link to="/contact" onClick={() => setShowHeader(false)}>
               Contact
             </Link>
-            {isLogin ? (
-              ""
-            ) : (
+
+            {!isLogin && (
               <>
-                {" "}
-                <Link
-                  to="/login"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowHeader(!showHeader);
-                  }}
-                >
+                <Link to="/login" onClick={() => setShowHeader(false)}>
                   Login
                 </Link>
-                <Link
-                  to="/register"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowHeader(!showHeader);
-                  }}
-                >
+                <Link to="/register" onClick={() => setShowHeader(false)}>
                   Register
                 </Link>
               </>
