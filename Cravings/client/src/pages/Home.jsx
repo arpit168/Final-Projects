@@ -124,35 +124,35 @@ const Home = () => {
               <div className="grid grid-cols-3 gap-4 pt-8">
                 <div>
                   <p className="text-3xl font-bold">500+</p>
-                  <p className="text-orange-50">Restaurants</p>
+                  <p className="">Restaurants</p>
                 </div>
                 <div>
                   <p className="text-3xl font-bold">50K+</p>
-                  <p className="text-orange-50">Happy Customers</p>
+                  <p className="">Happy Customers</p>
                 </div>
                 <div>
                   <p className="text-3xl font-bold">24/7</p>
-                  <p className="text-orange-50">Support</p>
+                  <p className="">Support</p>
                 </div>
               </div>
             </div>
 
             {/* Right Visual */}
             <div className="flex justify-center items-center">
-              <div className="text-8xl animate-bounce">🍽️</div>
+              <div className="text-9xl animate-pulse">🍽️</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Featured Restaurants Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-(--color-background)">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-(--color-dark) mb-4">
               Featured Restaurants
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-(--color-dark) text-lg">
               Explore our top-rated restaurants
             </p>
           </div>
@@ -192,7 +192,7 @@ const Home = () => {
       </section>
 
       {/* Popular Dishes Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-(--color-secondary-hover)">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -207,9 +207,9 @@ const Home = () => {
             {popularDishes.map((dish) => (
               <div
                 key={dish.id}
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden cursor-pointer"
+                className="bg-(--color-text-light) rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden cursor-pointer"
               >
-                <div className="h-48 bg-linear-to-br from-orange-300 to-orange-400 flex items-center justify-center">
+                <div className="h-48 bg-(--color-text) flex items-center justify-center">
                   <span className="text-8xl">{dish.image}</span>
                 </div>
                 <div className="p-4">

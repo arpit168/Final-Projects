@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+  font-family: serif ;
   /* Primary (Navbar + Headings) */
   --color-primary: #0F1A44;          /* dark navy blue */
   --color-primary-hover: #0A1233;
@@ -20,6 +20,7 @@
 
   /* Accent (Links, highlights) */
   --color-accent: #162ac1;            /* soft bluish accent */
+  --color-dark: #011520;
 
   /* Card / Form */
   --color-card-bg: #FFFFFF;

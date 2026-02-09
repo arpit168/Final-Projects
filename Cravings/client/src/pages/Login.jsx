@@ -1,59 +1,42 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../config/Api";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { TbRuler2Off } from "react-icons/tb";
-import forgetPasswordModal from "../components/publicModals/ForgetPasswordModal"
 import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
+
   const navigate = useNavigate();
 
-  const [isForgetPasswordModalOpen,setIsForgetPasswordModalOpen]= useState(false)
+  const [isForgetPasswordModelOpen, setIsForgetPasswordModelOpen] =
+    useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [validateError, setValidateError] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleClearForm = () => {
     setFormData({
       email: "",
       password: "",
     });
   };
-  const validate = () => {
-    let Error = {};
-
-    // email
-    if (
-      !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email,
-      )
-    ) {
-      Error.email = "Use Proper Email Format!";
-    }
-    setValidateError(Error);
-    return Object.keys(Error).length > 0 ? false : true;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (!validate()) {
-      setIsLoading(false);
-      toast.error(" Some Field missing ");
-      return;
-    }
+
+    console.log(formData);
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
@@ -61,27 +44,25 @@ const Login = () => {
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
-      console.log(res.data.data.role);
-      
       switch (res.data.data.role) {
         case "manager": {
           setRole("manager");
-          navigate("/restaurantDashboard");
+          navigate("/resturant-dashboard");
           break;
         }
         case "partner": {
           setRole("partner");
-          navigate("/riderDashboard");
+          navigate("/rider-dashboard");
           break;
         }
         case "customer": {
           setRole("customer");
-          navigate("/userDashboard");
+          navigate("/user-dashboard");
           break;
         }
         case "admin": {
           setRole("admin");
-          navigate("/adminDashboard");
+          navigate("/admin-dashboard");
           break;
         }
 
@@ -96,112 +77,105 @@ const Login = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="w-100 h-100 flex items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="">
-        <div className="">
-          <div className=" py-20  bg-linear-to-br from-cyan-50 to-indigo-500 ">
-            <div className="text-center space-y-2 ">
-              <h1 className=" text-4xl font-bold text-gray-800"> Login</h1>
-              <p className="text-zinc-700 font-semibold">
-                Welcome back! Please Login and find your taste.
-              </p>
-            </div>
-            <div className="">
-              <div className=" flex  justify-center items-center my-5 ">
-                <form onReset={handleClearForm} onSubmit={handleSubmit}>
-                  <div className="bg-white  md:w-xl sm:w-auto   p-10  rounded-xl">
-                    <div className="grid  space-y-4">
-                      <div className="grid">
-                        <label htmlFor="email">Email:</label>
-                        <input
-                          required
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          disabled={isLoading}
-                          placeholder="Enter Email Address"
-                          className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                        />
-                        {validateError.email && (
-                          <span className="text-xs text-red-500 float-end">
-                            {validateError.email}
-                          </span>
-                        )}
-                      </div>
-                      <div className="grid">
-                        <label htmlFor="password">Password:</label>
-                        <input
-                          type="password"
-                          name="password"
-                          minLength="5"
-                          value={formData.password}
-                          onChange={handleChange}
-                          disabled={isLoading}
-                          placeholder="Enter a Password "
-                          className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                        />
-                        {validateError.password && (
-                          <span className="text-xs text-red-500 float-end">
-                            {validateError.password}
-                          </span>
-                        )}
-                      </div>
-                      <span className="flex justify-between">
-                        <span className="flex space-x-2">
-                          <input type="checkbox" />
-                          <p>Remember me</p>
-                        </span>
-                        <button
-                        type="button"
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
+        <div className="max-w-xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Welcome Back
+            </h1>
+            {/* <p className="text-lg text-gray-600">
+              You are 1 step away to stop your Cavings
+            </p> */}
+          </div>
+
+          {/* Form Container */}
+          <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
+            <form
+              onSubmit={handleSubmit}
+              onReset={handleClearForm}
+              className="p-8"
+            >
+              {/* Personal Information */}
+              <div className="mb-5">
+                <div className="space-y-4">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                  />
+
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    placeholder="Password"
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                  />
+                </div>
+                <div className="w-full flex justify-end">
+                  <button
                     className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
                     onClick={(e) => {
                       e.preventDefault();
-                      setIsForgetPasswordModalOpen(true);
+                      setIsForgetPasswordModelOpen(true);
                     }}
                   >
                     Forget Password?
                   </button>
-                      </span>
-                    </div>
-                    <div className="flex space-x-5 mt-5 justify-center">
-                      <button
-                        disabled={isLoading}
-                        type="reset"
-                        className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 cursor-pointer"
-                      >
-                        Clear
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="flex-1 bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
-                      >
-                        {isLoading ? "Login..." : "Login"}
-                      </button>
-                    </div>
-                    <div className="flex space-x-1 justify-center mt-3">
-                      <p>Don't have an account. </p>
-                      <Link to={"/register"}>
-                        <p className="hover:text-blue-700 text-blue-400 ">
-                          Register Now!
-                        </p>
-                      </Link>
-                    </div>
-                  </div>
-                </form>
+                </div>
               </div>
-            </div>
-            {isForgetPasswordModalOpen && (
-        <ForgetPasswordModal
-          onClose={() => setIsForgetPasswordModalOpen(false)}
-        />
-      )}
+
+              {/* Submit Button */}
+              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+                <button
+                  type="reset"
+                  disabled={isLoading}
+                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                >
+                  Clear Form
+                </button>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "loading.." : "Login"}
+                </button>
+              </div>
+            </form>
           </div>
+
+          {/* Footer Note */}
+          <p className="text-center text-gray-600 mt-8 text-sm">
+            All fields marked are mandatory. We respect your privacy.
+          </p>
         </div>
       </div>
-      
+
+      {isForgetPasswordModelOpen && (
+        <ForgetPasswordModal
+          onClose={() => setIsForgetPasswordModelOpen(false)}
+        />
+      )}
     </>
   );
 };

@@ -12,6 +12,9 @@ import UserDashboard from "./pages/dashboards/UserDashboard";
 import RiderDashboard from "./pages/dashboards/RiderDashboard";
 import RestaurantDashboard from "./pages/dashboards/RestaurantDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
+import OrderNow from "./pages/OrderNow";
+import RestaurantDisplayMenu from "./pages/RestaurantDisplayMenu";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -32,6 +35,9 @@ const App = () => {
           />
           <Route path="/riderDashboard" element={<RiderDashboard />} />
           <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/order-now" element={<OrderNow />} />
+          <Route path="/restaurant/:id" element={<RestaurantDisplayMenu />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
