@@ -73,8 +73,8 @@ const RestaurantSideBar = ({
                    className={`flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300
                      ${
                        active === item.key
-                         ? "bg-blue-800 text-white"
-                         : "hover:bg-blue-300/70 "
+                         ? "bg-accent text-white"
+                         : "hover:bg-accent/70 "
                      } 
                    `}
                    onClick={() => setActive(item.key)}

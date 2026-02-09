@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../config/Api";
+import toast from "react-hot-toast";
 
 const OrderNow = () => {
   const navigate = useNavigate();
@@ -25,42 +26,45 @@ const OrderNow = () => {
   }, []);
 
   const handleResturantClick = (restaurantID) => {
-    console.log("restaurant Clicked");
-    console.log("OrderNow Page", restaurantID);
-
     navigate(`/restaurant/${restaurantID}`);
   };
-  console.log(restaurants);
 
   return (
     <>
-      <div className="bg-gray-100 p-3 h-screen">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold text-gray-800">Order Now</h1>
-          <p className="text-gray-600 mt-2">
+      <div className="bg-background p-3 h-screen">
+        {/* Header */}
+        <div className="flex flex-col items-center justify-center mb-6">
+          <h1 className="text-3xl font-bold text-text">
+            Order Now
+          </h1>
+          <p className="text-text/70 mt-2">
             Browse our menu and place your order now!
           </p>
         </div>
 
+        {/* Restaurant List */}
         {restaurants ? (
           <div className="grid grid-cols-4 gap-3">
             {restaurants.map((restaurant, idx) => (
               <div
                 key={idx}
-                className="rounded h-100 hover:shadow-lg p-3"
-                onClick={() => {
-                  handleResturantClick(restaurant._id);
-                }}
+                className="bg-background rounded p-3 cursor-pointer border border-buttons
+                hover:shadow-lg hover:border-primary transition"
+                onClick={() => handleResturantClick(restaurant._id)}
               >
-                <div>{restaurant.restaurantName}</div>
-                <div className="flex gap-2">
+                <div className="font-semibold text-text mb-2">
+                  {restaurant.restaurantName}
+                </div>
+
+                <div className="flex gap-2 flex-wrap">
                   {restaurant.cuisine
                     .split(", ")
                     .slice(0, 2)
                     .map((cusine, idx) => (
                       <span
                         key={idx}
-                        className="py-1 px-2 bg-amber-200 rounded-2xl capitalize"
+                        className="py-1 px-3 bg-secondary hover:bg-secondary-hover
+                        text-buttons rounded-2xl text-sm capitalize transition"
                       >
                         {cusine.toLowerCase()}
                       </span>
@@ -70,7 +74,9 @@ const OrderNow = () => {
             ))}
           </div>
         ) : (
-          <div></div>
+          <div className="text-center text-text/60">
+            {loading ? "Loading restaurants..." : "No restaurants found"}
+          </div>
         )}
       </div>
     </>

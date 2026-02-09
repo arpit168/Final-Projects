@@ -1,13 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../config/Api";
-import { useState } from "react";
 import toast from "react-hot-toast";
 
 const RestaurantDisplayMenu = () => {
   const restaurantId = useParams().id;
-  console.log("Menu Page", restaurantId);
 
   const [restaurantData, setRestaurantData] = useState();
 
@@ -25,12 +22,24 @@ const RestaurantDisplayMenu = () => {
     fetchRestaurantMenu();
   }, [restaurantId]);
 
-  console.log(restaurantData || "No data");
-
   return (
-    <>
-      <div>RestaurantDisplayMenu</div>
-    </>
+    <div className="min-h-screen bg-background text-text p-4">
+      <div className="border border-buttons rounded-lg p-4 bg-background">
+        <h2 className="text-xl font-semibold text-text mb-2">
+          Restaurant Menu
+        </h2>
+
+        {!restaurantData ? (
+          <p className="text-text/60">
+            Loading menu...
+          </p>
+        ) : (
+          <p className="text-text/70">
+            Menu data loaded successfully.
+          </p>
+        )}
+      </div>
+    </div>
   );
 };
 

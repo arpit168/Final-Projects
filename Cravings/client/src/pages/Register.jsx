@@ -34,26 +34,20 @@ const Register = () => {
   const validate = () => {
     let Error = {};
 
-    //  fullName
     if (formData.fullName.length < 3) {
       Error.fullName = "Name should be More Than 3 Characters!";
-    } else {
-      if (!/^[A-Za-z ]+$/.test(formData.fullName)) {
-        Error.fullName = "Only Contain A-Z , a-z and space!";
-      }
+    } else if (!/^[A-Za-z ]+$/.test(formData.fullName)) {
+      Error.fullName = "Only Contain A-Z , a-z and space!";
     }
-
-    // email
 
     if (
       !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email,
+        formData.email
       )
     ) {
       Error.email = "Use Proper Email Format!";
     }
 
-    // mobile number
     if (!/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
       Error.mobileNumber = "Only Indian Mobile Number allowed!";
     }
@@ -63,7 +57,7 @@ const Register = () => {
     }
 
     setValidationError(Error);
-    return Object.keys(Error).length > 0 ? false : true;
+    return Object.keys(Error).length === 0;
   };
 
   const handleSubmit = async (e) => {
@@ -76,14 +70,11 @@ const Register = () => {
       return;
     }
 
-    console.log(formData);
-
     try {
       const res = await api.post("/auth/register", formData);
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
@@ -92,194 +83,112 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-cyan-50 to-indigo-500 py-6 px-4 overflow-x-scroll scrollbar-hide  ">
+      <div className="min-h-screen bg-base-200 py-6 px-4 overflow-x-scroll scrollbar-hide">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-neutral-600  mb-2">
+            <h1 className="text-4xl font-bold text-base-content mb-2">
               Registration
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-muted">
               you are 1 step away to stop your Cravings
             </p>
           </div>
 
           {/* Form Container */}
-          <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
+          <div className="bg-base-100 rounded-xl shadow-xl overflow-hidden">
             <form
               onSubmit={handleSubmit}
               onReset={handleClearForm}
               className="p-8"
             >
-              {/* Personal Information */}
-              <div className="mb-10">
-                <div className=" space-y-4">
-                  <div>
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <label>I am </label>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="radio"
-                            name="role"
-                            id="manager"
-                            checked={formData.role === "manager"}
-                            value={"manager"}
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="manager">Resturant Manager</label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="radio"
-                            name="role"
-                            id="partner"
-                            checked={formData.role === "partner"}
-                            value={"partner"}
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="partner">Delivery Partner</label>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="radio"
-                            name="role"
-                            id="customer"
-                            checked={formData.role === "customer"}
-                            value={"customer"}
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="customer">Customer</label>
-                        </div>
+              <div className="mb-10 space-y-4">
+                {/* Role */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label className="text-base-content font-medium">
+                      I am
+                    </label>
+
+                    {["manager", "partner", "customer"].map((role) => (
+                      <div key={role} className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="role"
+                          value={role}
+                          checked={formData.role === role}
+                          onChange={handleChange}
+                        />
+                        <label className="capitalize">{role}</label>
                       </div>
-                      {validationError.role && (
-                        <span className="text-xs text-red-500">
-                          {validationError.role}
-                        </span>
-                      )}
-                    </div>
-
-                    <label htmlFor="fullName">Name:</label>
-                    <input
-                      required
-                      type="text"
-                      name="fullName"
-                      placeholder="Full Name"
-                      value={formData.fullName}
-                      disabled={isLoading}
-                      onChange={handleChange}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                    {validationError.fullName && (
-                      <span className="text-xs text-red-500 float-end">
-                        {validationError.fullName}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                      required
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                    {validationError.email && (
-                      <span className="text-xs text-red-500 float-end">
-                        {validationError.email}
-                      </span>
-                    )}
+                    ))}
                   </div>
 
-                  <div>
-                    <label htmlFor="mobileNumber">Phone:</label>
-                    <input
-                      required
-                      type="tel"
-                      name="mobileNumber"
-                      placeholder="Mobile Number"
-                      maxLength="10"
-                      value={formData.mobileNumber}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                    {validationError.mobileNumber && (
-                      <span className="text-xs text-red-500 float-end">
-                        {validationError.mobileNumber}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* password */}
-                  <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                      required
-                      type="password"
-                      name="password"
-                      placeholder="Create Password"
-                      minLength="5"
-                      value={formData.password}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                    {validationError.password && (
-                      <span className="text-xs text-red-500 float-end">
-                        {validationError.password}
-                      </span>
-                    )}
-                  </div>
-                  {/* Confirm Password */}
-
-                  <div>
-                    <label htmlFor="confirmPassword">Password:</label>
-                    <input
-                      required
-                      type="password"
-                      name="confirmPassword"
-                      placeholder="Confirm Your Password"
-                      minLength="5"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition  disabled:cursor-not-allowed disabled:bg-gray-200"
-                    />
-                    {validationError.ConfirmPassword && (
-                      <span className="text-xs text-red-500 float-end">
-                        {validationError.confirmPassword}
-                      </span>
-                    )}
-                  </div>
+                  {validationError.role && (
+                    <span className="text-xs text-error">
+                      {validationError.role}
+                    </span>
+                  )}
                 </div>
-                {/* Submit Button */}
-                <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+
+                {/* Inputs */}
+                {[
+                  { label: "Name", name: "fullName", type: "text" },
+                  { label: "Email", name: "email", type: "email" },
+                  { label: "Phone", name: "mobileNumber", type: "tel" },
+                  { label: "Password", name: "password", type: "password" },
+                  {
+                    label: "Confirm Password",
+                    name: "confirmPassword",
+                    type: "password",
+                  },
+                ].map((field) => (
+                  <div key={field.name}>
+                    <label className="text-base-content">
+                      {field.label}
+                    </label>
+                    <input
+                      required
+                      type={field.type}
+                      name={field.name}
+                      value={formData[field.name]}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      className="w-full px-4 py-3 border-2 border-base-300 rounded-lg focus:outline-none focus:border-primary transition disabled:cursor-not-allowed disabled:bg-base-200"
+                    />
+                    {validationError[field.name] && (
+                      <span className="text-xs text-error float-end">
+                        {validationError[field.name]}
+                      </span>
+                    )}
+                  </div>
+                ))}
+
+                {/* Buttons */}
+                <div className="flex gap-4 pt-8 border-t border-base-300">
                   <button
-                    disabled={isLoading}
                     type="reset"
-                    className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-100  disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300 cursor-pointer "
+                    disabled={isLoading}
+                    className="flex-1 bg-secondary text-secondary-content font-bold py-4 rounded-lg hover:bg-secondary-hover transition disabled:cursor-not-allowed"
                   >
                     Clear Form
                   </button>
                   <button
-                    disabled={isLoading}
                     type="submit"
-                    className="flex-1 bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
+                    disabled={isLoading}
+                    className="flex-1 bg-primary text-primary-content font-bold py-4 rounded-lg hover:bg-primary-hover transition disabled:cursor-not-allowed"
                   >
-                    {isLoading ? "Submitting..." : " Submit"}
+                    {isLoading ? "Submitting..." : "Submit"}
                   </button>
                 </div>
-                <div className="flex space-x-1 justify-center mt-3">
-                  <p>I have an account. </p>
-                  <Link to={"/login"}>
-                    <p className="hover:text-blue-700 text-blue-400">
-                      Login here!
-                    </p>
+
+                <div className="flex justify-center gap-1 mt-3">
+                  <p className="text-muted">I have an account.</p>
+                  <Link
+                    to="/login"
+                    className="text-primary hover:text-primary-hover font-medium"
+                  >
+                    Login here!
                   </Link>
                 </div>
               </div>

@@ -4,7 +4,6 @@ import api from "../../../config/Api";
 import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
 
-
 const AddMenuItemModal = ({ onClose }) => {
   const { user } = useAuth();
 
@@ -39,14 +38,12 @@ const AddMenuItemModal = ({ onClose }) => {
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files || []).slice(0, 5);
-
     const previews = files.map((file) => URL.createObjectURL(file));
 
     setImages(files);
     setImagePreviews(previews);
   };
 
-  // cleanup preview URLs (important)
   useEffect(() => {
     return () => {
       imagePreviews.forEach((url) => URL.revokeObjectURL(url));
@@ -60,28 +57,25 @@ const AddMenuItemModal = ({ onClose }) => {
     try {
       const form_data = new FormData();
 
-      form_data.append("itemName", formData.itemName);
-      form_data.append("description", formData.description);
-      form_data.append("price", formData.price);
-      form_data.append("servingSize", formData.servingSize);
-      form_data.append("cuisine", formData.cuisine);
-      form_data.append("type", formData.type);
-      form_data.append("preparationTime", formData.preparationTime);
-      form_data.append(
-        "availability",
-        formData.availability ? "available" : "unavailable"
-      );
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === "availability") {
+          form_data.append(
+            key,
+            value ? "available" : "unavailable"
+          );
+        } else {
+          form_data.append(key, value);
+        }
+      });
 
       images.forEach((img) => {
         form_data.append("itemImages", img);
       });
 
       const res = await api.post("/restaurant/addMenuItem", form_data);
-
       toast.success(res.data.message);
       setTimeout(handleClose, 1200);
     } catch (error) {
-      console.log(error);
       toast.error(error.response?.data?.message || "Failed to add menu item");
     } finally {
       setLoading(false);
@@ -104,44 +98,45 @@ const AddMenuItemModal = ({ onClose }) => {
     setImagePreviews([]);
     setErrors({});
     setLoading(false);
-
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-95 ">
-      <div className="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+    <div className="fixed inset-0 bg-background flex items-center justify-center z-95">
+      <div className="bg-accent w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg text-text">
         {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-gray-300 items-center sticky top-0 bg-white">
-          <h2 className="text-xl font-semibold text-gray-800">
+        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center  sticky top-0 bg-accent">
+          <h2 className="text-xl font-semibold">
             Add Menu Item
           </h2>
+
           <button
-                                  type="button"
-                                  onClick={handleClose}
-                                  className="text-gray-600 border hover:text-white rounded-bl-2xl rounded-tr-2xl hover:bg-red-600 text-3xl transition"
-                                >
-                                  <RxCross2/>
-                                </button>
+            type="button"
+            onClick={handleClose}
+            className="border border-secondary rounded-bl-2xl rounded-tr-2xl text-3xl
+                       hover:bg-secondary-hover hover:text-buttons transition"
+          >
+            <RxCross2 />
+          </button>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Image Section */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
               Item Image
             </h3>
 
             <div className="flex items-end gap-4">
               <label
                 htmlFor="image"
-                className="px-6 py-2 bg-blue-900 text-white rounded-md cursor-pointer hover:bg-blue-950"
+                className="px-6 py-2 bg-primary text-buttons rounded-md cursor-pointer hover:bg-primary-hover"
               >
                 Add Image
               </label>
 
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-text">
                 <p>(Upto 5 Images Allowed)</p>
                 <p>(Max Size: 1MB each)</p>
               </div>
@@ -161,7 +156,7 @@ const AddMenuItemModal = ({ onClose }) => {
                 {imagePreviews.map((src, idx) => (
                   <div
                     key={idx}
-                    className="border rounded-md h-24 overflow-hidden"
+                    className="border border-secondary rounded-md h-24 overflow-hidden"
                   >
                     <img
                       src={src}
@@ -176,7 +171,7 @@ const AddMenuItemModal = ({ onClose }) => {
 
           {/* Basic Info */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
               Basic Information
             </h3>
 
@@ -187,7 +182,7 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.itemName}
                 onChange={handleInputChange}
                 placeholder="Item Name"
-                className="w-full border rounded-md p-2"
+                className="w-full border border-secondary rounded-md p-2 bg-background text-text"
               />
 
               <textarea
@@ -196,14 +191,14 @@ const AddMenuItemModal = ({ onClose }) => {
                 onChange={handleInputChange}
                 rows="3"
                 placeholder="Item Description"
-                className="w-full border rounded-md p-2"
+                className="w-full border border-secondary rounded-md p-2 bg-background text-text"
               />
             </div>
           </div>
 
           {/* Pricing */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
               Pricing & Category
             </h3>
 
@@ -214,7 +209,7 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.price}
                 onChange={handleInputChange}
                 placeholder="Price"
-                className="border rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-background text-text"
               />
 
               <input
@@ -223,7 +218,7 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.servingSize}
                 onChange={handleInputChange}
                 placeholder="Serving Size"
-                className="border rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-background text-text"
               />
 
               <input
@@ -232,14 +227,14 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.cuisine}
                 onChange={handleInputChange}
                 placeholder="Cuisine"
-                className="border rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-background text-text"
               />
             </div>
           </div>
 
           {/* Attributes */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700 mb-4 pb-2 border-b">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
               Item Attributes
             </h3>
 
@@ -248,7 +243,7 @@ const AddMenuItemModal = ({ onClose }) => {
                 name="type"
                 value={formData.type}
                 onChange={handleInputChange}
-                className="border rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-background text-text"
               >
                 <option value="">Select Type</option>
                 <option value="veg">Vegetarian</option>
@@ -264,10 +259,10 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.preparationTime}
                 onChange={handleInputChange}
                 placeholder="Prep Time (min)"
-                className="border rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-background text-text"
               />
 
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 text-text">
                 <input
                   type="checkbox"
                   name="availability"
@@ -280,11 +275,11 @@ const AddMenuItemModal = ({ onClose }) => {
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-4 pt-6 border-t">
+          <div className="flex justify-end gap-4 pt-6 border-t border-secondary">
             <button
               type="button"
               onClick={handleClose}
-              className="px-6 py-2 bg-gray-300 rounded-md"
+              className="px-6 py-2 bg-secondary text-text rounded-md hover:bg-secondary-hover"
               disabled={loading}
             >
               Cancel
@@ -293,7 +288,7 @@ const AddMenuItemModal = ({ onClose }) => {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md"
+              className="px-6 py-2 bg-primary text-buttons rounded-md hover:bg-primary-hover"
             >
               {loading ? "Adding..." : "Add Menu Item"}
             </button>

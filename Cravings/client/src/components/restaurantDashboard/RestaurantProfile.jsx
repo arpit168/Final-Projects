@@ -16,8 +16,7 @@ import ResetPasswordModal from "../userDashboard/modals/ResetPasswordModal";
 const RestaurantProfile = () => {
   const { user, setUser } = useAuth();
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
-    useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
   const [preview, setPreview] = useState("");
 
   const changePhoto = async (photo) => {
@@ -35,27 +34,20 @@ const RestaurantProfile = () => {
     }
   };
 
-  
-
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const newPhotoURL = URL.createObjectURL(file);
-      setPreview(newPhotoURL);
-      setTimeout(() => {
-        changePhoto(file);
-      }, 1000);
+      setPreview(URL.createObjectURL(file));
+      setTimeout(() => changePhoto(file), 800);
     }
   };
 
   const renderField = (label, value) => (
-    <div className="flex justify-between py-2 px-3 border-b border-gray-200 last:border-b-0">
-      <span className="text-gray-600 font-medium">{label}:</span>
-      <span className="text-gray-900 font-semibold">
-        {value && value !== "N/A" ? (
-          value
-        ) : (
-          <span className="text-gray-400">Not provided</span>
+    <div className="flex justify-between py-2 px-3 border-b border-secondary last:border-none">
+      <span className="text-text font-medium">{label}</span>
+      <span className="font-semibold text-text">
+        {value && value !== "N/A" ? value : (
+          <span className="opacity-60">Not provided</span>
         )}
       </span>
     </div>
@@ -63,26 +55,30 @@ const RestaurantProfile = () => {
 
   return (
     <>
-      <div className="bg-gray-50 rounded-lg p-6 h-full overflow-y-auto space-y-6">
-        {/* Header Section with Photo and Basic Info */}
-        <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+      <div className="bg-background rounded-xl p-6 h-full overflow-y-auto space-y-6">
+
+        {/* Profile Header */}
+        <div className="bg-background border border-secondary rounded-xl p-6">
           <div className="flex gap-6">
-            {/* Photo Section */}
+
+            {/* Avatar */}
             <div className="flex flex-col items-center">
               <div className="relative">
-                <div className="border-4 border-gray-300 rounded-full w-40 h-40 overflow-hidden bg-gray-100">
+                <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-secondary">
                   <img
                     src={preview || user?.photo?.url || UserImage}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
                 </div>
+
                 <label
                   htmlFor="imageUpload"
-                  className="absolute bottom-2 right-2 bg-blue-900 text-white p-3 rounded-full hover:bg-blue-950 cursor-pointer transition transform hover:scale-110"
+                  className="absolute bottom-2 right-2 bg-primary hover:bg-primary-hover text-buttons p-3 rounded-full cursor-pointer transition"
                 >
-                  <FaCamera size={18} />
+                  <FaCamera size={16} />
                 </label>
+
                 <input
                   type="file"
                   id="imageUpload"
@@ -91,194 +87,114 @@ const RestaurantProfile = () => {
                   onChange={handlePhotoChange}
                 />
               </div>
-             
             </div>
 
-            {/* Basic Info Section */}
+            {/* Info */}
             <div className="flex justify-between w-full">
               <div>
-                <div className="mb-6  ">
-                  <h1 className="text-4xl font-bold text-(--color-primary) mb-2">
-                    {user?.fullName || "Manager Name"}
-                  </h1>
-                  <div className="flex items-center gap-2 mb-2 ">
-                    <span className="bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-semibold capitalize">
-                      {user?.role || "manager"}
-                    </span>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        user?.isActive === "active"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {user?.isActive || "active"}
-                    </span>
-                  </div>
+                <h1 className="text-3xl font-bold text-primary mb-2">
+                  {user?.fullName || "Manager Name"}
+                </h1>
+
+                <div className="flex gap-2 mb-4">
+                  <span className="px-3 py-1 rounded-full bg-primary text-buttons text-sm font-semibold capitalize">
+                    {user?.role || "manager"}
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-secondary text-text text-sm font-semibold">
+                    {user?.isActive || "active"}
+                  </span>
                 </div>
 
-                {/* Contact Information */}
-                <div className="space-y-2 mb-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-gray-600 font-medium">Email:</span>
-                    <span className="text-gray-900">
-                      {user?.email || "N/A"}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-gray-600 font-medium">Phone:</span>
-                    <span className="text-gray-900">
-                      {user?.mobileNumber || "N/A"}
-                    </span>
-                  </div>
+                <div className="space-y-1 mb-5 text-text">
+                  <p><span className="font-medium">Email:</span> {user?.email || "N/A"}</p>
+                  <p><span className="font-medium">Phone:</span> {user?.mobileNumber || "N/A"}</p>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsEditProfileModalOpen(true)}
-                    className="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-950 transition font-semibold"
+                    className="px-6 py-2 rounded-lg bg-primary hover:bg-primary-hover text-buttons font-semibold transition"
                   >
                     Edit Profile
                   </button>
                   <button
                     onClick={() => setIsResetPasswordModalOpen(true)}
-                    className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-semibold"
+                    className="px-6 py-2 rounded-lg bg-secondary hover:bg-secondary-hover text-text font-semibold transition"
                   >
                     Reset Password
                   </button>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
-        {/* Personal Information Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-blue-900 rounded"></span>
-            Personal Information
-          </h2>
-          <div className="space-y-1">
-            {renderField("Date of Birth", user?.dob)}
-            {renderField("Gender", user?.gender)}
-            {renderField("Address", user?.address)}
-            {renderField("City", user?.city)}
-            {renderField("PIN Code", user?.pin)}
-          </div>
+        {/* Personal Info */}
+        <div className="bg-background border border-secondary rounded-xl p-6">
+          <h2 className="text-lg font-bold text-text mb-4">Personal Information</h2>
+          {renderField("Date of Birth", user?.dob)}
+          {renderField("Gender", user?.gender)}
+          {renderField("Address", user?.address)}
+          {renderField("City", user?.city)}
+          {renderField("PIN Code", user?.pin)}
         </div>
 
-        {/* Location Section */}
-        {(user?.geoLocation?.lat !== "N/A" ||
-          user?.geoLocation?.lon !== "N/A") && (
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaMapLocationDot className="text-blue-900" />
-              Geo Location
+        {/* Geo Location */}
+        {(user?.geoLocation?.lat !== "N/A") && (
+          <div className="bg-background border border-secondary rounded-xl p-6">
+            <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
+              <FaMapLocationDot className="text-primary" /> Geo Location
             </h2>
-            <div className="space-y-1">
-              {renderField("Latitude", user?.geoLocation?.lat)}
-              {renderField("Longitude", user?.geoLocation?.lon)}
-            </div>
+            {renderField("Latitude", user?.geoLocation?.lat)}
+            {renderField("Longitude", user?.geoLocation?.lon)}
           </div>
         )}
 
-        {/* Payment Details - UPI Section */}
+        {/* Payment */}
         {user?.paymentDetails?.upi !== "N/A" && (
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaWallet className="text-blue-900" />
-              Payment Details
+          <div className="bg-background border border-secondary rounded-xl p-6">
+            <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
+              <FaWallet className="text-primary" /> Payment Details
             </h2>
-            <div className="space-y-1">
-              {renderField("UPI ID", user?.paymentDetails?.upi)}
-            </div>
+            {renderField("UPI ID", user?.paymentDetails?.upi)}
           </div>
         )}
 
-        {/* Bank Account Details Section */}
-        {(user?.paymentDetails?.account_number !== "N/A" ||
-          user?.paymentDetails?.ifs_Code !== "N/A") && (
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <BiSolidBank className="text-blue-900" />
-              Bank Account Details
+        {/* Bank */}
+        {(user?.paymentDetails?.account_number !== "N/A") && (
+          <div className="bg-background border border-secondary rounded-xl p-6">
+            <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
+              <BiSolidBank className="text-primary" /> Bank Details
             </h2>
-            <div className="space-y-1">
-              {renderField(
-                "Account Number",
-                user?.paymentDetails?.account_number,
-              )}
-              {renderField("IFSC Code", user?.paymentDetails?.ifs_Code)}
-            </div>
+            {renderField("Account Number", user?.paymentDetails?.account_number)}
+            {renderField("IFSC Code", user?.paymentDetails?.ifs_Code)}
           </div>
         )}
 
-        {/* Restaurant Information Section */}
-        {(user?.restaurantName !== "N/A" || user?.cuisine !== "N/A") && (
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Restaurant Information
-            </h2>
-            <div className="space-y-1">
-              {renderField("Restaurant Name", user?.restaurantName)}
-              {renderField("Cuisine Type", user?.cuisine)}
-            </div>
-          </div>
-        )}
-
-        {/* Business Documents Section */}
+        {/* Documents */}
         {Object.values(user?.documents || {}).some((doc) => doc !== "N/A") && (
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <FaFileAlt className="text-blue-900" />
-              Business Documents
+          <div className="bg-background border border-secondary rounded-xl p-6">
+            <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
+              <FaFileAlt className="text-primary" /> Business Documents
             </h2>
-            <div className="space-y-1">
-              {renderField("GST Certificate", user?.documents?.gst)}
-              {renderField("FSSAI License", user?.documents?.fssai)}
-              {renderField("RC (Registration)", user?.documents?.rc)}
-              {renderField("Driving License", user?.documents?.dl)}
-              {renderField("UIDAI", user?.documents?.uidai)}
-              {renderField("PAN", user?.documents?.pan)}
-            </div>
+            {renderField("GST", user?.documents?.gst)}
+            {renderField("FSSAI", user?.documents?.fssai)}
+            {renderField("RC", user?.documents?.rc)}
+            {renderField("DL", user?.documents?.dl)}
+            {renderField("UIDAI", user?.documents?.uidai)}
+            {renderField("PAN", user?.documents?.pan)}
           </div>
         )}
 
-        {/* Account Metadata */}
-        <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 text-sm">
-          <h2 className="text-lg font-bold text-gray-800 mb-3">
-            Account Details
-          </h2>
-          <div className="grid grid-cols-2 gap-4 text-gray-600">
-            <div>
-              <span className="font-medium">Account ID:</span>
-              <p className="text-gray-500 font-mono text-xs break-all">
-                {user?._id}
-              </p>
-            </div>
-            <div>
-              <span className="font-medium">Member Since:</span>
-              <p className="text-gray-900">
-                {user?.createdAt
-                  ? new Date(user.createdAt).toLocaleDateString("en-IN")
-                  : "N/A"}
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       {isEditProfileModalOpen && (
-        <EditRestaurantProfileModal
-          onClose={() => setIsEditProfileModalOpen(false)}
-        />
+        <EditRestaurantProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
       )}
 
       {isResetPasswordModalOpen && (
-        <ResetPasswordModal
-          onClose={() => setIsResetPasswordModalOpen(false)}
-        />
+        <ResetPasswordModal onClose={() => setIsResetPasswordModalOpen(false)} />
       )}
     </>
   );

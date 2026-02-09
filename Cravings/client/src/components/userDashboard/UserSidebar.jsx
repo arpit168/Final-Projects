@@ -13,6 +13,7 @@ import { MdLogout } from "react-icons/md";
 
 const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
   const { setUser, setIsLogin } = useAuth();
+
   const menuItems = [
     { key: "overview", title: "Overview", icon: <TbChartTreemap /> },
     { key: "profile", title: "Profiles", icon: <ImProfile /> },
@@ -34,54 +35,59 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
   };
 
   return (
-    <>
-      <div className="p-2">
-        <div className="h-10 text-xl font-bold flex gap-5 items-center mb-3">
+    <div className="p-2 flex flex-col justify-between h-full bg-background">
+      <div>
+        {/* Header */}
+        <div className="h-10 text-xl font-bold flex gap-5 items-center mb-3 text-text">
           <button
-            className="ms-2 hover:scale-105"
+            className="ms-2 hover:scale-105 transition"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             {!isCollapsed ? (
-              <RxCross2 className="text-2xl" />
+              <RxCross2 className="text-2xl text-text" />
             ) : (
-              <HiMenuAlt2 className="text-2xl" />
+              <HiMenuAlt2 className="text-2xl text-text" />
             )}
           </button>
           {!isCollapsed && (
-            <span className="overflow-hidden text-nowrap">User Dashboard</span>
+            <span className="overflow-hidden text-nowrap">
+              User Dashboard
+            </span>
           )}
         </div>
         <hr />
 
+        {/* Menu */}
         <div className="py-6 space-y-5 w-full">
           {menuItems.map((item, idx) => (
             <button
+              key={idx}
+              onClick={() => setActive(item.key)}
               className={`flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300
                 ${
                   active === item.key
-                    ? "bg-blue-800 text-white"
-                    : "hover:bg-blue-300/70 "
-                } 
+                    ? "bg-primary text-background"
+                    : "text-text hover:bg-secondary hover:text-text"
+                }
               `}
-              onClick={() => setActive(item.key)}
-              key={idx}
             >
               {item.icon}
               {!isCollapsed && item.title}
             </button>
           ))}
         </div>
-        <div>
-          <button
-            className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300 hover:bg-red-500 hover:text-white text-red-600"
-            onClick={handleLogout}
-          >
-            <MdLogout />
-            {!isCollapsed && "Logout"}
-          </button>
-        </div>
       </div>
-    </>
+
+      {/* Logout */}
+      <button
+        onClick={handleLogout}
+        className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300
+                   text-secondary hover:bg-secondary-hover hover:text-text"
+      >
+        <MdLogout />
+        {!isCollapsed && "Logout"}
+      </button>
+    </div>
   );
 };
 

@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
-
   const navigate = useNavigate();
 
   const [isForgetPasswordModelOpen, setIsForgetPasswordModelOpen] =
@@ -18,6 +17,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -36,41 +36,36 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    console.log(formData);
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
+
       setUser(res.data.data);
       setIsLogin(true);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
+
       switch (res.data.data.role) {
-        case "manager": {
+        case "manager":
           setRole("manager");
           navigate("/restaurantDashboard");
           break;
-        }
-        case "partner": {
+        case "partner":
           setRole("partner");
           navigate("/riderDashboard");
           break;
-        }
-        case "customer": {
+        case "customer":
           setRole("customer");
           navigate("/userDashboard");
           break;
-        }
-        case "admin": {
+        case "admin":
           setRole("admin");
           navigate("/adminDashboard");
           break;
-        }
-
         default:
           break;
       }
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
@@ -79,7 +74,7 @@ const Login = () => {
 
   if (isLoading) {
     return (
-      <div className="w-100 h-100 flex items-center justify-center">
+      <div className="w-full h-full flex items-center justify-center bg-background">
         <Loading />
       </div>
     );
@@ -87,75 +82,77 @@ const Login = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
+      <div className="min-h-screen bg-background py-6 px-4">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-text mb-2">
               Welcome Back
             </h1>
-           
           </div>
 
           {/* Form Container */}
-          <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
+          <div className="bg-background rounded-xl shadow-2xl overflow-hidden border border-buttons">
             <form
               onSubmit={handleSubmit}
               onReset={handleClearForm}
               className="p-8"
             >
-              {/* Personal Information */}
-              <div className="mb-5">
-                <div className="space-y-4">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
+              {/* Inputs */}
+              <div className="mb-5 space-y-4">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-buttons rounded-lg bg-background text-text
+                  focus:outline-none focus:border-primary transition
+                  disabled:cursor-not-allowed disabled:opacity-60"
+                />
 
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
-                </div>
-                <div className="w-full flex justify-end">
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-buttons rounded-lg bg-background text-text
+                  focus:outline-none focus:border-primary transition
+                  disabled:cursor-not-allowed disabled:opacity-60"
+                />
+
+                <div className="flex justify-end">
                   <button
-                  type="button"
-                    className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsForgetPasswordModelOpen(true);
-                    }}
+                    type="button"
+                    className="text-primary hover:text-secondary font-medium transition"
+                    onClick={() => setIsForgetPasswordModelOpen(true)}
                   >
                     Forget Password?
                   </button>
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+              {/* Buttons */}
+              <div className="flex gap-4 pt-8 border-t border-buttons">
                 <button
                   type="reset"
                   disabled={isLoading}
-                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="flex-1 bg-secondary hover:bg-secondary-hover text-buttons font-bold py-4 px-6 rounded-lg transition
+                  disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Clear Form
                 </button>
+
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
+                  className="flex-1 bg-primary hover:bg-primary-hover text-buttons font-bold py-4 px-6 rounded-lg transition shadow-lg
+                  disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isLoading ? "loading.." : "Login"}
                 </button>
@@ -163,8 +160,8 @@ const Login = () => {
             </form>
           </div>
 
-          {/* Footer Note */}
-          <p className="text-center text-gray-600 mt-8 text-sm">
+          {/* Footer */}
+          <p className="text-center text-text/70 mt-8 text-sm">
             All fields marked are mandatory. We respect your privacy.
           </p>
         </div>

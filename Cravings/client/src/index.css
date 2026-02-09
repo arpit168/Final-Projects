@@ -1,33 +1,4 @@
 @import "tailwindcss";
-
-:root {
-  font-family: serif ;
-  /* Primary (Navbar + Headings) */
-  --color-primary: #0F1A44;          /* dark navy blue */
-  --color-primary-hover: #0A1233;
-
-  /* Secondary (Buttons like Login/Register) */
-  --color-secondary: #2F43D6;        /* royal blue */
-  --color-secondary-hover: #2537B8;
-
-  /* Background (Main page gradient base) */
-  --color-background: #CFE3FF;       /* light sky blue */
-
-  /* Text */
-  --color-text: #ffaa2b;    
-           /* dark text for light bg */
-  --color-text-light: #FFFFFF;       /* white text on dark areas */
-
-  /* Accent (Links, highlights) */
-  --color-accent: #162ac1;            /* soft bluish accent */
-
-  /* Card / Form */
-  --color-card-bg: #FFFFFF;
-  --color-border: #D1D9E6;
-
-
+@plugin "flyonui" {
+  themes: all;
 }
-
-
-
-

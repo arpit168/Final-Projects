@@ -3,7 +3,7 @@ import loadingGif from "../assets/loading.gif";
 
 const Loading = () => {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-(--color-background) text-(--color-text)">
+    <div className="w-full h-full flex items-center justify-center bg-background text-text">
       <img
         src={loadingGif}
         alt="loading"

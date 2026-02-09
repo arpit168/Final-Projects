@@ -1,9 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import api from "../../../config/Api";
 import toast from "react-hot-toast";
 import { RxCross2 } from "react-icons/rx";
-
 
 const ResetPasswordModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -11,21 +9,19 @@ const ResetPasswordModal = ({ onClose }) => {
     newPassword: "",
     cfNewPassword: "",
   });
+
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(formData);
-
-    //validation Code
 
     try {
       const res = await api.patch("/user/resetPassword", formData);
       toast.success(res.data.message);
+      onClose();
     } catch (error) {
-      console.log(error);
       toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setLoading(false);
@@ -35,125 +31,122 @@ const ResetPasswordModal = ({ onClose }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (errors[name]) setErrors({ ...errors, [name]: "" });
   };
 
   return (
-    <>
-      <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
-        <div className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
-          <div className="flex justify-between px-6 py-4 border-b border-gray-300 items-center sticky top-0 bg-white">
-            <h2 className="text-xl font-semibold text-gray-800">
-              Reset Password
-            </h2>
+    <div className="fixed inset-0 bg-background/70 flex justify-center items-center z-100">
+      <div className="bg-background w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+
+        {/* Header */}
+        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center sticky top-0 bg-background">
+          <h2 className="text-xl font-semibold text-text">
+            Reset Password
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-text/70 border border-secondary hover:bg-secondary hover:text-text rounded-bl-2xl rounded-tr-2xl text-3xl transition"
+          >
+            <RxCross2 />
+          </button>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+
+          <div className="space-y-4">
+
+            {/* Old Password */}
+            <InputField
+              label="Old Password *"
+              name="oldPassword"
+              type="password"
+              value={formData.oldPassword}
+              onChange={handleInputChange}
+              error={errors.oldPassword}
+              placeholder="Enter your old password"
+            />
+
+            {/* New Password */}
+            <InputField
+              label="New Password *"
+              name="newPassword"
+              type="password"
+              value={formData.newPassword}
+              onChange={handleInputChange}
+              error={errors.newPassword}
+              placeholder="Enter your new password"
+            />
+
+            {/* Confirm Password */}
+            <InputField
+              label="Confirm New Password *"
+              name="cfNewPassword"
+              type="password"
+              value={formData.cfNewPassword}
+              onChange={handleInputChange}
+              error={errors.cfNewPassword}
+              placeholder="Confirm new password"
+            />
+
+          </div>
+
+          {/* Actions */}
+          <div className="flex justify-end gap-4 pt-6 border-t border-secondary">
             <button
               type="button"
-              onClick={() => onClose()}
-              className="text-gray-600 border hover:text-white rounded-bl-2xl rounded-tr-2xl hover:bg-red-600 text-3xl transition"
+              onClick={onClose}
+              disabled={loading}
+              className="px-6 py-2 bg-secondary text-text rounded-md hover:bg-secondary-hover transition disabled:opacity-50"
             >
-              <RxCross2/>
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-6 py-2 bg-primary text-buttons rounded-md hover:bg-primary-hover transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <span className="animate-spin">⟳</span> Saving...
+                </>
+              ) : (
+                "Save Changes"
+              )}
             </button>
           </div>
 
-          {/* we will be taking old and new Password here */}
-
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
-            {/* Personal Information Section */}
-            <div>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Old Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="oldPassword"
-                    value={formData.oldPassword}
-                    onChange={handleInputChange}
-                    className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.oldPassword ? "border-red-500" : "border-gray-300"
-                    }`}
-                    placeholder="Enter your old password"
-                  />
-                  {errors.oldPassword && (
-                    <p className="text-red-600 text-xs mt-1">
-                      {errors.oldPassword}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    New Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="newPassword"
-                    value={formData.newPassword}
-                    onChange={handleInputChange}
-                    className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.newPassword ? "border-red-500" : "border-gray-300"
-                    }`}
-                    placeholder="Enter your new password"
-                  />
-                  {errors.newPassword && (
-                    <p className="text-red-600 text-xs mt-1">
-                      {errors.newPassword}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Confirm New Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="cfNewPassword"
-                    value={formData.cfNewPassword}
-                    onChange={handleInputChange}
-                    className={`w-full border rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.cfNewPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
-                    placeholder="Confirm new password"
-                  />
-                  {errors.cfNewPassword && (
-                    <p className="text-red-600 text-xs mt-1">
-                      {errors.cfNewPassword}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Form Actions */}
-            <div className="flex justify-end space-x-4 pt-6 border-t border-gray-300">
-              <button
-                type="button"
-                onClick={() => onClose()}
-                disabled={loading}
-                className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition disabled:opacity-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <span className="animate-spin">⟳</span> Saving...
-                  </>
-                ) : (
-                  "Save Changes"
-                )}
-              </button>
-            </div>
-          </form>
-        </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
+
+/* 🔹 Reusable input (UI unchanged) */
+const InputField = ({
+  label,
+  error,
+  ...props
+}) => (
+  <div>
+    <label className="block text-sm font-medium text-text mb-1">
+      {label}
+    </label>
+    <input
+      {...props}
+      className={`w-full border rounded-md shadow-sm p-2 bg-background text-text
+        focus:outline-none focus:ring-2 focus:ring-primary
+        ${error ? "border-primary" : "border-secondary"}
+      `}
+    />
+    {error && (
+      <p className="text-primary text-xs mt-1">
+        {error}
+      </p>
+    )}
+  </div>
+);
 
 export default ResetPasswordModal;
