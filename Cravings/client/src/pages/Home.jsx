@@ -1,29 +1,100 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import img from "../assets/pizza.jpeg";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const featuredRestaurants = [
-    { id: 1, name: "Spice Kingdom", cuisine: "Indian", rating: 4.5, deliveryTime: "30-40 mins", image: "🏪" },
-    { id: 2, name: "Pizza Paradise", cuisine: "Italian", rating: 4.3, deliveryTime: "25-35 mins", image: "🍕" },
-    { id: 3, name: "Dragon Wok", cuisine: "Chinese", rating: 4.6, deliveryTime: "35-45 mins", image: "🥢" },
-    { id: 4, name: "Burger Haven", cuisine: "American", rating: 4.4, deliveryTime: "20-30 mins", image: "🍔" },
+    {
+      id: 1,
+      name: "Spice Kingdom",
+      cuisine: "Indian",
+      rating: 4.5,
+      deliveryTime: "30-40 mins",
+      image: "🏪",
+    },
+    {
+      id: 2,
+      name: "Pizza Paradise",
+      cuisine: "Italian",
+      rating: 4.3,
+      deliveryTime: "25-35 mins",
+      image: "🍕",
+    },
+    {
+      id: 3,
+      name: "Dragon Wok",
+      cuisine: "Chinese",
+      rating: 4.6,
+      deliveryTime: "35-45 mins",
+      image: "🥢",
+    },
+    {
+      id: 4,
+      name: "Burger Haven",
+      cuisine: "American",
+      rating: 4.4,
+      deliveryTime: "20-30 mins",
+      image: "🍔",
+    },
   ];
 
   const popularDishes = [
-    { id: 1, name: "Butter Chicken", restaurant: "Spice Kingdom", price: 299, rating: 4.7, image: "🍛" },
-    { id: 2, name: "Margherita Pizza", restaurant: "Pizza Paradise", price: 349, rating: 4.5, image: "🍕" },
-    { id: 3, name: "Hakka Noodles", restaurant: "Dragon Wok", price: 249, rating: 4.6, image: "🍜" },
-    { id: 4, name: "Classic Burger", restaurant: "Burger Haven", price: 199, rating: 4.4, image: "🍔" },
-    { id: 5, name: "Tandoori Chicken", restaurant: "Spice Kingdom", price: 279, rating: 4.8, image: "🍖" },
-    { id: 6, name: "Garlic Bread", restaurant: "Pizza Paradise", price: 99, rating: 4.3, image: "🥖" },
+    {
+      id: 1,
+      name: "Butter Chicken",
+      restaurant: "Spice Kingdom",
+      price: 299,
+      rating: 4.7,
+      image: "🍛",
+    },
+    {
+      id: 2,
+      name: "Margherita Pizza",
+      restaurant: "Pizza Paradise",
+      price: 349,
+      rating: 4.5,
+      image: "🍕",
+    },
+    {
+      id: 3,
+      name: "Hakka Noodles",
+      restaurant: "Dragon Wok",
+      price: 249,
+      rating: 4.6,
+      image: "🍜",
+    },
+    {
+      id: 4,
+      name: "Classic Burger",
+      restaurant: "Burger Haven",
+      price: 199,
+      rating: 4.4,
+      image: "🍔",
+    },
+    {
+      id: 5,
+      name: "Tandoori Chicken",
+      restaurant: "Spice Kingdom",
+      price: 279,
+      rating: 4.8,
+      image: "🍖",
+    },
+    {
+      id: 6,
+      name: "Garlic Bread",
+      restaurant: "Pizza Paradise",
+      price: 99,
+      rating: 4.3,
+      image: "🥖",
+    },
   ];
 
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-primary text-primary-content py-20">
+      <section className="relative bg-primary/30 text-primary-content py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
@@ -46,7 +117,7 @@ const Home = () => {
 
                 <button
                   onClick={() => navigate("/contact")}
-                  className="px-8 py-3 bg-secondary text-secondary-content font-semibold rounded-lg hover:bg-secondary-hover transition border border-secondary"
+                  className="px-8 py-3 bg-secondary/50 text-secondary-content font-semibold rounded-lg hover:bg-secondary-hover transition border border-secondary"
                 >
                   Contact Us
                 </button>
@@ -68,23 +139,23 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center">
-              <div className="text-9xl animate-pulse">🍽️</div>
+            <div className="flex flex-col gap-2 justify-center items-center">
+              <img src={img} className="  animate-pulse " alt="" />
+              <img src={img} className="  animate-pulse " alt="" />
+              <img src={img} className="  animate-pulse " alt="" />
             </div>
           </div>
         </div>
       </section>
 
       {/* FEATURED RESTAURANTS */}
-      <section className="py-16 bg-base-100">
+      <section className="py-16 bg-primary/20">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-base-content">
               Featured Restaurants
             </h2>
-            <p className="text-secondary">
-              Explore our top-rated restaurants
-            </p>
+            <p className="text-secondary">Explore our top-rated restaurants</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -101,9 +172,7 @@ const Home = () => {
                   <h3 className="text-lg font-semibold text-base-content">
                     {restaurant.name}
                   </h3>
-                  <p className="text-sm text-secondary">
-                    {restaurant.cuisine}
-                  </p>
+                  <p className="text-sm text-secondary">{restaurant.cuisine}</p>
 
                   <div className="flex justify-between items-center mt-2">
                     <span className="font-semibold">
@@ -121,15 +190,13 @@ const Home = () => {
       </section>
 
       {/* POPULAR DISHES */}
-      <section className="py-16 bg-secondary-hover">
+      <section className="py-16 bg-accent/70">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-base-content">
               Popular Dishes
             </h2>
-            <p className="text-secondary">
-              Most loved meals by our customers
-            </p>
+            <p className="text-secondary">Most loved meals by our customers</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -146,9 +213,7 @@ const Home = () => {
                   <h3 className="text-lg font-semibold text-base-content">
                     {dish.name}
                   </h3>
-                  <p className="text-sm text-secondary">
-                    {dish.restaurant}
-                  </p>
+                  <p className="text-sm text-secondary">{dish.restaurant}</p>
 
                   <div className="flex justify-between items-center mt-2">
                     <span className="font-bold">₹{dish.price}</span>

@@ -36,7 +36,7 @@ const ResetPasswordModal = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-background/70 flex justify-center items-center z-100">
-      <div className="bg-background w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+      <div className="bg-accent w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
 
         {/* Header */}
         <div className="flex justify-between px-6 py-4 border-b border-secondary items-center sticky top-0 bg-background">

@@ -89,7 +89,7 @@ const Contact = () => {
         <img src={img} alt="Contact" className="w-full h-full object-cover" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-background/80 px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-text tracking-wide">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-primary/60 tracking-wide">
             Contact Us
           </h1>
           <p className="mt-4 text-sm sm:text-base md:text-lg text-secondary max-w-xl">

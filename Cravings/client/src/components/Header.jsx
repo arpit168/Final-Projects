@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <>
       {/* HEADER */}
-      <div className="bg-primary px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+      <div className="bg-primary  px-8 py-4 flex justify-between items-center sticky top-0 z-50">
         <Link to="/">
           <img
             src={tranparentLogo}
@@ -59,10 +59,7 @@ const Header = () => {
 
         {/* DESKTOP MENU */}
         <div className="hidden md:flex gap-6">
-          <Link
-            to="/"
-            className="text-text hover:text-secondary transition"
-          >
+          <Link to="/" className="text-text hover:text-secondary transition">
             Home
           </Link>
           <Link
@@ -92,13 +89,13 @@ const Header = () => {
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="bg-secondary text-buttons px-4 py-2 rounded-lg hover:bg-secondary-hover transition"
+                className="btn btn-button"
               >
                 Login
               </button>
               <button
                 onClick={() => navigate("/register")}
-                className="bg-secondary text-buttons px-4 py-2 rounded-lg hover:bg-secondary-hover transition"
+                className=" btn btn-button"
               >
                 Register
               </button>
@@ -107,7 +104,7 @@ const Header = () => {
 
           {/* THEME SELECT */}
           <select
-            className="bg-background text-text px-3 py-2 rounded-lg border border-secondary hover:border-secondary-hover transition"
+            className="select"
             onChange={handleThemeChange}
             value={theme}
           >

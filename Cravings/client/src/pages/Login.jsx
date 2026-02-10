@@ -142,16 +142,15 @@ const Login = () => {
                 <button
                   type="reset"
                   disabled={isLoading}
-                  className="flex-1 bg-secondary hover:bg-secondary-hover text-buttons font-bold py-4 px-6 rounded-lg transition
-                  disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex-1 bg-secondary text-secondary-content font-bold py-4 rounded-lg hover:text-accent transition disabled:cursor-not-allowed"
                 >
-                  Clear Form
+                  Clear 
                 </button>
 
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 bg-primary hover:bg-primary-hover text-buttons font-bold py-4 px-6 rounded-lg transition shadow-lg
+                  className="flex-1 bg-primary hover:text-accent hover:bg-secondary text-buttons font-bold py-4 px-6 rounded-lg transition shadow-lg
                   disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isLoading ? "loading.." : "Login"}

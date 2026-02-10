@@ -41,7 +41,7 @@ const UserDashboard = () => {
     <div className="w-full h-[90vh] flex overflow-hidden">
       {/* SIDEBAR */}
       <div
-        className={`bg-(--color-primary) text-(--color-text) duration-300
+        className={`bg-(--color-secondary)/10 text-(--color-text) duration-300
         ${
           isCollapsed
             ? "md:w-3/60 w-10/60 overflow-hidden"
