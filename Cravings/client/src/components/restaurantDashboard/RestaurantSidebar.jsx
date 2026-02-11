@@ -5,7 +5,6 @@ import { BiSolidFoodMenu } from "react-icons/bi";
 import { TiShoppingCart } from "react-icons/ti";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { RiCustomerService2Fill } from "react-icons/ri";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
@@ -13,7 +12,6 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
-
 
 const RestaurantSideBar = ({
   active,
@@ -47,56 +45,60 @@ const RestaurantSideBar = ({
   };
 
   return (
-    <>
-      <div className="p-2 flex flex-col justify-between h-full ">
-       <div>
-              <div className="h-10 text-xl font-bold flex gap-2 items-center ">
-               <button
-                 className=" hover:scale-105 ms-3 "
-                 onClick={() => setIsCollapsed(!isCollapsed)}
-               >
-                 {!isCollapsed ? (
-                   <RxCross2 className="text-2xl" />
-                 ) : (
-                   <HiMenuAlt2 className="text-2xl" />
-                 )}
-               </button>
-               {!isCollapsed && (
-                 <span className="overflow-hidden text-nowrap ">Restaurant Dashboard</span>
-               )}
-             </div>
-             <hr />
-     
-             <div className="py-6 space-y-5 w-full">
-               {menuItems.map((item, idx) => (
-                 <button
-                   className={`flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300
-                     ${
-                       active === item.key
-                         ? "bg-accent text-white"
-                         : "hover:bg-accent/70 "
-                     } 
-                   `}
-                   onClick={() => setActive(item.key)}
-                   key={idx}
-                 >
-                   {item.icon}
-                   {!isCollapsed && item.title}
-                 </button>
-               ))}
-             </div>
-       </div>
-             <div>
-                <button
-            className="flex gap-3 items-center text-lg ps-2 rounded-xl h-10 w-full text-nowrap overflow-hidden duration-300 hover:bg-red-500 hover:text-white text-red-600"
-            onClick={handleLogout}
+    <div className="p-4 flex flex-col justify-between h-full bg-[#111827] text-[#E5E7EB]">
+
+      {/* Top Section */}
+      <div>
+        <div className="h-10 text-lg font-semibold flex gap-3 items-center">
+          <button
+            className="hover:scale-110 transition duration-200"
+            onClick={() => setIsCollapsed(!isCollapsed)}
           >
-            <MdLogout />
-            {!isCollapsed && "Logout"}
+            {!isCollapsed ? (
+              <RxCross2 className="text-2xl" />
+            ) : (
+              <HiMenuAlt2 className="text-2xl" />
+            )}
           </button>
-             </div>
-           </div>
-    </>
+          {!isCollapsed && (
+            <span className="overflow-hidden whitespace-nowrap">
+              Restaurant Dashboard
+            </span>
+          )}
+        </div>
+
+        <hr className="border-[#1F2937] my-4" />
+
+        <div className="space-y-4">
+          {menuItems.map((item, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActive(item.key)}
+              className={`flex gap-3 items-center text-base px-3 rounded-lg h-11 w-full whitespace-nowrap overflow-hidden transition-all duration-300
+                ${
+                  active === item.key
+                    ? "bg-[#2563EB] text-white shadow-md"
+                    : "hover:bg-[#1E40AF] hover:text-white"
+                }`}
+            >
+              <span className="text-lg">{item.icon}</span>
+              {!isCollapsed && item.title}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div>
+        <button
+          onClick={handleLogout}
+          className="flex gap-3 items-center text-base px-3 rounded-lg h-11 w-full transition-all duration-300 text-red-400 hover:bg-red-600 hover:text-white"
+        >
+          <MdLogout className="text-lg" />
+          {!isCollapsed && "Logout"}
+        </button>
+      </div>
+    </div>
   );
 };
 

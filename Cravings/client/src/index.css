@@ -2,23 +2,5 @@
 
 
 
-@layer components {
-  [data-theme="default"] {
-    /* ------------------btn accent----------------------- */
-    .btn-accent {
-      background-color: rgb(218, 167, 27) !important;
-    }
-     .btn-accent:hover {
-      background-color: rgb(173, 132, 19) !important;
-    }
 
-    /* -----------------------btn secondary */
-    .btn-secondary {
-      background-color: rgb(218, 167, 27) !important;
-    }
-    .btn-secondary:hover {
-      background-color: rgb(173, 132, 19) !important;
-    }
-  }
-}
 

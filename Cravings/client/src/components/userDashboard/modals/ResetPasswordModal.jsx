@@ -35,18 +35,16 @@ const ResetPasswordModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-background/70 flex justify-center items-center z-100">
-      <div className="bg-accent w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+    <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
+      <div className="bg-[#1E293B] text-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
 
         {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center sticky top-0 bg-background">
-          <h2 className="text-xl font-semibold text-text">
-            Reset Password
-          </h2>
+        <div className="flex justify-between px-6 py-4 border-b border-[#334155] items-center sticky top-0 bg-[#1E293B]">
+          <h2 className="text-xl font-semibold">Reset Password</h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-text/70 border border-secondary hover:bg-secondary hover:text-text rounded-bl-2xl rounded-tr-2xl text-3xl transition"
+            className="text-white/70 hover:text-blue-400 text-3xl transition"
           >
             <RxCross2 />
           </button>
@@ -93,12 +91,12 @@ const ResetPasswordModal = ({ onClose }) => {
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-4 pt-6 border-t border-secondary">
+          <div className="flex justify-end gap-4 pt-6 border-t border-[#334155]">
             <button
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="px-6 py-2 bg-secondary text-text rounded-md hover:bg-secondary-hover transition disabled:opacity-50"
+              className="px-6 py-2 bg-[#334155] text-white rounded-md hover:bg-[#475569] transition disabled:opacity-50"
             >
               Cancel
             </button>
@@ -106,7 +104,7 @@ const ResetPasswordModal = ({ onClose }) => {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-primary text-buttons rounded-md hover:bg-primary-hover transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50 flex items-center gap-2"
             >
               {loading ? (
                 <>
@@ -124,28 +122,17 @@ const ResetPasswordModal = ({ onClose }) => {
   );
 };
 
-/* 🔹 Reusable input (UI unchanged) */
-const InputField = ({
-  label,
-  error,
-  ...props
-}) => (
+/* 🔹 Reusable input field for dark theme */
+const InputField = ({ label, error, ...props }) => (
   <div>
-    <label className="block text-sm font-medium text-text mb-1">
-      {label}
-    </label>
+    <label className="block text-sm font-medium mb-1">{label}</label>
     <input
       {...props}
-      className={`w-full border rounded-md shadow-sm p-2 bg-background text-text
-        focus:outline-none focus:ring-2 focus:ring-primary
-        ${error ? "border-primary" : "border-secondary"}
+      className={`w-full border rounded-md p-2 bg-[#1E293B] text-white focus:outline-none focus:ring-2 focus:ring-blue-500
+        ${error ? "border-red-500" : "border-[#334155]"}
       `}
     />
-    {error && (
-      <p className="text-primary text-xs mt-1">
-        {error}
-      </p>
-    )}
+    {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
   </div>
 );
 

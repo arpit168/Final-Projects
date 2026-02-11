@@ -3,20 +3,20 @@ import React from "react";
 const ViewItemModal = ({ onClose, selectedItem }) => {
   if (!selectedItem) return null;
 
-  const images = selectedItem.images || [].slice(0, 5);
+  const images = selectedItem.images || [];
 
   return (
-    <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-100">
-      <div className="bg-background w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg border border-secondary">
-        
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+      <div className="bg-[#1E293B] text-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg border border-[#334155]">
+
         {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center sticky top-0 bg-background">
-          <h2 className="text-2xl font-semibold text-text">
+        <div className="flex justify-between px-6 py-4 border-b border-[#334155] items-center sticky top-0 bg-[#1E293B]">
+          <h2 className="text-2xl font-semibold">
             {selectedItem.itemName}
           </h2>
           <button
             onClick={onClose}
-            className="text-text hover:text-primary text-2xl transition"
+            className="text-white hover:text-blue-500 text-2xl transition"
           >
             ⊗
           </button>
@@ -24,11 +24,11 @@ const ViewItemModal = ({ onClose, selectedItem }) => {
 
         {/* Content */}
         <div className="p-6 space-y-6">
-          
+
           {/* Image Gallery */}
           {images.length > 0 && (
             <div className="space-y-3">
-              <label className="block text-sm font-semibold text-text">
+              <label className="block text-sm font-semibold mb-2">
                 Images
               </label>
 
@@ -36,7 +36,7 @@ const ViewItemModal = ({ onClose, selectedItem }) => {
                 {images.slice(0, 5).map((image, index) => (
                   <div
                     key={index}
-                    className="w-30 h-30 rounded-lg overflow-hidden bg-secondary border border-secondary flex items-center justify-center"
+                    className="w-32 h-32 rounded-lg overflow-hidden bg-[#334155] border border-[#475569] flex items-center justify-center"
                   >
                     <img
                       src={image.url}
@@ -51,43 +51,28 @@ const ViewItemModal = ({ onClose, selectedItem }) => {
 
           {/* Item Details Grid */}
           <div className="grid grid-cols-2 gap-4">
-            
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Item Name
-              </label>
-              <p className="text-text font-medium">
-                {selectedItem.itemName}
-              </p>
+              <label className="block text-sm font-semibold mb-1">Item Name</label>
+              <p className="font-medium">{selectedItem.itemName}</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Price
-              </label>
-              <p className="text-lg font-bold text-primary">
+              <label className="block text-sm font-semibold mb-1">Price</label>
+              <p className="text-lg font-bold text-blue-500">
                 ₹{parseFloat(selectedItem.price).toFixed(2)}
               </p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Cuisine
-              </label>
-              <p className="text-text capitalize">
-                {selectedItem.cuisine}
-              </p>
+              <label className="block text-sm font-semibold mb-1">Cuisine</label>
+              <p className="capitalize">{selectedItem.cuisine}</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Type
-              </label>
+              <label className="block text-sm font-semibold mb-1">Type</label>
               <p
                 className={`font-medium capitalize ${
-                  selectedItem.type === "veg"
-                    ? "text-primary"
-                    : "text-secondary-hover"
+                  selectedItem.type === "veg" ? "text-green-400" : "text-red-400"
                 }`}
               >
                 {selectedItem.type}
@@ -95,32 +80,20 @@ const ViewItemModal = ({ onClose, selectedItem }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Serving Size
-              </label>
-              <p className="text-text">
-                {selectedItem.servingSize} Persons
-              </p>
+              <label className="block text-sm font-semibold mb-1">Serving Size</label>
+              <p>{selectedItem.servingSize} Persons</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Preparation Time
-              </label>
-              <p className="text-text">
-                {selectedItem.preparationTime} mins
-              </p>
+              <label className="block text-sm font-semibold mb-1">Preparation Time</label>
+              <p>{selectedItem.preparationTime} mins</p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-text mb-1">
-                Availability
-              </label>
+              <label className="block text-sm font-semibold mb-1">Availability</label>
               <p
                 className={`font-medium capitalize ${
-                  selectedItem.availability === "available"
-                    ? "text-primary"
-                    : "text-secondary-hover"
+                  selectedItem.availability === "available" ? "text-green-400" : "text-red-400"
                 }`}
               >
                 {selectedItem.availability}
@@ -130,23 +103,18 @@ const ViewItemModal = ({ onClose, selectedItem }) => {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold text-text mb-2">
-              Description
-            </label>
-            <p className="text-text leading-relaxed bg-secondary p-3 rounded">
+            <label className="block text-sm font-semibold mb-2">Description</label>
+            <p className="bg-[#334155] p-3 rounded leading-relaxed">
               {selectedItem.description}
             </p>
           </div>
 
           {/* Metadata */}
-          <div className="text-xs text-text/70 space-y-1 pt-4 border-t border-secondary">
-            <p>
-              Created: {new Date(selectedItem.createdAt).toLocaleDateString()}
-            </p>
-            <p>
-              Last Updated: {new Date(selectedItem.updatedAt).toLocaleDateString()}
-            </p>
+          <div className="text-xs text-gray-400 space-y-1 pt-4 border-t border-[#334155]">
+            <p>Created: {new Date(selectedItem.createdAt).toLocaleDateString()}</p>
+            <p>Last Updated: {new Date(selectedItem.updatedAt).toLocaleDateString()}</p>
           </div>
+
         </div>
       </div>
     </div>

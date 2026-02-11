@@ -36,14 +36,12 @@ const EditProfileModal = ({ onClose }) => {
 
   const validateForm = () => {
     const newErrors = {};
-
     if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
     if (!formData.mobileNumber.trim())
       newErrors.mobileNumber = "Mobile number is required";
     if (!formData.city.trim()) newErrors.city = "City is required";
     if (!formData.pin.trim()) newErrors.pin = "PIN code is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -100,15 +98,15 @@ const EditProfileModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-background/80 flex items-center justify-center z-100">
-      <div className="bg-background w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+      <div className="bg-[#1E293B] text-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg">
 
         {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center sticky top-0 bg-background">
-          <h2 className="text-xl font-semibold text-text">Edit Profile</h2>
+        <div className="flex justify-between px-6 py-4 border-b border-[#334155] items-center sticky top-0 bg-[#1E293B]">
+          <h2 className="text-xl font-semibold">Edit Profile</h2>
           <button
             onClick={onClose}
-            className="text-text/70 hover:text-primary text-2xl transition"
+            className="text-white/70 hover:text-blue-400 text-2xl transition"
           >
             <RxCross2 />
           </button>
@@ -117,13 +115,11 @@ const EditProfileModal = ({ onClose }) => {
         {/* Message */}
         {message.text && (
           <div
-            className={`mx-6 mt-4 p-4 rounded-md border
-              ${
-                message.type === "success"
-                  ? "bg-secondary text-text border-secondary"
-                  : "bg-secondary text-text border-secondary"
-              }
-            `}
+            className={`mx-6 mt-4 p-4 rounded-md border ${
+              message.type === "success"
+                ? "bg-green-800 text-green-200 border-green-600"
+                : "bg-red-800 text-red-200 border-red-600"
+            }`}
           >
             {message.text}
           </div>
@@ -172,25 +168,25 @@ const EditProfileModal = ({ onClose }) => {
 
             <button
               onClick={fetchLocation}
-              className="border border-secondary rounded-md p-2 hover:bg-secondary"
+              className="border border-[#334155] rounded-md p-2 hover:bg-[#334155] transition"
             >
               Get Live Location
             </button>
           </Section>
 
           {/* Actions */}
-          <div className="flex justify-end gap-4 pt-6 border-t border-secondary">
+          <div className="flex justify-end gap-4 pt-6 border-t border-[#334155]">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-2 bg-secondary text-text rounded-md hover:bg-secondary-hover"
+              className="px-6 py-2 bg-[#334155] text-white rounded-md hover:bg-[#475569] transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-primary text-buttons rounded-md hover:bg-primary-hover disabled:opacity-50"
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
             >
               {loading ? "Saving..." : "Save Changes"}
             </button>
@@ -202,11 +198,11 @@ const EditProfileModal = ({ onClose }) => {
   );
 };
 
-/* 🔹 Small reusable UI helpers (design unchanged) */
+/* 🔹 Small reusable UI helpers */
 
 const Section = ({ title, children }) => (
   <div>
-    <h3 className="text-lg font-semibold text-text mb-4 pb-2 border-b border-secondary">
+    <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-[#334155]">
       {title}
     </h3>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{children}</div>
@@ -215,24 +211,24 @@ const Section = ({ title, children }) => (
 
 const Input = ({ label, error, ...props }) => (
   <div>
-    <label className="block text-sm font-medium text-text mb-1">{label}</label>
+    <label className="block text-sm font-medium mb-1">{label}</label>
     <input
       {...props}
-      className={`w-full border rounded-md p-2 bg-background text-text focus:ring-2 focus:ring-primary
-        ${error ? "border-primary" : "border-secondary"}
+      className={`w-full border rounded-md p-2 bg-[#1E293B] text-white focus:ring-2 focus:ring-blue-500
+        ${error ? "border-red-500" : "border-[#334155]"}
       `}
     />
-    {error && <p className="text-primary text-xs mt-1">{error}</p>}
+    {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
   </div>
 );
 
 const DisabledInput = ({ label, value }) => (
   <div>
-    <label className="block text-sm font-medium text-text mb-1">{label}</label>
+    <label className="block text-sm font-medium mb-1">{label}</label>
     <input
       disabled
       value={value}
-      className="w-full border border-secondary rounded-md p-2 bg-secondary text-text/70"
+      className="w-full border border-[#334155] rounded-md p-2 bg-[#475569] text-white/70"
     />
   </div>
 );

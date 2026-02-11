@@ -25,29 +25,22 @@ const AddMenuItemModal = ({ onClose }) => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files || []).slice(0, 5);
     const previews = files.map((file) => URL.createObjectURL(file));
-
     setImages(files);
     setImagePreviews(previews);
   };
 
   useEffect(() => {
-    return () => {
-      imagePreviews.forEach((url) => URL.revokeObjectURL(url));
-    };
+    return () => imagePreviews.forEach((url) => URL.revokeObjectURL(url));
   }, [imagePreviews]);
 
   const handleSubmit = async (e) => {
@@ -56,21 +49,10 @@ const AddMenuItemModal = ({ onClose }) => {
 
     try {
       const form_data = new FormData();
-
       Object.entries(formData).forEach(([key, value]) => {
-        if (key === "availability") {
-          form_data.append(
-            key,
-            value ? "available" : "unavailable"
-          );
-        } else {
-          form_data.append(key, value);
-        }
+        form_data.append(key, key === "availability" ? (value ? "available" : "unavailable") : value);
       });
-
-      images.forEach((img) => {
-        form_data.append("itemImages", img);
-      });
+      images.forEach((img) => form_data.append("itemImages", img));
 
       const res = await api.post("/restaurant/addMenuItem", form_data);
       toast.success(res.data.message);
@@ -93,7 +75,6 @@ const AddMenuItemModal = ({ onClose }) => {
       servingSize: "",
       availability: true,
     });
-
     setImages([]);
     setImagePreviews([]);
     setErrors({});
@@ -102,19 +83,16 @@ const AddMenuItemModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-background flex items-center justify-center z-95">
-      <div className="bg-accent w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg text-text">
-        {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-secondary items-center  sticky top-0 bg-accent">
-          <h2 className="text-xl font-semibold">
-            Add Menu Item
-          </h2>
+    <div className="fixed inset-0 bg-[#0F172A] flex items-center justify-center z-50">
+      <div className="bg-[#1E293B] w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg text-white">
 
+        {/* Header */}
+        <div className="flex justify-between px-6 py-4 border-b border-[#334155] items-center sticky top-0 bg-[#1E293B]">
+          <h2 className="text-xl font-semibold">Add Menu Item</h2>
           <button
             type="button"
             onClick={handleClose}
-            className="border border-secondary rounded-bl-2xl rounded-tr-2xl text-3xl
-                       hover:bg-secondary-hover hover:text-buttons transition"
+            className="border border-[#334155] rounded-bl-2xl rounded-tr-2xl text-3xl hover:bg-[#334155] hover:text-white transition"
           >
             <RxCross2 />
           </button>
@@ -122,25 +100,24 @@ const AddMenuItemModal = ({ onClose }) => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
+
           {/* Image Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-[#334155]">
               Item Image
             </h3>
 
             <div className="flex items-end gap-4">
               <label
                 htmlFor="image"
-                className="px-6 py-2 bg-primary text-buttons rounded-md cursor-pointer hover:bg-primary-hover"
+                className="px-6 py-2 bg-[#2563EB] text-white rounded-md cursor-pointer hover:bg-[#1D4ED8]"
               >
                 Add Image
               </label>
-
-              <div className="text-sm text-text">
+              <div className="text-sm">
                 <p>(Upto 5 Images Allowed)</p>
                 <p>(Max Size: 1MB each)</p>
               </div>
-
               <input
                 type="file"
                 id="image"
@@ -154,15 +131,8 @@ const AddMenuItemModal = ({ onClose }) => {
             {imagePreviews.length > 0 && (
               <div className="mt-3 grid grid-cols-5 gap-2">
                 {imagePreviews.map((src, idx) => (
-                  <div
-                    key={idx}
-                    className="border border-secondary rounded-md h-24 overflow-hidden"
-                  >
-                    <img
-                      src={src}
-                      alt="preview"
-                      className="w-full h-full object-cover"
-                    />
+                  <div key={idx} className="border border-[#334155] rounded-md h-24 overflow-hidden">
+                    <img src={src} alt="preview" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -171,10 +141,9 @@ const AddMenuItemModal = ({ onClose }) => {
 
           {/* Basic Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-[#334155]">
               Basic Information
             </h3>
-
             <div className="space-y-4">
               <input
                 type="text"
@@ -182,26 +151,24 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.itemName}
                 onChange={handleInputChange}
                 placeholder="Item Name"
-                className="w-full border border-secondary rounded-md p-2 bg-background text-text"
+                className="w-full border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
-
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
                 rows="3"
                 placeholder="Item Description"
-                className="w-full border border-secondary rounded-md p-2 bg-background text-text"
+                className="w-full border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
             </div>
           </div>
 
           {/* Pricing */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-[#334155]">
               Pricing & Category
             </h3>
-
             <div className="grid md:grid-cols-3 gap-4">
               <input
                 type="number"
@@ -209,41 +176,38 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.price}
                 onChange={handleInputChange}
                 placeholder="Price"
-                className="border border-secondary rounded-md p-2 bg-background text-text"
+                className="border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
-
               <input
                 type="text"
                 name="servingSize"
                 value={formData.servingSize}
                 onChange={handleInputChange}
                 placeholder="Serving Size"
-                className="border border-secondary rounded-md p-2 bg-background text-text"
+                className="border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
-
               <input
                 type="text"
                 name="cuisine"
                 value={formData.cuisine}
                 onChange={handleInputChange}
                 placeholder="Cuisine"
-                className="border border-secondary rounded-md p-2 bg-background text-text"
+                className="border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
             </div>
           </div>
 
           {/* Attributes */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-secondary">
+            <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-[#334155]">
               Item Attributes
             </h3>
-
             <div className="grid md:grid-cols-3 gap-4 items-center">
               <select
                 name="type"
                 value={formData.type}
                 onChange={handleInputChange}
-                className="border border-secondary rounded-md p-2 bg-background text-text"
+                className="border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               >
                 <option value="">Select Type</option>
                 <option value="veg">Vegetarian</option>
@@ -259,10 +223,10 @@ const AddMenuItemModal = ({ onClose }) => {
                 value={formData.preparationTime}
                 onChange={handleInputChange}
                 placeholder="Prep Time (min)"
-                className="border border-secondary rounded-md p-2 bg-background text-text"
+                className="border border-[#334155] rounded-md p-2 bg-[#0F172A] text-white"
               />
 
-              <label className="flex items-center gap-2 text-text">
+              <label className="flex items-center gap-2 text-white">
                 <input
                   type="checkbox"
                   name="availability"
@@ -275,20 +239,19 @@ const AddMenuItemModal = ({ onClose }) => {
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-4 pt-6 border-t border-secondary">
+          <div className="flex justify-end gap-4 pt-6 border-t border-[#334155]">
             <button
               type="button"
               onClick={handleClose}
-              className="px-6 py-2 bg-secondary text-text rounded-md hover:bg-secondary-hover"
+              className="px-6 py-2 bg-[#334155] text-white rounded-md hover:bg-[#475569]"
               disabled={loading}
             >
               Cancel
             </button>
-
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-primary text-buttons rounded-md hover:bg-primary-hover"
+              className="px-6 py-2 bg-[#2563EB] text-white rounded-md hover:bg-[#1D4ED8]"
             >
               {loading ? "Adding..." : "Add Menu Item"}
             </button>
