@@ -1,17 +1,47 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const UserHelpDesk = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [tickets, setTickets] = useState([
+    { id: "#SUP-1201", title: "Payment not reflected", status: "open" },
+    { id: "#SUP-1188", title: "Order delivery delayed", status: "resolved" },
+  ]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!subject.trim() || !message.trim()) {
+      toast.error("Please fill in both Subject and Message");
+      return;
+    }
+
+    setLoading(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      const newTicket = {
+        id: `#SUP-${Math.floor(Math.random() * 9999)}`,
+        title: subject,
+        status: "open",
+      };
+      setTickets([newTicket, ...tickets]);
+      setSubject("");
+      setMessage("");
+      toast.success("Ticket submitted successfully!");
+      setLoading(false);
+    }, 1000);
+  };
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background p-6 space-y-8">
 
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-text">
-          Help Desk
-        </h1>
+      <div>
+        <h1 className="text-3xl font-bold text-text">Help Desk</h1>
         <p className="text-text/70 mt-1">
           Need help? Create a ticket and we’ll get back to you
         </p>
@@ -25,47 +55,37 @@ const UserHelpDesk = () => {
             Create Support Ticket
           </h2>
 
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm text-text/70 mb-1">
-                Subject
-              </label>
-              <input
-                type="text"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                placeholder="Order issue, payment problem..."
-                className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-            <div>
-              <label className="block text-sm text-text/70 mb-1">
-                Message
-              </label>
-              <textarea
-                rows="5"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Describe your issue clearly..."
-                className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
+            <InputField
+              label="Subject"
+              placeholder="Order issue, payment problem..."
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+
+            <TextareaField
+              label="Message"
+              placeholder="Describe your issue clearly..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={5}
+            />
 
             <button
               type="submit"
-              className="bg-primary text-buttons px-6 py-2 rounded-lg hover:bg-primary-hover transition"
+              disabled={loading}
+              className="bg-primary text-buttons px-6 py-2 rounded-lg hover:bg-primary-hover transition disabled:opacity-50"
             >
-              Submit Ticket
+              {loading ? "Submitting..." : "Submit Ticket"}
             </button>
+
           </form>
         </div>
 
         {/* Support Info */}
         <div className="bg-background rounded-xl p-6 shadow-sm border border-secondary">
-          <h2 className="text-xl font-semibold text-text mb-4">
-            Support Info
-          </h2>
+          <h2 className="text-xl font-semibold text-text mb-4">Support Info</h2>
 
           <ul className="space-y-3 text-text/70">
             <li>📧 support@example.com</li>
@@ -81,46 +101,55 @@ const UserHelpDesk = () => {
       </div>
 
       {/* My Tickets */}
-      <div className="mt-10 bg-background rounded-xl shadow-sm border border-secondary p-6">
-        <h2 className="text-xl font-semibold text-text mb-4">
-          My Tickets
-        </h2>
+      <div className="bg-background rounded-xl shadow-sm border border-secondary p-6">
+        <h2 className="text-xl font-semibold text-text mb-4">My Tickets</h2>
 
         <div className="space-y-4">
-
-          <div className="flex justify-between items-center border border-secondary rounded-lg p-4">
-            <div>
-              <h4 className="font-medium text-text">
-                Payment not reflected
-              </h4>
-              <p className="text-sm text-text/70">
-                Ticket ID: #SUP-1201
-              </p>
+          {tickets.map((ticket) => (
+            <div
+              key={ticket.id}
+              className="flex justify-between items-center border border-secondary rounded-lg p-4"
+            >
+              <div>
+                <h4 className="font-medium text-text">{ticket.title}</h4>
+                <p className="text-sm text-text/70">Ticket ID: {ticket.id}</p>
+              </div>
+              <span
+                className={`px-3 py-1 text-sm rounded-full ${
+                  ticket.status === "open"
+                    ? "bg-secondary text-text"
+                    : "bg-primary/10 text-primary"
+                }`}
+              >
+                {ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
+              </span>
             </div>
-            <span className="px-3 py-1 text-sm rounded-full bg-secondary text-text">
-              Open
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center border border-secondary rounded-lg p-4">
-            <div>
-              <h4 className="font-medium text-text">
-                Order delivery delayed
-              </h4>
-              <p className="text-sm text-text/70">
-                Ticket ID: #SUP-1188
-              </p>
-            </div>
-            <span className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary">
-              Resolved
-            </span>
-          </div>
-
+          ))}
         </div>
       </div>
-
     </div>
   );
 };
+
+/* 🔹 Reusable Input Fields */
+const InputField = ({ label, ...props }) => (
+  <div>
+    <label className="block text-sm text-text/70 mb-1">{label}</label>
+    <input
+      {...props}
+      className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary"
+    />
+  </div>
+);
+
+const TextareaField = ({ label, ...props }) => (
+  <div>
+    <label className="block text-sm text-text/70 mb-1">{label}</label>
+    <textarea
+      {...props}
+      className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+    />
+  </div>
+);
 
 export default UserHelpDesk;

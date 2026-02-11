@@ -61,13 +61,9 @@ const UserDashboard = () => {
       </div>
 
       {/* MAIN CONTENT */}
-      <div
-        className={`flex-1 overflow-y-auto transition-all duration-300 ${
-          isCollapsed ? "" : ""
-        }`}
-      >
+      <div className={`flex-1 overflow-y-auto transition-all duration-300`}>
         <div className="p-6">
-          <div className="bg-white rounded-2xl shadow-sm p-6 min-h-[85vh]">
+          <div className="   rounded-2xl shadow-sm p-6 min-h-[85vh]">
             
             {active === "overview" && <RestaurantOverview />}
             {active === "profile" && <RestaurantProfile />}

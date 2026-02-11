@@ -24,17 +24,17 @@ const UserDashboard = () => {
   // 🔴 Unauthorized View
   if (role !== "customer") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-8 w-full max-w-2xl text-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-6">
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-8 w-full max-w-2xl text-center">
           <div className="flex justify-center mb-4">
-            <div className="bg-red-100 p-4 rounded-full">
-              <RxCross2 className="text-4xl text-red-600" />
+            <div className="bg-red-100 dark:bg-red-800 p-4 rounded-full">
+              <RxCross2 className="text-4xl text-red-600 dark:text-red-400" />
             </div>
           </div>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
             Access Denied
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             You are not logged in as a Customer.
             Please login with the correct account.
           </p>
@@ -44,11 +44,11 @@ const UserDashboard = () => {
   }
 
   return (
-    <div className="w-full h-screen flex bg-gray-100 overflow-hidden">
+    <div className="w-full h-screen flex bg-gray-100 dark:bg-gray-900 overflow-hidden">
       
       {/* SIDEBAR */}
       <div
-        className={`bg-indigo-600 text-white shadow-lg transition-all duration-300
+        className={`bg-indigo-600 dark:bg-indigo-700 text-white shadow-lg transition-all duration-300
         ${isCollapsed ? "md:w-20 w-24" : "md:w-64 w-64"}`}
       >
         <UserSideBar
@@ -62,7 +62,7 @@ const UserDashboard = () => {
       {/* MAIN CONTENT */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-6">
-          <div className="bg-white rounded-2xl shadow-sm p-6 min-h-[85vh]">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-6 min-h-[85vh]">
             
             {active === "overview" && <UserOverview />}
             {active === "profile" && <UserProfile />}
