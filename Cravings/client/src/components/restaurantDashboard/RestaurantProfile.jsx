@@ -43,183 +43,179 @@ const RestaurantProfile = () => {
   };
 
   const renderField = (label, value) => (
-    <div className="flex justify-between py-2 px-3 border-b border-secondary last:border-none">
-      <span className="text-text font-medium">{label}</span>
-      <span className="font-semibold text-text">
-        {value && value !== "N/A" ? value : (
+    <div className="flex justify-between py-3 px-4 border-b border-gray-200 last:border-none">
+      <span className="text-gray-600 font-medium">{label}</span>
+      <span className="font-semibold text-gray-800">
+        {value && value !== "N/A" ? (
+          value
+        ) : (
           <span className="opacity-60">Not provided</span>
         )}
       </span>
     </div>
   );
 
-return (
-  <>
-    <div className="bg-background rounded-xl p-4 sm:p-6 h-full overflow-y-auto space-y-6 max-w-6xl mx-auto">
+  return (
+    <>
+      <div className="bg-gray-100 rounded-2xl p-6 h-full overflow-y-auto space-y-6 max-w-6xl mx-auto">
 
-      {/* ================= PROFILE HEADER ================= */}
-      <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-        <div className="flex flex-col md:flex-row gap-6">
+        {/* ================= PROFILE HEADER ================= */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+          <div className="flex flex-col md:flex-row gap-8">
 
-          {/* Avatar */}
-          <div className="flex flex-col items-center md:items-start">
-            <div className="relative">
-              <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-secondary">
-                <img
-                  src={preview || user?.photo?.url || UserImage}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
+            {/* Avatar */}
+            <div className="flex flex-col items-center md:items-start">
+              <div className="relative">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-200 shadow">
+                  <img
+                    src={preview || user?.photo?.url || UserImage}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <label
+                  htmlFor="imageUpload"
+                  className="absolute bottom-2 right-2 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full cursor-pointer transition shadow"
+                >
+                  <FaCamera size={14} />
+                </label>
+
+                <input
+                  type="file"
+                  id="imageUpload"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
                 />
               </div>
-
-              <label
-                htmlFor="imageUpload"
-                className="absolute bottom-1 right-1 bg-primary hover:bg-primary-hover text-background p-2 sm:p-3 rounded-full cursor-pointer transition"
-              >
-                <FaCamera size={14} />
-              </label>
-
-              <input
-                type="file"
-                id="imageUpload"
-                className="hidden"
-                accept="image/*"
-                onChange={handlePhotoChange}
-              />
-            </div>
-          </div>
-
-          {/* Info */}
-          <div className="flex-1">
-
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-2 text-center md:text-left">
-              {user?.fullName || "Manager Name"}
-            </h1>
-
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full bg-primary text-background text-xs sm:text-sm font-semibold capitalize">
-                {user?.role || "manager"}
-              </span>
-              <span className="px-3 py-1 rounded-full bg-secondary text-text text-xs sm:text-sm font-semibold">
-                {user?.isActive || "active"}
-              </span>
             </div>
 
-            <div className="space-y-1 mb-5 text-text text-sm sm:text-base text-center md:text-left">
-              <p><span className="font-medium">Email:</span> {user?.email || "N/A"}</p>
-              <p><span className="font-medium">Phone:</span> {user?.mobileNumber || "N/A"}</p>
+            {/* Info */}
+            <div className="flex-1">
+
+              <h1 className="text-3xl font-bold text-gray-800 mb-3 text-center md:text-left">
+                {user?.fullName || "Manager Name"}
+              </h1>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-5">
+                <span className="px-4 py-1 rounded-full bg-indigo-600 text-white text-sm font-semibold capitalize">
+                  {user?.role || "manager"}
+                </span>
+                <span className="px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+                  {user?.isActive || "active"}
+                </span>
+              </div>
+
+              <div className="space-y-2 mb-6 text-gray-600 text-sm md:text-base text-center md:text-left">
+                <p><span className="font-medium">Email:</span> {user?.email || "N/A"}</p>
+                <p><span className="font-medium">Phone:</span> {user?.mobileNumber || "N/A"}</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => setIsEditProfileModalOpen(true)}
+                  className="px-6 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition shadow-sm"
+                >
+                  Edit Profile
+                </button>
+
+                <button
+                  onClick={() => setIsResetPasswordModalOpen(true)}
+                  className="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold transition"
+                >
+                  Reset Password
+                </button>
+              </div>
+
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => setIsEditProfileModalOpen(true)}
-                className="w-full sm:w-auto px-6 py-2 rounded-lg bg-primary hover:bg-primary-hover text-background font-semibold transition"
-              >
-                Edit Profile
-              </button>
-
-              <button
-                onClick={() => setIsResetPasswordModalOpen(true)}
-                className="w-full sm:w-auto px-6 py-2 rounded-lg bg-secondary hover:bg-secondary-hover text-text font-semibold transition"
-              >
-                Reset Password
-              </button>
-            </div>
-
           </div>
         </div>
+
+        {/* ================= PERSONAL INFO ================= */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-4">
+            Personal Information
+          </h2>
+          <div className="divide-y divide-gray-200">
+            {renderField("Date of Birth", user?.dob)}
+            {renderField("Gender", user?.gender)}
+            {renderField("Address", user?.address)}
+            {renderField("City", user?.city)}
+            {renderField("PIN Code", user?.pin)}
+          </div>
+        </div>
+
+        {/* ================= GEO LOCATION ================= */}
+        {user?.geoLocation?.lat !== "N/A" && (
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <FaMapLocationDot className="text-indigo-600" />
+              Geo Location
+            </h2>
+            <div className="divide-y divide-gray-200">
+              {renderField("Latitude", user?.geoLocation?.lat)}
+              {renderField("Longitude", user?.geoLocation?.lon)}
+            </div>
+          </div>
+        )}
+
+        {/* ================= PAYMENT ================= */}
+        {user?.paymentDetails?.upi !== "N/A" && (
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <FaWallet className="text-indigo-600" />
+              Payment Details
+            </h2>
+            <div className="divide-y divide-gray-200">
+              {renderField("UPI ID", user?.paymentDetails?.upi)}
+            </div>
+          </div>
+        )}
+
+        {/* ================= BANK ================= */}
+        {user?.paymentDetails?.account_number !== "N/A" && (
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <BiSolidBank className="text-indigo-600" />
+              Bank Details
+            </h2>
+            <div className="divide-y divide-gray-200">
+              {renderField("Account Number", user?.paymentDetails?.account_number)}
+              {renderField("IFSC Code", user?.paymentDetails?.ifs_Code)}
+            </div>
+          </div>
+        )}
+
+        {/* ================= DOCUMENTS ================= */}
+        {Object.values(user?.documents || {}).some((doc) => doc !== "N/A") && (
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <FaFileAlt className="text-indigo-600" />
+              Business Documents
+            </h2>
+            <div className="divide-y divide-gray-200">
+              {renderField("GST", user?.documents?.gst)}
+              {renderField("FSSAI", user?.documents?.fssai)}
+              {renderField("RC", user?.documents?.rc)}
+              {renderField("DL", user?.documents?.dl)}
+              {renderField("UIDAI", user?.documents?.uidai)}
+              {renderField("PAN", user?.documents?.pan)}
+            </div>
+          </div>
+        )}
+
       </div>
 
-      {/* ================= PERSONAL INFO ================= */}
-      <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-        <h2 className="text-lg font-bold text-text mb-4">
-          Personal Information
-        </h2>
-
-        <div className="divide-y divide-secondary">
-          {renderField("Date of Birth", user?.dob)}
-          {renderField("Gender", user?.gender)}
-          {renderField("Address", user?.address)}
-          {renderField("City", user?.city)}
-          {renderField("PIN Code", user?.pin)}
-        </div>
-      </div>
-
-      {/* ================= GEO LOCATION ================= */}
-      {user?.geoLocation?.lat !== "N/A" && (
-        <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-          <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
-            <FaMapLocationDot className="text-primary" />
-            Geo Location
-          </h2>
-
-          <div className="divide-y divide-secondary">
-            {renderField("Latitude", user?.geoLocation?.lat)}
-            {renderField("Longitude", user?.geoLocation?.lon)}
-          </div>
-        </div>
+      {isEditProfileModalOpen && (
+        <EditRestaurantProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
       )}
 
-      {/* ================= PAYMENT ================= */}
-      {user?.paymentDetails?.upi !== "N/A" && (
-        <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-          <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
-            <FaWallet className="text-primary" />
-            Payment Details
-          </h2>
-
-          <div className="divide-y divide-secondary">
-            {renderField("UPI ID", user?.paymentDetails?.upi)}
-          </div>
-        </div>
+      {isResetPasswordModalOpen && (
+        <ResetPasswordModal onClose={() => setIsResetPasswordModalOpen(false)} />
       )}
-
-      {/* ================= BANK ================= */}
-      {user?.paymentDetails?.account_number !== "N/A" && (
-        <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-          <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
-            <BiSolidBank className="text-primary" />
-            Bank Details
-          </h2>
-
-          <div className="divide-y divide-secondary">
-            {renderField("Account Number", user?.paymentDetails?.account_number)}
-            {renderField("IFSC Code", user?.paymentDetails?.ifs_Code)}
-          </div>
-        </div>
-      )}
-
-      {/* ================= DOCUMENTS ================= */}
-      {Object.values(user?.documents || {}).some((doc) => doc !== "N/A") && (
-        <div className="bg-background border border-secondary rounded-xl p-4 sm:p-6">
-          <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
-            <FaFileAlt className="text-primary" />
-            Business Documents
-          </h2>
-
-          <div className="divide-y divide-secondary">
-            {renderField("GST", user?.documents?.gst)}
-            {renderField("FSSAI", user?.documents?.fssai)}
-            {renderField("RC", user?.documents?.rc)}
-            {renderField("DL", user?.documents?.dl)}
-            {renderField("UIDAI", user?.documents?.uidai)}
-            {renderField("PAN", user?.documents?.pan)}
-          </div>
-        </div>
-      )}
-
-    </div>
-
-    {isEditProfileModalOpen && (
-      <EditRestaurantProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
-    )}
-
-    {isResetPasswordModalOpen && (
-      <ResetPasswordModal onClose={() => setIsResetPasswordModalOpen(false)} />
-    )}
-  </>
-);
-
+    </>
+  );
 };
 
 export default RestaurantProfile;

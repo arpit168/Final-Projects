@@ -26,66 +26,68 @@ const RestaurantOverview = () => {
   ];
 
   return (
-    <>
-      <div className="bg-(--color-background) rounded-lg p-6 h-full overflow-y-auto space-y-6">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="bg-(--color-background) rounded-lg shadow-md p-6 border border-(--color-buttons)"
-            >
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="text-(--color-secondary) text-sm font-medium">
-                    {stat.title}
-                  </p>
-                  <p className="text-3xl font-bold text-(--color-text) mt-2">
-                    {stat.value}
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-lg text-2xl bg-(--color-secondary-hover) text-(--color-primary)">
-                  {stat.icon}
-                </div>
+    <div className="bg-gray-100 rounded-2xl p-6 h-full overflow-y-auto space-y-6">
+      
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {stats.map((stat, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition"
+          >
+            <div className="flex justify-between items-center">
+              
+              <div>
+                <p className="text-gray-500 text-sm font-medium">
+                  {stat.title}
+                </p>
+                <p className="text-3xl font-bold text-gray-800 mt-2">
+                  {stat.value}
+                </p>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Recent Orders */}
-        <div className="bg-(--color-background) rounded-lg shadow-md p-6 border border-(--color-buttons)">
-          <h2 className="text-xl font-bold text-(--color-text) mb-4">
-            Recent Orders
-          </h2>
+              <div className="p-4 rounded-xl text-2xl bg-indigo-100 text-indigo-600">
+                {stat.icon}
+              </div>
 
-          <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-(--color-secondary-hover) flex items-center justify-center mb-3">
-              <span className="text-2xl">🧾</span>
             </div>
-            <p className="text-(--color-secondary)">
-              No recent orders to display
-            </p>
           </div>
-        </div>
+        ))}
+      </div>
 
-        {/* Weekly Performance */}
-        <div className="bg-(--color-background) rounded-lg shadow-md p-6 border border-(--color-buttons)">
-          <h2 className="text-xl font-bold text-(--color-text) mb-4">
-            Weekly Performance
-          </h2>
+      {/* Recent Orders */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-6">
+          Recent Orders
+        </h2>
 
-          <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-(--color-secondary-hover) flex items-center justify-center mb-3">
-              <span className="text-2xl">📊</span>
-            </div>
-            <p className="text-(--color-secondary)">
-              Performance chart will be displayed here
-            </p>
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-2xl">
+            🧾
           </div>
+          <p className="text-gray-500">
+            No recent orders to display
+          </p>
         </div>
       </div>
-    </>
+
+      {/* Weekly Performance */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-6">
+          Weekly Performance
+        </h2>
+
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-2xl">
+            📊
+          </div>
+          <p className="text-gray-500">
+            Performance chart will be displayed here
+          </p>
+        </div>
+      </div>
+
+    </div>
   );
 };
 

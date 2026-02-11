@@ -21,31 +21,35 @@ const UserDashboard = () => {
     }
   }, [isLogin, navigate]);
 
+  // 🔴 Unauthorized View
   if (role !== "customer") {
     return (
-      <div className="p-3">
-        <div className="border border-(--color-secondary-hover) rounded shadow p-5 w-4xl mx-auto text-center bg-(--color-background)">
-          <div className="flex justify-center mb-2">
-            <RxCross2 className="text-3xl text-(--color-secondary)" />
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-8 w-full max-w-2xl text-center">
+          <div className="flex justify-center mb-4">
+            <div className="bg-red-100 p-4 rounded-full">
+              <RxCross2 className="text-4xl text-red-600" />
+            </div>
           </div>
-          <div className="text-xl text-(--color-text)">
-            You are not logged in as Customer. Please login again.
-          </div>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            Access Denied
+          </h2>
+          <p className="text-gray-600">
+            You are not logged in as a Customer.
+            Please login with the correct account.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-[90vh] flex overflow-hidden">
+    <div className="w-full h-screen flex bg-gray-100 overflow-hidden">
+      
       {/* SIDEBAR */}
       <div
-        className={`bg-(--color-primary) text-(--color-text) duration-300
-        ${
-          isCollapsed
-            ? "md:w-3/60 w-10/60 overflow-hidden"
-            : "md:w-10/60"
-        }`}
+        className={`bg-indigo-600 text-white shadow-lg transition-all duration-300
+        ${isCollapsed ? "md:w-20 w-24" : "md:w-64 w-64"}`}
       >
         <UserSideBar
           active={active}
@@ -56,18 +60,18 @@ const UserDashboard = () => {
       </div>
 
       {/* MAIN CONTENT */}
-      <div
-        className={`${
-          isCollapsed
-            ? "w-58/60"
-            : "w-full md:overflow-scroll overflow-hidden md:opacity-100 opacity-50"
-        } ms-2 overflow-auto duration-300 bg-(--color-background) text-(--color-text)`}
-      >
-        {active === "overview" && <UserOverview />}
-        {active === "profile" && <UserProfile />}
-        {active === "orders" && <UserOrders />}
-        {active === "transactions" && <UserTransactions />}
-        {active === "helpdesk" && <UserHelpDesk />}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6 min-h-[85vh]">
+            
+            {active === "overview" && <UserOverview />}
+            {active === "profile" && <UserProfile />}
+            {active === "orders" && <UserOrders />}
+            {active === "transactions" && <UserTransactions />}
+            {active === "helpdesk" && <UserHelpDesk />}
+
+          </div>
+        </div>
       </div>
     </div>
   );

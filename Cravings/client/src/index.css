@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@plugin "flyonui" {
-  themes: all;
-}
+
+
 
 @layer components {
   [data-theme="default"] {

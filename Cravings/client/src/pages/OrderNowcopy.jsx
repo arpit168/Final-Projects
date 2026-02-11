@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../config/Api";
-import { toast } from "react-hot-toast";
-import { motion } from "motion/react";
+import toast from "react-hot-toast";
 
 const OrderNowcopy = () => {
   const navigate = useNavigate();
-
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState();
   const [loading, setLoading] = useState(false);
 
-  /* ================= FETCH RESTAURANTS ================= */
   const fetchAllRestaurant = async () => {
     setLoading(true);
     try {
       const res = await api.get("/public/allRestaurants");
-      setRestaurants(res?.data?.data || []);
+      setRestaurants(res.data.data);
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to fetch restaurants");
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setLoading(false);
     }
@@ -27,96 +25,61 @@ const OrderNowcopy = () => {
     fetchAllRestaurant();
   }, []);
 
-  /* ================= NAVIGATE ================= */
-  const handleRestaurantClick = (restaurant) => {
-    navigate("/restaurantMenuCopy", { state: restaurant });
+  const handleResturantClick = (restaurantID) => {
+    navigate(`/restaurant/${restaurantID}`);
   };
 
   return (
-    <div className="min-h-screen bg-background text-text px-6 py-10">
-
-      {/* ================= HEADER ================= */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold">
-          Order Now
-        </h1>
-        <p className="opacity-70 mt-3">
-          Browse top restaurants and satisfy your cravings 🍽️
-        </p>
-      </div>
-
-      {/* ================= LOADING ================= */}
-      {loading && (
-        <div className="text-center py-20">
-          <div className="animate-pulse text-primary font-semibold">
-            Loading restaurants...
-          </div>
+    <>
+      <div className="bg-background p-3 h-screen">
+        {/* Header */}
+        <div className="flex flex-col items-center justify-center mb-6">
+          <h1 className="text-3xl font-bold text-text">
+            Order Now
+          </h1>
+          <p className="text-text/70 mt-2">
+            Browse our menu and place your order now!
+          </p>
         </div>
-      )}
 
-      {/* ================= EMPTY STATE ================= */}
-      {!loading && restaurants.length === 0 && (
-        <div className="text-center py-20 opacity-70">
-          No restaurants available at the moment.
-        </div>
-      )}
-
-      {/* ================= RESTAURANT GRID ================= */}
-      {!loading && restaurants.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-          {restaurants.map((restaurant) => (
-            <motion.div
-              key={restaurant._id}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => handleRestaurantClick(restaurant)}
-              className="bg-secondary rounded-3xl shadow-md hover:shadow-xl transition cursor-pointer overflow-hidden"
-            >
-
-              {/* Restaurant Image */}
-              <div className="h-40 bg-background flex items-center justify-center">
-                {restaurant.image ? (
-                  <img
-                    src={restaurant.image}
-                    alt={restaurant.restaurantName}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <span className="opacity-50 text-sm">
-                    No Image Available
-                  </span>
-                )}
-              </div>
-
-              {/* Restaurant Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-semibold mb-3">
+        {/* Restaurant List */}
+        {restaurants ? (
+          <div className="grid grid-cols-4 gap-3">
+            {restaurants.map((restaurant, idx) => (
+              <div
+                key={idx}
+                className="bg-background rounded p-3 cursor-pointer border border-buttons
+                hover:shadow-lg hover:border-primary transition"
+                onClick={() => handleResturantClick(restaurant._id)}
+              >
+                <div className="font-semibold text-text mb-2">
                   {restaurant.restaurantName}
-                </h3>
+                </div>
 
-                {/* Cuisine Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {(restaurant.cuisine?.split(",") || [])
+                <div className="flex gap-2 flex-wrap">
+                  {restaurant.cuisine
+                    .split(", ")
                     .slice(0, 2)
-                    .map((cuisine, index) => (
+                    .map((cusine, idx) => (
                       <span
-                        key={index}
-                        className="px-3 py-1 text-xs rounded-full bg-primary text-background capitalize"
+                        key={idx}
+                        className="py-1 px-3 bg-secondary hover:bg-secondary-hover
+                        text-buttons rounded-2xl text-sm capitalize transition"
                       >
-                        {cuisine.trim()}
+                        {cusine.toLowerCase()}
                       </span>
                     ))}
                 </div>
-
               </div>
-            </motion.div>
-          ))}
-
-        </div>
-      )}
-
-    </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-text/60">
+            {loading ? "Loading restaurants..." : "No restaurants found"}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
