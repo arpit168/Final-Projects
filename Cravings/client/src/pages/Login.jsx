@@ -74,7 +74,7 @@ const Login = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-background">
+      <div className="w-full h-screen flex items-center justify-center bg-[#0f172a]">
         <Loading />
       </div>
     );
@@ -82,86 +82,97 @@ const Login = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-background py-6 px-4">
-        <div className="max-w-xl mx-auto">
+      <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
+
+        <div className="w-full max-w-md backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
+
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-text mb-2">
+            <h1 className="text-4xl font-bold text-white mb-2">
               Welcome Back
             </h1>
+            <p className="text-gray-300 text-sm">
+              Login to continue to Craving Food Zone
+            </p>
           </div>
 
-          {/* Form Container */}
-          <div className="bg-background rounded-xl shadow-2xl overflow-hidden border border-buttons">
-            <form
-              onSubmit={handleSubmit}
-              onReset={handleClearForm}
-              className="p-8"
-            >
-              {/* Inputs */}
-              <div className="mb-5 space-y-4">
+          {/* Form */}
+          <form onSubmit={handleSubmit} onReset={handleClearForm}>
+            <div className="space-y-5">
+
+              {/* Email */}
+              <div>
+                <label className="block text-gray-300 text-sm mb-2">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email Address"
                   value={formData.email}
                   onChange={handleChange}
                   required
                   disabled={isLoading}
-                  className="w-full px-4 py-3 border border-buttons rounded-lg bg-background text-text
-                  focus:outline-none focus:border-primary transition
-                  disabled:cursor-not-allowed disabled:opacity-60"
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 text-white border border-gray-500 
+                  focus:outline-none focus:ring-2 focus:ring-[#f97316] focus:border-transparent
+                  placeholder-gray-400 transition"
+                  placeholder="Enter your email"
                 />
+              </div>
 
+              {/* Password */}
+              <div>
+                <label className="block text-gray-300 text-sm mb-2">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
-                  placeholder="Password"
                   onChange={handleChange}
                   required
                   disabled={isLoading}
-                  className="w-full px-4 py-3 border border-buttons rounded-lg bg-background text-text
-                  focus:outline-none focus:border-primary transition
-                  disabled:cursor-not-allowed disabled:opacity-60"
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 text-white border border-gray-500 
+                  focus:outline-none focus:ring-2 focus:ring-[#f97316] focus:border-transparent
+                  placeholder-gray-400 transition"
+                  placeholder="Enter your password"
                 />
+              </div>
 
-                <div className="flex justify-end">
-                  <button
-                    type="button"
-                    className="text-primary hover:text-secondary font-medium transition"
-                    onClick={() => setIsForgetPasswordModelOpen(true)}
-                  >
-                    Forget Password?
-                  </button>
-                </div>
+              {/* Forget Password */}
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsForgetPasswordModelOpen(true)}
+                  className="text-[#f97316] hover:text-[#fb923c] text-sm font-medium transition"
+                >
+                  Forgot Password?
+                </button>
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-4 pt-8 border-t border-buttons">
+              <div className="flex gap-4 pt-4">
                 <button
                   type="reset"
                   disabled={isLoading}
-                  className="flex-1 bg-secondary text-secondary-content font-bold py-4 rounded-lg hover:text-accent transition disabled:cursor-not-allowed"
+                  className="flex-1 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold transition"
                 >
-                  Clear 
+                  Clear
                 </button>
 
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 bg-primary hover:text-accent hover:bg-secondary text-buttons font-bold py-4 px-6 rounded-lg transition shadow-lg
-                  disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex-1 py-3 rounded-lg bg-[#f97316] hover:bg-[#ea580c] text-white font-semibold shadow-lg transition transform hover:scale-[1.02]"
                 >
-                  {isLoading ? "loading.." : "Login"}
+                  {isLoading ? "Loading..." : "Login"}
                 </button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
 
           {/* Footer */}
-          <p className="text-center text-text/70 mt-8 text-sm">
-            All fields marked are mandatory. We respect your privacy.
+          <p className="text-center text-gray-400 text-xs mt-8">
+            Your information is securely encrypted.
           </p>
         </div>
       </div>

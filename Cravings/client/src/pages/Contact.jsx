@@ -19,14 +19,22 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({});
 
+  /* ------------------ Handle Change ------------------ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContactData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    // Remove error while typing
+    setError((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
+  /* ------------------ Reset ------------------ */
   const handleClearForm = () => {
     setContactData({
       fullName: "",
@@ -37,13 +45,14 @@ const Contact = () => {
     setError({});
   };
 
+  /* ------------------ Validation ------------------ */
   const validate = () => {
     const err = {};
 
     if (!contactData.fullName.trim()) {
       err.fullName = "Name is required";
-    } else if (contactData.fullName.trim().length < 3) {
-      err.fullName = "Name must be at least 3 characters";
+    } else if (contactData.fullName.length < 3) {
+      err.fullName = "Minimum 3 characters required";
     }
 
     if (!contactData.email.trim()) {
@@ -55,13 +64,14 @@ const Contact = () => {
     }
 
     if (!contactData.message.trim()) {
-      err.message = "Message is required";
+      err.message = "Message cannot be empty";
     }
 
     setError(err);
     return Object.keys(err).length === 0;
   };
 
+  /* ------------------ Submit ------------------ */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -84,134 +94,150 @@ const Contact = () => {
 
   return (
     <>
-      {/* HERO */}
-      <div className="relative w-full h-[60vh] md:h-[80vh]">
+      {/* ---------------- HERO ---------------- */}
+      <div className="relative w-full h-[70vh]">
         <img src={img} alt="Contact" className="w-full h-full object-cover" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-background/80 px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-primary/60 tracking-wide">
+          <h1 className="text-5xl md:text-7xl font-bold text-primary tracking-wide">
             Contact Us
           </h1>
-          <p className="mt-4 text-sm sm:text-base md:text-lg text-secondary max-w-xl">
-            We’d love to hear from you. Reach out for queries, feedback or table
-            bookings.
+          <p className="mt-4 text-lg text-secondary max-w-xl">
+            Have questions, feedback or bookings? We’re here to help you.
           </p>
         </div>
       </div>
 
-      {/* MAIN */}
-      <div className="bg-background py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-background rounded-2xl shadow-xl p-8">
-            {/* LEFT */}
-            <div className="md:border-r md:border-secondary md:pr-8">
-              <h2 className="text-3xl font-semibold mb-4 text-text">
-                Get in Touch
-              </h2>
+      {/* ---------------- MAIN ---------------- */}
+      <div className="bg-background py-20 px-4">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 bg-background rounded-3xl shadow-xl p-10">
 
-              <div className="space-y-5 text-secondary">
-                <p>
-                  Have a question or want to book a table? Fill out the form and
-                  our team will get back to you shortly.
-                </p>
-                <p>
-                  Feel free to reach out to us for any queries, feedback, or
-                  table bookings.
-                </p>
-                <p>
-                  Questions, suggestions, or planning a visit? We’re just a
-                  message away!
-                </p>
+          {/* LEFT SIDE */}
+          <div className="md:border-r md:border-secondary md:pr-10">
+            <h2 className="text-3xl font-bold text-text mb-4">
+              Get in Touch
+            </h2>
+
+            <p className="text-secondary mb-6 leading-relaxed">
+              Whether you’re planning a dinner, giving feedback, or just
+              saying hello — our team is ready to assist you.
+            </p>
+
+            <div className="flex items-center gap-2 text-primary font-semibold text-lg">
+              Thank You
+              <LiaPrayingHandsSolid className="text-2xl" />
+            </div>
+          </div>
+
+          {/* FORM */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+
+            {/* Name + Email */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <input
+                  name="fullName"
+                  value={contactData.fullName}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                  className="w-full border border-secondary rounded-xl p-3 focus:ring-2 focus:ring-primary bg-background text-text"
+                />
+                {error.fullName && (
+                  <p className="text-secondary text-sm mt-1">
+                    {error.fullName}
+                  </p>
+                )}
               </div>
 
-              <h1 className="mt-5 text-text flex items-center gap-2 text-xl font-bold">
-                Thank You <LiaPrayingHandsSolid className="text-2xl" />
-                <span className="w-25 bg-primary p-1"></span>
-              </h1>
+              <div>
+                <input
+                  name="email"
+                  value={contactData.email}
+                  onChange={handleChange}
+                  placeholder="Your Email"
+                  className="w-full border border-secondary rounded-xl p-3 focus:ring-2 focus:ring-primary bg-background text-text"
+                />
+                {error.email && (
+                  <p className="text-secondary text-sm mt-1">
+                    {error.email}
+                  </p>
+                )}
+              </div>
             </div>
 
-            {/* FORM */}
-            <form onSubmit={handleSubmit} onReset={handleClearForm}>
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <input
-                    name="fullName"
-                    value={contactData.fullName}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                    placeholder="Your Name"
-                    className="w-full border border-secondary rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-text"
-                  />
+            {/* Subject */}
+            <div>
+              <input
+                name="sub"
+                value={contactData.sub}
+                onChange={handleChange}
+                placeholder="Subject"
+                className="w-full border border-secondary rounded-xl p-3 focus:ring-2 focus:ring-primary bg-background text-text"
+              />
+              {error.sub && (
+                <p className="text-secondary text-sm mt-1">
+                  {error.sub}
+                </p>
+              )}
+            </div>
 
-                  <input
-                    name="email"
-                    value={contactData.email}
-                    onChange={handleChange}
-                    disabled={isLoading}
-                    placeholder="Your Email"
-                    className="w-full border border-secondary rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-text"
-                  />
-                </div>
+            {/* Message */}
+            <div>
+              <textarea
+                name="message"
+                value={contactData.message}
+                onChange={handleChange}
+                rows="4"
+                placeholder="Your Message"
+                className="w-full border border-secondary rounded-xl p-3 focus:ring-2 focus:ring-primary bg-background text-text"
+              />
+              {error.message && (
+                <p className="text-secondary text-sm mt-1">
+                  {error.message}
+                </p>
+              )}
+            </div>
 
-                <input
-                  name="sub"
-                  value={contactData.sub}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                  placeholder="Subject"
-                  className="w-full border border-secondary rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-text"
-                />
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={handleClearForm}
+                className="w-1/3 bg-secondary text-secondary-content hover:bg-secondary-hover py-3 rounded-xl font-semibold transition"
+              >
+                Clear
+              </button>
 
-                <textarea
-                  name="message"
-                  value={contactData.message}
-                  onChange={handleChange}
-                  disabled={isLoading}
-                  rows="4"
-                  placeholder="Your Message"
-                  className="w-full border border-secondary rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-text"
-                />
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-2/3 bg-primary text-primary-content hover:bg-primary-hover py-3 rounded-xl font-semibold transition"
+              >
+                {isLoading ? "Sending..." : "Send Message"}
+              </button>
+            </div>
+          </form>
+        </div>
 
-                <div className="flex gap-2">
-                  <button
-                    type="reset"
-                    className="w-1/4 bg-secondary text-secondary-content hover:bg-secondary-hover py-3 rounded-lg font-semibold transition"
-                  >
-                    Clear
-                  </button>
-
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-3/4 bg-primary text-primary-content hover:bg-primary-hover py-3 rounded-lg font-semibold transition"
-                  >
-                    {isLoading ? "Sending..." : "Book Your Table"}
-                  </button>
-                </div>
+        {/* ---------------- INFO CARDS ---------------- */}
+        <div className="grid md:grid-cols-4 gap-6 mt-16 max-w-6xl mx-auto">
+          {[IoLocation, FaPhoneAlt, MdEmail, FaGlobeAsia].map(
+            (Icon, i) => (
+              <div
+                key={i}
+                className="bg-background p-6 rounded-3xl shadow-md text-center hover:-translate-y-2 transition"
+              >
+                <Icon className="text-primary text-5xl mx-auto mb-4" />
+                <p className="text-text text-sm">
+                  {i === 0 && "Location: Churhat, Sidhi, MP"}
+                  {i === 1 && "Phone: +91 9516010142"}
+                  {i === 2 &&
+                    "Email: officialcravingdelicious112@gmail.com"}
+                  {i === 3 && "Website: www.cravingdeliciousfood.in"}
+                </p>
               </div>
-            </form>
-          </div>
-
-          {/* INFO */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-14">
-            {[IoLocation, FaPhoneAlt, MdEmail, FaGlobeAsia].map(
-              (Icon, i) => (
-                <div
-                  key={i}
-                  className="bg-background p-6 rounded-2xl shadow-md text-center hover:-translate-y-2 transition"
-                >
-                  <Icon className="text-primary text-5xl mx-auto mb-4" />
-                  <p className="font-medium text-text text-sm">
-                    {i === 0 && "Location: Churhat, Sidhi, MP"}
-                    {i === 1 && "Phone: +91 9516010142"}
-                    {i === 2 &&
-                      "Email: officialcravingdelicious112@gmail.com"}
-                    {i === 3 && "Website: www.cravingdeliciousfood.in"}
-                  </p>
-                </div>
-              )
-            )}
-          </div>
+            )
+          )}
         </div>
       </div>
     </>

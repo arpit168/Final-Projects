@@ -13,12 +13,11 @@ const RestaurantMenu = () => {
   const [isViewItemModalOpen, setIsViewItemModalOpen] = useState(false);
   const [isEditItemModalOpen, setIsEditItemModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
-  const [menuItems, setMenuItems] = useState();
+  const [menuItems, setMenuItems] = useState([]);
 
   const fetchMenuItem = async () => {
     try {
       const res = await api.get("/restaurant/menuItems");
-      toast.success(res.data.message);
       setMenuItems(res.data.data);
     } catch (error) {
       toast.error(error?.response?.data?.message || "Failed to fetch menu");
@@ -33,95 +32,147 @@ const RestaurantMenu = () => {
 
   return (
     <>
-      <div className="bg-(--color-background) rounded-lg p-6 h-full overflow-y-auto">
-        <div className="bg-(--color-background) rounded-lg shadow-md p-6 border border-(--color-buttons)">
+      <div className="bg-background min-h-screen p-4 md:p-6">
+        <div className="bg-background border border-secondary rounded-xl p-4 md:p-6">
+
           {/* Header */}
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-(--color-text)">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <h2 className="text-xl md:text-2xl font-bold text-text">
               Menu Management
             </h2>
 
             <button
-              className="px-4 py-2 bg-(--color-secondary) text-(--color-text) rounded-lg hover:bg-(--color-secondary-hover) transition font-semibold"
+              className="px-4 py-2 bg-secondary hover:bg-secondary-hover text-text rounded-lg font-semibold transition w-full sm:w-auto"
               onClick={() => setIsAddItemModalOpen(true)}
             >
               Add Item
             </button>
           </div>
 
-          <div className="border border-(--color-buttons) mt-3" />
+          {/* Desktop Table */}
+          <div className="hidden md:block mt-6 overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-secondary text-text text-left">
+                  <th className="p-3">S.no</th>
+                  <th className="p-3">Item Name</th>
+                  <th className="p-3">Price</th>
+                  <th className="p-3">Type</th>
+                  <th className="p-3">Cuisine</th>
+                  <th className="p-3 text-center">Availability</th>
+                  <th className="p-3 text-center">Action</th>
+                </tr>
+              </thead>
 
-          {/* Table */}
-          <table className="w-full mt-3">
-            <thead>
-              <tr className="grid grid-cols-8 text-lg bg-(--color-secondary) text-(--color-text)">
-                <th className="font-semibold">S.no</th>
-                <th className="font-semibold col-span-2">Item Name</th>
-                <th className="font-semibold">Price</th>
-                <th className="font-semibold">Type</th>
-                <th className="font-semibold">Cuisine</th>
-                <th className="font-semibold">Availability</th>
-                <th className="font-semibold">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {menuItems &&
-                menuItems.map((items, idx) => (
+              <tbody>
+                {menuItems.map((item, idx) => (
                   <tr
                     key={idx}
-                    className="grid grid-cols-8 text-center py-2 border-b border-(--color-buttons) text-(--color-text)"
+                    className="border-b border-secondary text-text"
                   >
-                    <td>{idx + 1}</td>
-                    <td className="col-span-2">{items.itemName}</td>
-                    <td>{items.price}</td>
-                    <td>{items.type.toUpperCase()}</td>
-                    <td>{items.cuisine}</td>
+                    <td className="p-3">{idx + 1}</td>
+                    <td className="p-3 font-medium">{item.itemName}</td>
+                    <td className="p-3">₹ {item.price}</td>
+                    <td className="p-3 capitalize">{item.type}</td>
+                    <td className="p-3">{item.cuisine}</td>
 
-                    <td className="flex justify-center items-center text-2xl">
-                      {items.availability === "available" ? (
-                        <FaToggleOn
-                          className="text-(--color-primary)"
-                          title="Available"
-                        />
-                      ) : items.availability === "unavailable" ? (
-                        <FaToggleOff
-                          className="text-(--color-secondary)"
-                          title="Unavailable"
-                        />
+                    <td className="p-3 text-center text-xl">
+                      {item.availability === "available" ? (
+                        <FaToggleOn className="text-primary inline" />
+                      ) : item.availability === "unavailable" ? (
+                        <FaToggleOff className="text-secondary inline" />
                       ) : (
-                        <ImBlocked
-                          className="text-(--color-text)"
-                          title="Removed from Menu"
-                        />
+                        <ImBlocked className="text-text inline" />
                       )}
                     </td>
 
-                    <td className="flex gap-4 justify-center">
-                      <button
-                        className="p-2 rounded-lg bg-(--color-background) border border-(--color-buttons) shadow hover:bg-(--color-secondary-hover) transition"
-                        onClick={() => {
-                          setSelectedItem(items);
-                          setIsViewItemModalOpen(true);
-                        }}
-                      >
-                        <FaEye className="text-(--color-text)" />
-                      </button>
+                    <td className="p-3">
+                      <div className="flex justify-center gap-3">
+                        <button
+                          className="p-2 rounded-lg border border-secondary hover:bg-secondary-hover transition"
+                          onClick={() => {
+                            setSelectedItem(item);
+                            setIsViewItemModalOpen(true);
+                          }}
+                        >
+                          <FaEye className="text-text" />
+                        </button>
 
-                      <button
-                        className="p-2 rounded-lg bg-(--color-background) border border-(--color-buttons) shadow hover:bg-(--color-primary-hover) transition"
-                        onClick={() => {
-                          setSelectedItem(items);
-                          setIsEditItemModalOpen(true);
-                        }}
-                      >
-                        <FaEdit className="text-(--color-text)" />
-                      </button>
+                        <button
+                          className="p-2 rounded-lg border border-secondary hover:bg-primary-hover transition"
+                          onClick={() => {
+                            setSelectedItem(item);
+                            setIsEditItemModalOpen(true);
+                          }}
+                        >
+                          <FaEdit className="text-text" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden mt-6 space-y-4">
+            {menuItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="border border-secondary rounded-xl p-4 bg-background space-y-2"
+              >
+                <div className="flex justify-between items-center">
+                  <h3 className="font-semibold text-text">
+                    {item.itemName}
+                  </h3>
+                  <span className="text-primary font-bold">
+                    ₹ {item.price}
+                  </span>
+                </div>
+
+                <div className="text-sm text-text space-y-1">
+                  <p><span className="font-medium">Type:</span> {item.type}</p>
+                  <p><span className="font-medium">Cuisine:</span> {item.cuisine}</p>
+                </div>
+
+                <div className="flex justify-between items-center pt-2">
+                  <div className="text-xl">
+                    {item.availability === "available" ? (
+                      <FaToggleOn className="text-primary" />
+                    ) : item.availability === "unavailable" ? (
+                      <FaToggleOff className="text-secondary" />
+                    ) : (
+                      <ImBlocked className="text-text" />
+                    )}
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button
+                      className="p-2 rounded-lg border border-secondary hover:bg-secondary-hover transition"
+                      onClick={() => {
+                        setSelectedItem(item);
+                        setIsViewItemModalOpen(true);
+                      }}
+                    >
+                      <FaEye className="text-text" />
+                    </button>
+
+                    <button
+                      className="p-2 rounded-lg border border-secondary hover:bg-primary-hover transition"
+                      onClick={() => {
+                        setSelectedItem(item);
+                        setIsEditItemModalOpen(true);
+                      }}
+                    >
+                      <FaEdit className="text-text" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
 

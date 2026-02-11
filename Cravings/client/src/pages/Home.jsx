@@ -6,182 +6,98 @@ const Home = () => {
   const navigate = useNavigate();
 
   const featuredRestaurants = [
-    {
-      id: 1,
-      name: "Spice Kingdom",
-      cuisine: "Indian",
-      rating: 4.5,
-      deliveryTime: "30-40 mins",
-      image: "🏪",
-    },
-    {
-      id: 2,
-      name: "Pizza Paradise",
-      cuisine: "Italian",
-      rating: 4.3,
-      deliveryTime: "25-35 mins",
-      image: "🍕",
-    },
-    {
-      id: 3,
-      name: "Dragon Wok",
-      cuisine: "Chinese",
-      rating: 4.6,
-      deliveryTime: "35-45 mins",
-      image: "🥢",
-    },
-    {
-      id: 4,
-      name: "Burger Haven",
-      cuisine: "American",
-      rating: 4.4,
-      deliveryTime: "20-30 mins",
-      image: "🍔",
-    },
+    { id: 1, name: "Spice Kingdom", cuisine: "Indian", rating: 4.5, deliveryTime: "30-40 mins", image: "🏪" },
+    { id: 2, name: "Pizza Paradise", cuisine: "Italian", rating: 4.3, deliveryTime: "25-35 mins", image: "🍕" },
+    { id: 3, name: "Dragon Wok", cuisine: "Chinese", rating: 4.6, deliveryTime: "35-45 mins", image: "🥢" },
+    { id: 4, name: "Burger Haven", cuisine: "American", rating: 4.4, deliveryTime: "20-30 mins", image: "🍔" },
   ];
 
   const popularDishes = [
-    {
-      id: 1,
-      name: "Butter Chicken",
-      restaurant: "Spice Kingdom",
-      price: 299,
-      rating: 4.7,
-      image: "🍛",
-    },
-    {
-      id: 2,
-      name: "Margherita Pizza",
-      restaurant: "Pizza Paradise",
-      price: 349,
-      rating: 4.5,
-      image: "🍕",
-    },
-    {
-      id: 3,
-      name: "Hakka Noodles",
-      restaurant: "Dragon Wok",
-      price: 249,
-      rating: 4.6,
-      image: "🍜",
-    },
-    {
-      id: 4,
-      name: "Classic Burger",
-      restaurant: "Burger Haven",
-      price: 199,
-      rating: 4.4,
-      image: "🍔",
-    },
-    {
-      id: 5,
-      name: "Tandoori Chicken",
-      restaurant: "Spice Kingdom",
-      price: 279,
-      rating: 4.8,
-      image: "🍖",
-    },
-    {
-      id: 6,
-      name: "Garlic Bread",
-      restaurant: "Pizza Paradise",
-      price: 99,
-      rating: 4.3,
-      image: "🥖",
-    },
+    { id: 1, name: "Butter Chicken", restaurant: "Spice Kingdom", price: 299, rating: 4.7, image: "🍛" },
+    { id: 2, name: "Margherita Pizza", restaurant: "Pizza Paradise", price: 349, rating: 4.5, image: "🍕" },
+    { id: 3, name: "Hakka Noodles", restaurant: "Dragon Wok", price: 249, rating: 4.6, image: "🍜" },
+    { id: 4, name: "Classic Burger", restaurant: "Burger Haven", price: 199, rating: 4.4, image: "🍔" },
+    { id: 5, name: "Tandoori Chicken", restaurant: "Spice Kingdom", price: 279, rating: 4.8, image: "🍖" },
+    { id: 6, name: "Garlic Bread", restaurant: "Pizza Paradise", price: 99, rating: 4.3, image: "🥖" },
   ];
 
   return (
-    <>
-      {/* HERO */}
-      <section className="relative bg-primary/30 text-primary-content py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold">
-                Order Your Favorite Food
-              </h1>
+    <div className="bg-[#F1F5F9] text-[#1E293B] overflow-hidden">
 
-              <p className="text-lg md:text-xl text-secondary">
-                Discover delicious meals from the best restaurants in your area.
-                Fast delivery, great quality, amazing taste!
-              </p>
+      {/* ================= HERO ================= */}
+      <section className="py-28 bg-[#1E293B] text-white relative">
+        <div className="absolute inset-0 bg-[#10B981] opacity-5"></div>
 
-              <div className="flex flex-wrap gap-4 pt-4">
-                <button
-                  onClick={() => navigate("/order-now")}
-                  className="px-8 py-3 bg-base-100 text-primary font-semibold rounded-lg hover:bg-secondary-hover transition"
-                >
-                  Order Now
-                </button>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
 
-                <button
-                  onClick={() => navigate("/contact")}
-                  className="px-8 py-3 bg-secondary/50 text-secondary-content font-semibold rounded-lg hover:bg-secondary-hover transition border border-secondary"
-                >
-                  Contact Us
-                </button>
-              </div>
+          <div className="space-y-8">
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+              Order Your <span className="text-[#10B981]">Favorite Food</span>
+            </h1>
 
-              <div className="grid grid-cols-3 gap-4 pt-8">
-                <div>
-                  <p className="text-3xl font-bold">500+</p>
-                  <p>Restaurants</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold">50K+</p>
-                  <p>Happy Customers</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold">24/7</p>
-                  <p>Support</p>
-                </div>
-              </div>
+            <p className="text-lg text-slate-300">
+              Discover delicious meals from the best restaurants in your area.
+              Fast delivery, premium quality, unforgettable taste.
+            </p>
+
+            <div className="flex gap-5 pt-4">
+              <button
+                onClick={() => navigate("/order-now")}
+                className="px-10 py-4 bg-[#10B981] text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-lg"
+              >
+                Order Now
+              </button>
+
+              <button
+                onClick={() => navigate("/contact")}
+                className="px-10 py-4 border-2 border-[#10B981] text-[#10B981] rounded-2xl font-semibold hover:bg-[#10B981] hover:text-white transition"
+              >
+                Contact Us
+              </button>
             </div>
 
-            <div className="flex flex-col gap-2 justify-center items-center">
-              <img src={img} className="  animate-pulse " alt="" />
-              <img src={img} className="  animate-pulse " alt="" />
-              <img src={img} className="  animate-pulse " alt="" />
+            <div className="grid grid-cols-3 gap-8 pt-12">
+              <Stat number="500+" label="Restaurants" />
+              <Stat number="50K+" label="Happy Customers" />
+              <Stat number="24/7" label="Support" />
             </div>
+          </div>
+
+          <div className="flex justify-center">
+            <img
+              src={img}
+              alt="food"
+              className="rounded-3xl shadow-2xl border-4 border-[#10B981] hover:scale-105 transition duration-500"
+            />
           </div>
         </div>
       </section>
 
-      {/* FEATURED RESTAURANTS */}
-      <section className="py-16 bg-primary/20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-base-content">
-              Featured Restaurants
-            </h2>
-            <p className="text-secondary">Explore our top-rated restaurants</p>
-          </div>
+      {/* ================= FEATURED ================= */}
+      <section className="py-24 bg-[#F1F5F9]">
+        <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionHeader
+            title="Featured Restaurants"
+            subtitle="Explore our top-rated restaurants"
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {featuredRestaurants.map((restaurant) => (
               <div
                 key={restaurant.id}
-                className="bg-base-100 rounded-lg shadow-md hover:shadow-lg transition overflow-hidden cursor-pointer"
+                className="bg-white border border-[#E2E8F0] rounded-3xl p-6 shadow-md hover:-translate-y-3 hover:shadow-lg transition cursor-pointer"
               >
-                <div className="h-40 bg-primary flex items-center justify-center">
-                  <span className="text-6xl">{restaurant.image}</span>
+                <div className="h-32 flex items-center justify-center bg-[#F1F5F9] rounded-2xl mb-5">
+                  <span className="text-5xl">{restaurant.image}</span>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-base-content">
-                    {restaurant.name}
-                  </h3>
-                  <p className="text-sm text-secondary">{restaurant.cuisine}</p>
+                <h3 className="font-semibold text-lg">{restaurant.name}</h3>
+                <p className="text-sm text-[#64748B]">{restaurant.cuisine}</p>
 
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="font-semibold">
-                      {restaurant.rating} ⭐
-                    </span>
-                    <p className="text-sm text-secondary">
-                      {restaurant.deliveryTime}
-                    </p>
-                  </div>
+                <div className="flex justify-between mt-4 text-sm">
+                  <span>{restaurant.rating} ⭐</span>
+                  <span className="text-[#64748B]">{restaurant.deliveryTime}</span>
                 </div>
               </div>
             ))}
@@ -189,38 +105,35 @@ const Home = () => {
         </div>
       </section>
 
-      {/* POPULAR DISHES */}
-      <section className="py-16 bg-accent/70">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-base-content">
-              Popular Dishes
-            </h2>
-            <p className="text-secondary">Most loved meals by our customers</p>
-          </div>
+      {/* ================= POPULAR ================= */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <SectionHeader
+            title="Popular Dishes"
+            subtitle="Most loved meals by our customers"
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {popularDishes.map((dish) => (
               <div
                 key={dish.id}
-                className="bg-base-100 rounded-lg shadow-md hover:shadow-lg transition"
+                className="bg-white border border-[#E2E8F0] rounded-3xl overflow-hidden shadow-md hover:-translate-y-3 transition hover:shadow-lg"
               >
-                <div className="h-48 bg-primary flex items-center justify-center">
+                <div className="h-44 flex items-center justify-center bg-[#F1F5F9]">
                   <span className="text-8xl">{dish.image}</span>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-base-content">
-                    {dish.name}
-                  </h3>
-                  <p className="text-sm text-secondary">{dish.restaurant}</p>
+                <div className="p-6">
+                  <h3 className="font-semibold text-lg">{dish.name}</h3>
+                  <p className="text-sm text-[#64748B]">{dish.restaurant}</p>
 
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="font-bold">₹{dish.price}</span>
+                  <div className="flex justify-between mt-4">
+                    <span className="font-bold text-[#10B981]">₹{dish.price}</span>
                     <span>{dish.rating} ⭐</span>
                   </div>
 
-                  <button className="w-full mt-3 px-4 py-2 bg-primary text-primary-content rounded-md hover:bg-primary-hover transition">
+                  <button className="w-full mt-6 py-3 bg-[#1E293B] text-white rounded-xl hover:bg-[#0F172A] transition font-semibold shadow">
                     Add to Cart
                   </button>
                 </div>
@@ -230,28 +143,46 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-primary text-primary-content">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Order?
-          </h2>
+      {/* ================= CTA ================= */}
+      <section className="py-28 bg-[#1E293B] text-white text-center">
+        <h2 className="text-5xl font-bold mb-6">
+          Ready to Order?
+        </h2>
 
-          <p className="text-secondary mb-8">
-            Join thousands of satisfied customers and enjoy delicious food
-            delivered to your doorstep
-          </p>
+        <p className="text-slate-300 mb-10 text-lg">
+          Join thousands of satisfied customers and enjoy premium food
+          delivered to your doorstep.
+        </p>
 
-          <button
-            onClick={() => navigate("/order-now")}
-            className="px-8 py-3 bg-base-100 text-primary font-semibold rounded-lg hover:bg-secondary-hover transition"
-          >
-            Order Now
-          </button>
-        </div>
+        <button
+          onClick={() => navigate("/order-now")}
+          className="px-12 py-4 bg-[#10B981] text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-xl"
+        >
+          Order Now
+        </button>
       </section>
-    </>
+    </div>
   );
 };
+
+/* ---------- Components ---------- */
+
+const SectionHeader = ({ title, subtitle }) => (
+  <div className="text-center mb-16">
+    <h2 className="text-4xl font-bold text-[#1E293B]">
+      {title}
+    </h2>
+    <p className="mt-3 text-[#64748B]">
+      {subtitle}
+    </p>
+  </div>
+);
+
+const Stat = ({ number, label }) => (
+  <div>
+    <p className="text-4xl font-extrabold text-[#10B981]">{number}</p>
+    <p className="text-slate-300 mt-2 text-sm">{label}</p>
+  </div>
+);
 
 export default Home;

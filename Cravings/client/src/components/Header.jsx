@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import tranparentLogo from "../assets/transparentLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
+import { motion, AnimatePresence } from "motion/react";
 import useUiStore from "../stores/useUiStore";
-import { motion } from "motion/react";
 import { useAuth } from "../context/AuthContext";
+import tranparentLogo from "../assets/transparentLogo.png";
 
 const Header = () => {
-  const { user, isLogin } = useAuth();
   const navigate = useNavigate();
+  const { user, isLogin } = useAuth();
+  const { showHeader, setShowHeader } = useUiStore();
 
   const dashboardRoutes = {
     customer: "/userDashboard",
@@ -18,175 +19,130 @@ const Header = () => {
     partner: "/riderDashboard",
   };
 
-  const handleClick = () => {
-    navigate(
-      localStorage.getItem("lastDashboard") || dashboardRoutes[user?.role],
-    );
+  const handleDashboardRedirect = () => {
+    const lastDashboard = localStorage.getItem("lastDashboard");
+    const roleRoute = dashboardRoutes[user?.role] || "/";
+    navigate(lastDashboard || roleRoute);
   };
 
-  const { showHeader, setShowHeader } = useUiStore();
-
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("chatKaroTheme") || "",
-  );
-
-  const handleThemeChange = (e) => {
-    const newTheme = e.target.value;
-    setTheme(newTheme);
-    localStorage.setItem("chatKaroTheme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
-
-  useEffect(() => {
-    if (theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-    }
-  }, [theme]);
+  const closeMobileMenu = () => setShowHeader(false);
 
   return (
-    <>
-      {/* HEADER */}
-      <div className="bg-primary  px-8 py-4 flex justify-between items-center sticky top-0 z-50">
-        <Link to="/">
+    <header className="sticky top-0 z-50 bg-slate-900 text-white shadow-md">
+      {/* Top Navbar */}
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
           <img
             src={tranparentLogo}
-            alt="logo"
-            className="h-12 w-20 object-cover invert"
+            alt="Cravings Logo"
+            className="h-10 w-auto object-contain invert"
           />
         </Link>
 
-        {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-6">
-          <Link to="/" className="text-text hover:text-secondary transition">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 font-medium">
+          <Link to="/" className="hover:text-orange-400 transition">
             Home
           </Link>
-          <Link
-            to="/about"
-            className="text-text hover:text-secondary transition"
-          >
+          <Link to="/about" className="hover:text-orange-400 transition">
             About
           </Link>
-          <Link
-            to="/contact"
-            className="text-text hover:text-secondary transition"
-          >
+          <Link to="/contact" className="hover:text-orange-400 transition">
             Contact
           </Link>
-        </div>
+          <Link to="/orderNowCopy" className="hover:text-orange-400 transition">
+            Order Now
+          </Link>
+        </nav>
 
-        {/* DESKTOP AUTH */}
-        <div className="hidden md:flex gap-3 items-center">
+        {/* Desktop Auth */}
+        <div className="hidden md:flex items-center gap-4">
           {isLogin ? (
-            <div
-              className="text-text font-semibold text-lg cursor-pointer hover:text-secondary transition"
-              onClick={handleClick}
+            <button
+              onClick={handleDashboardRedirect}
+              className="font-semibold hover:text-orange-400 transition"
             >
-              {user.fullName}
-            </div>
+              {user?.fullName || "Dashboard"}
+            </button>
           ) : (
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="btn btn-button"
+                className="px-5 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold"
               >
                 Login
               </button>
+
               <button
                 onClick={() => navigate("/register")}
-                className=" btn btn-button"
+                className="px-5 py-2 rounded-lg bg-white text-slate-900 hover:bg-gray-200 transition font-semibold"
               >
                 Register
               </button>
             </>
           )}
-
-          {/* THEME SELECT */}
-          <select
-            className="select"
-            onChange={handleThemeChange}
-            value={theme}
-          >
-            <option value="">Default</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="claude">Claude</option>
-            <option value="spotify">Spotify</option>
-            <option value="vscode">VSCode</option>
-            <option value="black">Black</option>
-            <option value="corporate">Corporate</option>
-            <option value="ghibli">Ghibli</option>
-            <option value="gourmet">Gourmet</option>
-            <option value="luxury">Luxury</option>
-            <option value="mintlify">Mintlify</option>
-            <option value="pastel">Pastel</option>
-            <option value="perplexity">Perplexity</option>
-            <option value="shadcn">Shadcn</option>
-            <option value="slack">Slack</option>
-            <option value="soft">Soft</option>
-            <option value="valorant">Valorant</option>
-          </select>
         </div>
 
-        {/* MOBILE TOGGLE */}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          className="md:hidden text-text"
+        {/* Mobile Toggle */}
+        <button
+          className="md:hidden text-white"
           onClick={() => setShowHeader(!showHeader)}
         >
-          {showHeader ? <RxCross2 size={30} /> : <GiHamburgerMenu size={30} />}
-        </motion.button>
+          {showHeader ? <RxCross2 size={28} /> : <GiHamburgerMenu size={28} />}
+        </button>
       </div>
 
-      {/* MOBILE MENU */}
-      {showHeader && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background border-t border-secondary z-50">
-          <div className="flex flex-col gap-4 p-6 text-text">
-            <Link
-              to="/"
-              onClick={() => setShowHeader(false)}
-              className="hover:text-primary transition"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              onClick={() => setShowHeader(false)}
-              className="hover:text-primary transition"
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setShowHeader(false)}
-              className="hover:text-primary transition"
-            >
-              Contact
-            </Link>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {showHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-slate-800 border-t border-slate-700"
+          >
+            <div className="flex flex-col gap-6 px-6 py-6 font-medium">
+              <Link to="/" onClick={closeMobileMenu} className="hover:text-orange-400">
+                Home
+              </Link>
+              <Link to="/about" onClick={closeMobileMenu} className="hover:text-orange-400">
+                About
+              </Link>
+              <Link to="/contact" onClick={closeMobileMenu} className="hover:text-orange-400">
+                Contact
+              </Link>
+              <Link to="/orderNowCopy" onClick={closeMobileMenu} className="hover:text-orange-400">
+                Order Now
+              </Link>
 
-            {!isLogin && (
-              <>
-                <Link
-                  to="/login"
-                  onClick={() => setShowHeader(false)}
-                  className="hover:text-primary transition"
+              {!isLogin ? (
+                <>
+                  <Link to="/login" onClick={closeMobileMenu} className="hover:text-orange-400">
+                    Login
+                  </Link>
+                  <Link to="/register" onClick={closeMobileMenu} className="hover:text-orange-400">
+                    Register
+                  </Link>
+                </>
+              ) : (
+                <button
+                  onClick={() => {
+                    closeMobileMenu();
+                    handleDashboardRedirect();
+                  }}
+                  className="text-left hover:text-orange-400"
                 >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  onClick={() => setShowHeader(false)}
-                  className="hover:text-primary transition"
-                >
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </>
+                  Dashboard
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

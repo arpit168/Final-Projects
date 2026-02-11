@@ -14,7 +14,9 @@ import RestaurantDashboard from "./pages/dashboards/RestaurantDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import OrderNow from "./pages/OrderNow";
 import RestaurantDisplayMenu from "./pages/RestaurantDisplayMenu";
+import RestaurantDisplayMenucopy from "./pages/RestaurantDisplayMenucopy";
 import NotFound from "./pages/NotFound";
+import OrderNowcopy from "./pages/OrderNowCopy";
 
 const App = () => {
   return (
@@ -36,7 +38,12 @@ const App = () => {
           <Route path="/riderDashboard" element={<RiderDashboard />} />
           <Route path="/adminDashboard" element={<AdminDashboard />} />
           <Route path="/order-now" element={<OrderNow />} />
+          <Route path="/orderNowCopy" element={<OrderNowcopy />} />
           <Route path="/restaurant/:id" element={<RestaurantDisplayMenu />} />
+           <Route
+            path="/restaurantMenuCopy"
+            element={<RestaurantDisplayMenucopy />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
