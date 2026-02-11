@@ -51,7 +51,7 @@ const RestaurantSideBar = ({
       <div>
         <div className="h-10 text-lg font-semibold flex gap-3 items-center">
           <button
-            className="hover:scale-110 transition duration-200"
+            className="hover:scale-110 transition duration-200 ms-2"
             onClick={() => setIsCollapsed(!isCollapsed)}
           >
             {!isCollapsed ? (
