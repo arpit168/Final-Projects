@@ -38,19 +38,21 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="min-h-screen p-6 bg-gray-100 space-y-8">
+      <div className="min-h-screen p-6 bg-[#0F172A] space-y-8 text-gray-200">
 
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-[#161E54]">My Profile</h1>
-          <p className="text-gray-500 mt-1">Manage your personal information</p>
+          <h1 className="text-3xl font-bold text-white">My Profile</h1>
+          <p className="text-gray-400 mt-1">
+            Manage your personal information
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Profile Photo */}
-          <div className="bg-white rounded-xl border border-gray-300 p-6 flex flex-col items-center text-center shadow-sm">
-            <div className="relative w-36 h-36 rounded-full overflow-hidden border border-gray-300">
+          <div className="bg-[#1E293B] rounded-xl border border-[#334155] p-6 flex flex-col items-center text-center shadow-lg">
+            <div className="relative w-36 h-36 rounded-full overflow-hidden border border-[#334155]">
               <img
                 src={preview || user?.photo?.url || UserImage}
                 alt="User"
@@ -58,7 +60,7 @@ const UserProfile = () => {
               />
               <label
                 htmlFor="imageUpload"
-                className="absolute bottom-2 right-2 bg-white border border-gray-300 p-2 rounded-full cursor-pointer hover:bg-indigo-600 hover:text-white transition flex items-center justify-center"
+                className="absolute bottom-2 right-2 bg-[#1E293B] border border-[#334155] p-2 rounded-full cursor-pointer hover:bg-[#2563EB] hover:text-white transition duration-300 flex items-center justify-center text-gray-300"
               >
                 <FaCamera />
               </label>
@@ -73,8 +75,10 @@ const UserProfile = () => {
           </div>
 
           {/* Profile Info */}
-          <div className="lg:col-span-2 bg-white rounded-xl border border-gray-300 p-6 shadow-sm space-y-6">
-            <h2 className="text-xl font-semibold text-[#161E54]">Personal Details</h2>
+          <div className="lg:col-span-2 bg-[#1E293B] rounded-xl border border-[#334155] p-6 shadow-lg space-y-6">
+            <h2 className="text-xl font-semibold text-white">
+              Personal Details
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <InputField
@@ -98,14 +102,14 @@ const UserProfile = () => {
               <button
                 type="button"
                 onClick={() => setIsEditProfileModalOpen(true)}
-                className="px-6 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-800 transition"
+                className="px-6 py-2 rounded-md bg-[#2563EB] text-white hover:bg-[#1D4ED8] transition duration-300"
               >
                 Edit Profile
               </button>
               <button
                 type="button"
                 onClick={() => setIsResetPasswordModalOpen(true)}
-                className="px-6 py-2 rounded-md bg-yellow-600 text-white hover:bg-yellow-700 transition"
+                className="px-6 py-2 rounded-md bg-[#CA8A04] text-white hover:bg-[#A16207] transition duration-300"
               >
                 Reset Password
               </button>
@@ -119,7 +123,9 @@ const UserProfile = () => {
           <EditProfileModal onClose={() => setIsEditProfileModalOpen(false)} />
         )}
         {isResetPasswordModalOpen && (
-          <ResetPasswordModal onClose={() => setIsResetPasswordModalOpen(false)} />
+          <ResetPasswordModal onClose={() =>
+            setIsResetPasswordModalOpen(false)
+          } />
         )}
 
       </div>
@@ -127,16 +133,19 @@ const UserProfile = () => {
   );
 };
 
-/* 🔹 Reusable Disabled Input Field */
+/* Disabled Input Field */
+
 const InputField = ({ label, value, onClick }) => (
   <div>
-    <label className="block text-sm font-medium text-gray-500 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-gray-400 mb-1">
+      {label}
+    </label>
     <input
       type="text"
       value={value}
       onClick={onClick}
       disabled
-      className="w-full border border-gray-300 rounded-md px-4 py-2 bg-gray-100 text-gray-700 cursor-not-allowed focus:outline-none"
+      className="w-full border border-[#334155] rounded-md px-4 py-2 bg-[#0F172A] text-gray-300 cursor-not-allowed focus:outline-none"
     />
   </div>
 );

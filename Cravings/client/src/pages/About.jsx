@@ -7,7 +7,7 @@ const About = () => {
     <div className="min-h-screen bg-gray-50 text-slate-800">
 
       {/* Hero Section */}
-      <section className="py-24 px-6 text-center bg-slate-900 text-white">
+      <section className="py-24 px-6 text-center bg-slate-800 text-white">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="bg-orange-500 text-white p-10 rounded-3xl shadow-lg">
+          <div className="bg-cyan-900 text-white p-10 rounded-3xl shadow-lg">
             <h3 className="text-2xl font-semibold mb-6">
               Why Choose Us?
             </h3>
@@ -104,7 +104,7 @@ const About = () => {
           Ready to Satisfy Your Cravings?
         </h2>
 
-        <button className="px-10 py-4 rounded-2xl bg-orange-500 hover:bg-orange-600 transition font-semibold">
+        <button className="px-10 py-4 rounded-2xl bg-cyan-700 hover:bg-cyan-900 transition font-semibold">
           Explore Restaurants
         </button>
       </section>

@@ -34,12 +34,14 @@ const UserOrders = () => {
     activeTab === "all" ? orders : orders.filter((o) => o.type === activeTab);
 
   return (
-    <div className="min-h-screen bg-background p-6 space-y-8">
+    <div className="min-h-screen bg-[#0F172A] p-6 space-y-8 text-gray-200">
 
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-text">My Orders</h1>
-        <p className="text-secondary mt-1">Track and manage your orders</p>
+        <h1 className="text-3xl font-bold text-white">My Orders</h1>
+        <p className="text-gray-400 mt-1">
+          Track and manage your orders
+        </p>
       </div>
 
       {/* Tabs */}
@@ -48,11 +50,11 @@ const UserOrders = () => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2 rounded-lg font-medium transition
+            className={`px-5 py-2 rounded-lg font-medium transition duration-300
               ${
                 activeTab === tab
-                  ? "bg-primary text-background"
-                  : "bg-background text-secondary border border-secondary hover:bg-secondary-hover"
+                  ? "bg-[#2563EB] text-white shadow-md"
+                  : "bg-[#1E293B] text-gray-300 border border-[#334155] hover:bg-[#273449]"
               }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)} Orders
@@ -66,7 +68,9 @@ const UserOrders = () => {
           <OrderCard key={order.id} order={order} />
         ))}
         {filteredOrders.length === 0 && (
-          <p className="text-text/70">No orders found for this category.</p>
+          <p className="text-gray-400">
+            No orders found for this category.
+          </p>
         )}
       </div>
     </div>
@@ -74,40 +78,48 @@ const UserOrders = () => {
 };
 
 /* 🔹 Reusable Order Card */
+
 const OrderCard = ({ order }) => {
   return (
-    <div className="bg-background rounded-xl p-6 shadow-sm border border-secondary">
+    <div className="bg-[#1E293B] rounded-xl p-6 shadow-lg border border-[#334155] hover:bg-[#273449] transition duration-300">
+      
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-text">Order {order.id}</h3>
+        <h3 className="text-lg font-semibold text-white">
+          Order {order.id}
+        </h3>
+
         <span
           className={`text-sm px-3 py-1 rounded-full ${
             order.status === "Delivered"
-              ? "bg-primary/10 text-primary"
-              : "bg-secondary text-text"
+              ? "bg-green-500/20 text-green-400"
+              : "bg-yellow-500/20 text-yellow-400"
           }`}
         >
           {order.status}
         </span>
       </div>
 
-      <div className="grid sm:grid-cols-3 gap-4 text-secondary">
+      <div className="grid sm:grid-cols-3 gap-4 text-gray-400">
         <p>
-          <span className="font-medium text-text">Date:</span> {order.date}
+          <span className="font-medium text-white">Date:</span>{" "}
+          {order.date}
         </p>
         <p>
-          <span className="font-medium text-text">Items:</span> {order.items}
+          <span className="font-medium text-white">Items:</span>{" "}
+          {order.items}
         </p>
         <p>
-          <span className="font-medium text-text">Total:</span> ₹{order.total}
+          <span className="font-medium text-white">Total:</span> ₹
+          {order.total}
         </p>
       </div>
 
       {order.status === "Delivered" ? (
-        <button className="mt-4 text-sm text-primary hover:text-primary-hover">
+        <button className="mt-4 text-sm text-[#2563EB] hover:text-[#1D4ED8] transition">
           Download Invoice
         </button>
       ) : (
-        <button className="mt-4 text-sm text-primary hover:text-primary-hover">
+        <button className="mt-4 text-sm text-[#2563EB] hover:text-[#1D4ED8] transition">
           View Details
         </button>
       )}

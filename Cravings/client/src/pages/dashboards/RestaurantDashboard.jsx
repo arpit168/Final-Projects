@@ -45,7 +45,7 @@ const UserDashboard = () => {
   }
 
   return (
-    <div className="w-full h-screen flex bg-gray-100 overflow-hidden">
+    <div className="w-full h-screen flex bg-cyan-950 overflow-hidden">
       
       {/* SIDEBAR */}
       <div
@@ -62,7 +62,7 @@ const UserDashboard = () => {
 
       {/* MAIN CONTENT */}
       <div className={`flex-1 overflow-y-auto transition-all duration-300`}>
-        <div className="p-6">
+        <div className="">
           <div className="   rounded-2xl shadow-sm p-6 min-h-[85vh]">
             
             {active === "overview" && <RestaurantOverview />}

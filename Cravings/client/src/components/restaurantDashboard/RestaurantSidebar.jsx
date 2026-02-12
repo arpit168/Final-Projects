@@ -46,7 +46,6 @@ const RestaurantSideBar = ({
 
   return (
     <div className="p-4 flex flex-col justify-between h-full bg-[#111827] text-[#E5E7EB]">
-
       {/* Top Section */}
       <div>
         <div className="h-10 text-lg font-semibold flex gap-3 items-center">
@@ -69,7 +68,8 @@ const RestaurantSideBar = ({
 
         <hr className="border-[#1F2937] my-4" />
 
-        <div className="space-y-4">
+      <div className="flex flex-col h-full justify-between">
+          <div className="space-y-4">
           {menuItems.map((item, idx) => (
             <button
               key={idx}
@@ -86,17 +86,17 @@ const RestaurantSideBar = ({
             </button>
           ))}
         </div>
+        {/* Bottom Section */}
+        <div>
+          <button
+            onClick={handleLogout}
+            className="flex gap-3 items-center text-base px-3 rounded-lg h-11 w-full transition-all duration-300 text-red-400 hover:bg-red-600 hover:text-white"
+          >
+            <MdLogout className="text-lg" />
+            {!isCollapsed && "Logout"}
+          </button>
+        </div>
       </div>
-
-      {/* Bottom Section */}
-      <div>
-        <button
-          onClick={handleLogout}
-          className="flex gap-3 items-center text-base px-3 rounded-lg h-11 w-full transition-all duration-300 text-red-400 hover:bg-red-600 hover:text-white"
-        >
-          <MdLogout className="text-lg" />
-          {!isCollapsed && "Logout"}
-        </button>
       </div>
     </div>
   );

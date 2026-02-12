@@ -21,7 +21,6 @@ const UserHelpDesk = () => {
 
     setLoading(true);
 
-    // Simulate API call
     setTimeout(() => {
       const newTicket = {
         id: `#SUP-${Math.floor(Math.random() * 9999)}`,
@@ -37,12 +36,12 @@ const UserHelpDesk = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6 space-y-8">
+    <div className="min-h-screen bg-[#0F172A] p-6 space-y-8 text-gray-200">
 
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-text">Help Desk</h1>
-        <p className="text-text/70 mt-1">
+        <h1 className="text-3xl font-bold text-white">Help Desk</h1>
+        <p className="text-gray-400 mt-1">
           Need help? Create a ticket and we’ll get back to you
         </p>
       </div>
@@ -50,8 +49,8 @@ const UserHelpDesk = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Create Ticket */}
-        <div className="lg:col-span-2 bg-background rounded-xl p-6 shadow-sm border border-secondary">
-          <h2 className="text-xl font-semibold text-text mb-4">
+        <div className="lg:col-span-2 bg-[#1E293B] rounded-xl p-6 shadow-lg border border-[#334155]">
+          <h2 className="text-xl font-semibold text-white mb-4">
             Create Support Ticket
           </h2>
 
@@ -75,7 +74,7 @@ const UserHelpDesk = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-primary text-buttons px-6 py-2 rounded-lg hover:bg-primary-hover transition disabled:opacity-50"
+              className="bg-[#2563EB] text-white px-6 py-2 rounded-lg hover:bg-[#1D4ED8] transition duration-300 disabled:opacity-50"
             >
               {loading ? "Submitting..." : "Submit Ticket"}
             </button>
@@ -84,16 +83,16 @@ const UserHelpDesk = () => {
         </div>
 
         {/* Support Info */}
-        <div className="bg-background rounded-xl p-6 shadow-sm border border-secondary">
-          <h2 className="text-xl font-semibold text-text mb-4">Support Info</h2>
+        <div className="bg-[#1E293B] rounded-xl p-6 shadow-lg border border-[#334155]">
+          <h2 className="text-xl font-semibold text-white mb-4">Support Info</h2>
 
-          <ul className="space-y-3 text-text/70">
+          <ul className="space-y-3 text-gray-400">
             <li>📧 support@example.com</li>
             <li>📞 +91 98765 43210</li>
             <li>⏱ Response time: 24–48 hours</li>
           </ul>
 
-          <div className="mt-6 p-4 rounded-lg bg-secondary text-sm text-text">
+          <div className="mt-6 p-4 rounded-lg bg-[#334155] text-sm text-gray-300">
             Tip: Please include your Order ID for faster resolution.
           </div>
         </div>
@@ -101,24 +100,25 @@ const UserHelpDesk = () => {
       </div>
 
       {/* My Tickets */}
-      <div className="bg-background rounded-xl shadow-sm border border-secondary p-6">
-        <h2 className="text-xl font-semibold text-text mb-4">My Tickets</h2>
+      <div className="bg-[#1E293B] rounded-xl shadow-lg border border-[#334155] p-6">
+        <h2 className="text-xl font-semibold text-white mb-4">My Tickets</h2>
 
         <div className="space-y-4">
           {tickets.map((ticket) => (
             <div
               key={ticket.id}
-              className="flex justify-between items-center border border-secondary rounded-lg p-4"
+              className="flex justify-between items-center border border-[#334155] rounded-lg p-4 hover:bg-[#273449] transition"
             >
               <div>
-                <h4 className="font-medium text-text">{ticket.title}</h4>
-                <p className="text-sm text-text/70">Ticket ID: {ticket.id}</p>
+                <h4 className="font-medium text-white">{ticket.title}</h4>
+                <p className="text-sm text-gray-400">Ticket ID: {ticket.id}</p>
               </div>
+
               <span
                 className={`px-3 py-1 text-sm rounded-full ${
                   ticket.status === "open"
-                    ? "bg-secondary text-text"
-                    : "bg-primary/10 text-primary"
+                    ? "bg-yellow-500/20 text-yellow-400"
+                    : "bg-green-500/20 text-green-400"
                 }`}
               >
                 {ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
@@ -131,23 +131,24 @@ const UserHelpDesk = () => {
   );
 };
 
-/* 🔹 Reusable Input Fields */
+/* Reusable Input Fields */
+
 const InputField = ({ label, ...props }) => (
   <div>
-    <label className="block text-sm text-text/70 mb-1">{label}</label>
+    <label className="block text-sm text-gray-400 mb-1">{label}</label>
     <input
       {...props}
-      className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary"
+      className="w-full border border-[#334155] rounded-lg px-4 py-2 bg-[#0F172A] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition"
     />
   </div>
 );
 
 const TextareaField = ({ label, ...props }) => (
   <div>
-    <label className="block text-sm text-text/70 mb-1">{label}</label>
+    <label className="block text-sm text-gray-400 mb-1">{label}</label>
     <textarea
       {...props}
-      className="w-full border border-secondary rounded-lg px-4 py-2 bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+      className="w-full border border-[#334155] rounded-lg px-4 py-2 bg-[#0F172A] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2563EB] resize-none transition"
     />
   </div>
 );

@@ -53,7 +53,7 @@ const Register = () => {
     }
 
     if (!formData.role) {
-      Error.role = "Please choose any one ";
+      Error.role = "Please choose any one";
     }
 
     setValidationError(Error);
@@ -82,121 +82,127 @@ const Register = () => {
   };
 
   return (
-    <>
-      <div className="min-h-screen bg-base-200 py-6 px-4 overflow-x-scroll scrollbar-hide">
-        <div className="max-w-xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-base-content mb-2">
-              Registration
-            </h1>
-            <p className="text-muted">
-              you are 1 step away to stop your Cravings
-            </p>
-          </div>
+    <div className="min-h-screen bg-[#0f172a] py-10 px-4 text-gray-200">
+      <div className="max-w-xl mx-auto">
 
-          {/* Form Container */}
-          <div className="bg-base-100 rounded-xl shadow-xl overflow-hidden">
-            <form
-              onSubmit={handleSubmit}
-              onReset={handleClearForm}
-              className="p-8"
-            >
-              <div className="mb-10 space-y-4">
-                {/* Role */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label className="text-base-content font-medium">
-                      I am
-                    </label>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-white mb-2">
+            Registration
+          </h1>
+          <p className="text-gray-400">
+            You are one step away from stopping your cravings
+          </p>
+        </div>
 
-                    {["manager", "partner", "customer"].map((role) => (
-                      <div key={role} className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="role"
-                          value={role}
-                          checked={formData.role === role}
-                          onChange={handleChange}
-                        />
-                        <label className="capitalize">{role}</label>
-                      </div>
-                    ))}
-                  </div>
+        {/* Form Container */}
+        <div className="bg-[#1e293b] rounded-xl shadow-lg border border-gray-700">
+          <form
+            onSubmit={handleSubmit}
+            onReset={handleClearForm}
+            className="p-8 space-y-6"
+          >
 
-                  {validationError.role && (
-                    <span className="text-xs text-error">
-                      {validationError.role}
-                    </span>
-                  )}
-                </div>
+            {/* Role */}
+            <div>
+              <label className="block mb-3 text-sm font-medium text-gray-300">
+                I am
+              </label>
 
-                {/* Inputs */}
-                {[
-                  { label: "Name", name: "fullName", type: "text" },
-                  { label: "Email", name: "email", type: "email" },
-                  { label: "Phone", name: "mobileNumber", type: "tel" },
-                  { label: "Password", name: "password", type: "password" },
-                  {
-                    label: "Confirm Password",
-                    name: "confirmPassword",
-                    type: "password",
-                  },
-                ].map((field) => (
-                  <div key={field.name}>
-                    <label className="text-base-content">
-                      {field.label}
-                    </label>
+              <div className="flex gap-6">
+                {["manager", "partner", "customer"].map((role) => (
+                  <label
+                    key={role}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
                     <input
-                      required
-                      type={field.type}
-                      name={field.name}
-                      value={formData[field.name]}
+                      type="radio"
+                      name="role"
+                      value={role}
+                      checked={formData.role === role}
                       onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 border-2 border-base-300 rounded-lg focus:outline-none focus:border-primary transition disabled:cursor-not-allowed disabled:bg-base-200"
+                      className="accent-indigo-500"
                     />
-                    {validationError[field.name] && (
-                      <span className="text-xs text-error float-end">
-                        {validationError[field.name]}
-                      </span>
-                    )}
-                  </div>
+                    <span className="capitalize text-gray-300">
+                      {role}
+                    </span>
+                  </label>
                 ))}
-
-                {/* Buttons */}
-                <div className="flex gap-4 pt-8 border-t border-base-300">
-                  <button
-                    type="reset"
-                    disabled={isLoading}
-                    className="flex-1 bg-secondary text-secondary-content font-bold py-4 rounded-lg hover:bg-secondary-hover transition disabled:cursor-not-allowed"
-                  >
-                    Clear Form
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="flex-1 bg-primary text-primary-content font-bold py-4 rounded-lg hover:bg-primary-hover transition disabled:cursor-not-allowed"
-                  >
-                    {isLoading ? "Submitting..." : "Submit"}
-                  </button>
-                </div>
-
-                <div className="flex justify-center gap-1 mt-3">
-                  <p className="text-muted">I have an account.</p>
-                  <Link
-                    to="/login"
-                    className="text-primary hover:text-primary-hover font-medium"
-                  >
-                    Login here!
-                  </Link>
-                </div>
               </div>
-            </form>
-          </div>
+
+              {validationError.role && (
+                <span className="text-xs text-red-400 mt-1 block">
+                  {validationError.role}
+                </span>
+              )}
+            </div>
+
+            {/* Inputs */}
+            {[
+              { label: "Name", name: "fullName", type: "text" },
+              { label: "Email", name: "email", type: "email" },
+              { label: "Phone", name: "mobileNumber", type: "tel" },
+              { label: "Password", name: "password", type: "password" },
+              {
+                label: "Confirm Password",
+                name: "confirmPassword",
+                type: "password",
+              },
+            ].map((field) => (
+              <div key={field.name}>
+                <label className="block text-sm font-medium text-gray-300 mb-1">
+                  {field.label}
+                </label>
+                <input
+                  required
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 rounded-lg bg-[#111827] border border-gray-600 text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition disabled:opacity-60"
+                />
+                {validationError[field.name] && (
+                  <span className="text-xs text-red-400 float-end">
+                    {validationError[field.name]}
+                  </span>
+                )}
+              </div>
+            ))}
+
+            {/* Buttons */}
+            <div className="flex gap-4 pt-6 border-t border-gray-700">
+              <button
+                type="reset"
+                disabled={isLoading}
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition disabled:opacity-60"
+              >
+                Clear Form
+              </button>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-60"
+              >
+                {isLoading ? "Submitting..." : "Submit"}
+              </button>
+            </div>
+
+            <div className="flex justify-center gap-1 mt-4 text-sm">
+              <p className="text-gray-400">I have an account.</p>
+              <Link
+                to="/login"
+                className="text-indigo-400 hover:text-indigo-300 font-medium"
+              >
+                Login here!
+              </Link>
+            </div>
+
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
