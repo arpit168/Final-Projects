@@ -39,6 +39,7 @@ const Register = () => {
     } else if (!/^[A-Za-z ]+$/.test(formData.fullName)) {
       Error.fullName = "Only Contain A-Z , a-z and space!";
     }
+    // ----------------email validation------------------------
 
     if (
       !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(

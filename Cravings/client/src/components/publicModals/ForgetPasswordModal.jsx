@@ -12,160 +12,191 @@ const ForgetPasswordModal = ({ onClose }) => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [step, setStep] = useState(1); 
+  // 1 = Email
+  // 2 = OTP
+  // 3 = New Password
 
-  if (formData.newPassword && formData.cfNewPassword) {
-    if (formData.newPassword !== formData.cfNewPassword) {
-      toast.error("New password and confirm New password must be same");
-      return;
-    }
-  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
     try {
-      let res;
-      if (isOtpSent) {
-        if (isOtpVerified) {
-          res = await api.post("/auth/forgetPassword", formData);
-          toast.success(res.data.message);
-          onClose();
-        } else {
-          res = await api.post("/auth/verifyOtp", formData);
-          toast.success(res.data.message);
-          setIsOtpVerified(true);
+      setLoading(true);
+
+      // STEP 1: Send OTP
+      if (step === 1) {
+        if (!formData.email) {
+          toast.error("Email is required");
+          return;
         }
-      } else {
-        res = await api.post("/auth/genOtp", formData);
+
+        const res = await api.post("/auth/genOtp", {
+          email: formData.email,
+        });
+
         toast.success(res.data.message);
-        setIsOtpSent(true);
+        setStep(2);
+      }
+
+      // STEP 2: Verify OTP
+      else if (step === 2) {
+        if (!formData.otp) {
+          toast.error("OTP is required");
+          return;
+        }
+
+        const res = await api.post("/auth/verifyOtp", {
+          email: formData.email,
+          otp: formData.otp,
+        });
+
+        toast.success(res.data.message);
+        setStep(3);
+      }
+
+      // STEP 3: Update Password
+      else if (step === 3) {
+        if (!formData.newPassword || !formData.cfNewPassword) {
+          toast.error("Both password fields are required");
+          return;
+        }
+
+        if (formData.newPassword !== formData.cfNewPassword) {
+          toast.error("Passwords do not match");
+          return;
+        }
+
+        const res = await api.post("/auth/forgetPassword", {
+          email: formData.email,
+          newPassword: formData.newPassword,
+        });
+
+        toast.success(res.data.message);
+        onClose();
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Unknown Error");
+      toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   return (
-    <div className="fixed inset-0 bg-background/80 flex justify-center items-center">
-      <div className="bg-background w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg shadow-lg border border-buttons">
+    <div className="fixed inset-0 bg-background/70 flex justify-center items-center">
+      <div className="bg-background w-full max-w-lg rounded-xl shadow-lg border border-buttons">
+
         {/* Header */}
-        <div className="flex justify-between px-6 py-4 border-b border-buttons items-center sticky top-0 bg-background">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-buttons">
           <h2 className="text-xl font-semibold text-text">
             Reset Password
           </h2>
           <button
             onClick={onClose}
-            className="text-text hover:text-secondary transition text-2xl"
+            className="text-text hover:text-primary text-xl"
           >
             ⊗
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-5">
-          <div className="space-y-6">
-            {/* Email */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+
+          {/* Step 1 - Email */}
+          {step === 1 && (
             <div>
-              <label className="block text-sm font-medium text-text mb-1">
-                Email Address *
+              <label className="block text-sm text-text mb-1">
+                Email Address
               </label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                disabled={isOtpSent}
                 placeholder="Enter your registered email"
-                className="w-full border border-buttons rounded-md shadow-sm p-2 bg-background text-text focus:outline-none focus:border-primary disabled:bg-background/60"
+                className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
               />
             </div>
+          )}
 
-            {/* OTP */}
-            {isOtpSent && (
+          {/* Step 2 - OTP */}
+          {step === 2 && (
+            <div>
+              <label className="block text-sm text-text mb-1">
+                Enter OTP
+              </label>
+              <input
+                type="text"
+                name="otp"
+                value={formData.otp}
+                onChange={handleInputChange}
+                placeholder="Enter OTP"
+                className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+              />
+            </div>
+          )}
+
+          {/* Step 3 - Passwords */}
+          {step === 3 && (
+            <>
               <div>
-                <label className="block text-sm font-medium text-text mb-1">
-                  OTP *
+                <label className="block text-sm text-text mb-1">
+                  New Password
                 </label>
                 <input
-                  type="text"
-                  name="otp"
-                  value={formData.otp}
+                  type="password"
+                  name="newPassword"
+                  value={formData.newPassword}
                   onChange={handleInputChange}
-                  disabled={isOtpVerified}
-                  placeholder="Enter OTP received in email"
-                  className="w-full border border-buttons rounded-md shadow-sm p-2 bg-background text-text focus:outline-none focus:border-primary disabled:bg-background/60"
+                  placeholder="Enter new password"
+                  className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
                 />
               </div>
-            )}
 
-            {/* Passwords */}
-            {isOtpSent && isOtpVerified && (
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-text mb-1">
-                    New Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="newPassword"
-                    value={formData.newPassword}
-                    onChange={handleInputChange}
-                    placeholder="Enter your new password"
-                    className="w-full border border-buttons rounded-md shadow-sm p-2 bg-background text-text focus:outline-none focus:border-primary"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-text mb-1">
-                    Confirm New Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="cfNewPassword"
-                    value={formData.cfNewPassword}
-                    onChange={handleInputChange}
-                    placeholder="Confirm new password"
-                    className="w-full border border-buttons rounded-md shadow-sm p-2 bg-background text-text focus:outline-none focus:border-primary"
-                  />
-                </div>
+              <div>
+                <label className="block text-sm text-text mb-1">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="cfNewPassword"
+                  value={formData.cfNewPassword}
+                  onChange={handleInputChange}
+                  placeholder="Confirm new password"
+                  className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+                />
               </div>
-            )}
-          </div>
+            </>
+          )}
 
           {/* Button */}
-          <div className="w-full flex justify-center mt-6">
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-2 bg-primary hover:bg-primary-hover text-text rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-            >
-              {loading ? (
-                <>
-                  <span className="animate-spin">
-                    <BsArrowClockwise />
-                  </span>
-                  Loading...
-                </>
-              ) : isOtpSent ? (
-                isOtpVerified ? (
-                  "Update Password"
-                ) : (
-                  "Verify OTP"
-                )
-              ) : (
-                "Send OTP"
-              )}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-2 bg-primary hover:bg-primary-hover text-text rounded-md transition disabled:opacity-50 flex justify-center items-center gap-2"
+          >
+            {loading ? (
+              <>
+                <span className="animate-spin">
+                  <BsArrowClockwise />
+                </span>
+                Processing...
+              </>
+            ) : step === 1 ? (
+              "Send OTP"
+            ) : step === 2 ? (
+              "Verify OTP"
+            ) : (
+              "Update Password"
+            )}
+          </button>
         </form>
       </div>
     </div>

@@ -82,7 +82,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
+      <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
 
         <div className="w-full max-w-md backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
 
