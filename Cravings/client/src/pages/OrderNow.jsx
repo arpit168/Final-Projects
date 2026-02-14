@@ -54,7 +54,7 @@ const OrderNow = () => {
 
               <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
-              <h2 className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow-md">
+              <h2 className="absolute bottom-4 text-orange-600 tracking-widest border-b-2 left-4 text-xl font-semibold drop-shadow-md">
                 {restaurant.restaurantName}
               </h2>
             </div>
@@ -75,10 +75,14 @@ const OrderNow = () => {
                <div className="bg-gray-500/10 text-green-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
                 {restaurant.address}
               </div>
+               <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
+                {restaurant.isActive}
+              </div>
 
               <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
                 {restaurant.mobileNumber}
               </div>
+              
              </div>
 
               <div className="flex justify-end items-center text-orange-500 font-semibold gap-2 transition-all duration-300 group-hover:gap-3">

@@ -33,7 +33,7 @@ const Header = () => {
   const closeMobileMenu = () => setShowHeader(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900 text-white shadow-md">
+    <header data-aos="fade-down" className="sticky top-0 z-50 bg-slate-900 text-white shadow-md">
       {/* Top Navbar */}
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}

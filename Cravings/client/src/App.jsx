@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,8 +19,11 @@ import NotFound from "./pages/NotFound";
 import OrderNowcopy from "./pages/OrderNowCopy";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Loading from "./components/Loading";
 
 const App = () => {
+    const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     AOS.init({
@@ -28,6 +31,14 @@ const App = () => {
       once: true,
     });
   }, []);
+
+   if (loading) {
+    return (
+      <div className="h-[80vh] flex items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
