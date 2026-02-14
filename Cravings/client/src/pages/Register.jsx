@@ -176,7 +176,7 @@ const Register = () => {
               <button
                 type="reset"
                 disabled={isLoading}
-                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition disabled:opacity-60"
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition disabled:opacity-60 "
               >
                 Clear Form
               </button>
@@ -184,9 +184,9 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-60"
+                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg  disabled:opacity-60 hover:translate-x-0.5  hover:-translate-y-0.5 transistion duration-200 "
               >
-                {isLoading ? "Submitting..." : "Submit"}
+                {isLoading ? "Submitting..." : "Register"}
               </button>
             </div>
 

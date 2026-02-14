@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "aos": "^2.3.4",
     "axios": "^1.13.2",
     "framer-motion": "^12.26.2",
     "lottie-react": "^2.4.1",

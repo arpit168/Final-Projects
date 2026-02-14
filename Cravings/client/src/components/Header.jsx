@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from "motion/react";
 import useUiStore from "../stores/useUiStore";
 import { useAuth } from "../context/AuthContext";
 import tranparentLogo from "../assets/transparentLogo.png";
+import { FaHome } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
+import { FaUtensils } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +36,6 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-slate-900 text-white shadow-md">
       {/* Top Navbar */}
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
@@ -42,19 +46,113 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 font-medium">
-          <Link to="/" className="hover:text-orange-400 transition">
-            Home
-          </Link>
-          <Link to="/about" className="hover:text-orange-400 transition">
-            About
-          </Link>
-          <Link to="/contact" className="hover:text-orange-400 transition">
-            Contact
-          </Link>
-          <Link to="/orderNowCopy" className="hover:text-orange-400 transition">
-            Order Now
-          </Link>
+        <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex flex-col items-center transition duration-200  ${
+                isActive
+                  ? "text-orange-500 "
+                  : "text-slate-300 hover:text-orange-400"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                 {isActive && (
+                  <FaHome
+                    data-aos="zoom-in"
+                    className="text-lg mb-1 absolute top-2 border h-5 rounded-full shadow-md w-5 shadow-red-500"
+                  />
+                )}
+                <span className="z-100 bg-gray-900 rounded-full">
+                 
+                 Home
+                </span>
+              </>
+            )}
+          </NavLink>
+
+          {/* -------------------------About--------------------- */}
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `flex flex-col items-center transition duration-200 ${
+                isActive
+                  ? "text-orange-500"
+                  : "text-slate-300 hover:text-orange-400"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <FaInfoCircle
+                    data-aos="zoom-in"
+                    className="text-lg mb-1 absolute top-2 border h-5 rounded-full shadow-md w-5 shadow-red-500"
+                  />
+                )}
+                <span className="z-100 bg-gray-900 rounded-full">
+                 
+                 About
+                </span>
+              </>
+            )}
+          </NavLink>
+
+          {/* ----------------------------contact------------------- */}
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `flex flex-col items-center transition duration-200 ${
+                isActive
+                  ? "text-orange-500"
+                  : "text-slate-300 hover:text-orange-400"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <FaPhone
+                    data-aos="zoom-in"
+                    className="text-lg mb-1 absolute top-2 border h-5  rounded-full shadow-md w-5 shadow-red-500"
+                  />
+                )}
+                <span className="z-100 bg-gray-900 rounded-full">
+                 
+                  Contact
+                </span>
+              </>
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/orderNowCopy"
+            className={({ isActive }) =>
+              `flex flex-col items-center transition duration-200 ${
+                isActive
+                  ? "text-orange-500 "
+                  : "text-slate-300 hover:text-orange-400"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <FaUtensils
+                    data-aos="zoom-in"
+                    className="text-lg mb-1 absolute top-2 border h-5 rounded-full shadow-md w-5 shadow-red-500"
+                  />
+                )}
+                <span className="z-100 bg-gray-900 rounded-full">
+                 
+                  Order Now
+                </span>
+              </>
+            )}
+          </NavLink>
         </nav>
 
         {/* Desktop Auth */}
@@ -70,14 +168,15 @@ const Header = () => {
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="px-5 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold"
+                className="bg-orange-500 font-semibold px-5 py-2 rounded-2xl shadow-9xl hover:shadow-blue-700 border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-md"
               >
                 Login
               </button>
 
               <button
                 onClick={() => navigate("/register")}
-                className="px-5 py-2 rounded-lg bg-white text-slate-900 hover:bg-gray-200 transition font-semibold"
+                // className="px-5 py-2 rounded-lg bg-white text-slate-900 hover:bg-gray-200 transition font-semibold"
+                className=" bg-gray-800 font-semibold px-5 py-2 rounded-2xl shadow-9xl hover:shadow-blue-700 border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-md"
               >
                 Register
               </button>
@@ -85,16 +184,14 @@ const Header = () => {
           )}
         </div>
 
-        {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-white "
           onClick={() => setShowHeader(!showHeader)}
         >
           {showHeader ? <RxCross2 size={28} /> : <GiHamburgerMenu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {showHeader && (
           <motion.div
@@ -104,26 +201,50 @@ const Header = () => {
             transition={{ duration: 0.2 }}
             className="md:hidden bg-slate-800 border-t border-slate-700"
           >
-            <div className="flex flex-col gap-6 px-6 py-6 font-medium">
-              <Link to="/" onClick={closeMobileMenu} className="hover:text-orange-400">
+            <div className="flex flex-col gap-6 px-6 py-6 font-medium absolute bg-slate-800 w-full">
+              <Link
+                to="/"
+                onClick={closeMobileMenu}
+                className="hover:text-orange-400"
+              >
                 Home
               </Link>
-              <Link to="/about" onClick={closeMobileMenu} className="hover:text-orange-400">
+              <Link
+                to="/about"
+                onClick={closeMobileMenu}
+                className="hover:text-orange-400"
+              >
                 About
               </Link>
-              <Link to="/contact" onClick={closeMobileMenu} className="hover:text-orange-400">
+              <Link
+                to="/contact"
+                onClick={closeMobileMenu}
+                className="hover:text-orange-400"
+              >
                 Contact
               </Link>
-              <Link to="/orderNowCopy" onClick={closeMobileMenu} className="hover:text-orange-400">
+              <Link
+                to="/orderNowCopy"
+                onClick={closeMobileMenu}
+                className="hover:text-orange-400"
+              >
                 Order Now
               </Link>
 
               {!isLogin ? (
                 <>
-                  <Link to="/login" onClick={closeMobileMenu} className="hover:text-orange-400">
+                  <Link
+                    to="/login"
+                    onClick={closeMobileMenu}
+                    className="hover:text-orange-400"
+                  >
                     Login
                   </Link>
-                  <Link to="/register" onClick={closeMobileMenu} className="hover:text-orange-400">
+                  <Link
+                    to="/register"
+                    onClick={closeMobileMenu}
+                    className="hover:text-orange-400"
+                  >
                     Register
                   </Link>
                 </>
