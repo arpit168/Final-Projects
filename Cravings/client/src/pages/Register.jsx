@@ -43,7 +43,7 @@ const Register = () => {
 
     if (
       !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
+        formData.email,
       )
     ) {
       Error.email = "Use Proper Email Format!";
@@ -84,13 +84,10 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-[#0f172a] py-10 px-4 text-gray-200">
-      <div className="max-w-xl mx-auto">
-
+      <div data-aos="flip-right" className="max-w-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Registration
-          </h1>
+          <h1 className="text-4xl font-bold text-white mb-2">Registration</h1>
           <p className="text-gray-400">
             You are one step away from stopping your cravings
           </p>
@@ -103,7 +100,6 @@ const Register = () => {
             onReset={handleClearForm}
             className="p-8 space-y-6"
           >
-
             {/* Role */}
             <div>
               <label className="block mb-3 text-sm font-medium text-gray-300">
@@ -124,9 +120,7 @@ const Register = () => {
                       onChange={handleChange}
                       className="accent-indigo-500"
                     />
-                    <span className="capitalize text-gray-300">
-                      {role}
-                    </span>
+                    <span className="capitalize text-gray-300">{role}</span>
                   </label>
                 ))}
               </div>
@@ -199,7 +193,6 @@ const Register = () => {
                 Login here!
               </Link>
             </div>
-
           </form>
         </div>
       </div>

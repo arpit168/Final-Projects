@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import img from "../assets/pizza.jpeg";
+import img from "../assets/adv.avif";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,15 +22,16 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-[#F1F5F9] text-[#1E293B] overflow-hidden">
+    <div  className="bg-[#F1F5F9] text-[#1E293B] overflow-hidden">
 
       {/* ================= HERO ================= */}
-      <section className="py-28 bg-[#1E293B] text-white relative">
+      <section  className="pb-2 bg-[#1E293B] text-white relative">
         <div className="absolute inset-0 bg-[#10B981] opacity-5"></div>
 
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+       <div className="border py-10 mx-2 border-gray-400 ">
+         <div  className="max-w-7xl mx-auto md:flex items-center relative z-10 shadow-2xl shadow-orange-900  ">
 
-          <div className="space-y-8">
+          <div data-aos="flip-left" className="space-y-6 p-5 rounded-s-2xl">
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
               Order Your <span className="text-[#10B981]">Favorite Food</span>
             </h1>
@@ -43,7 +44,7 @@ const Home = () => {
             <div className="flex gap-5 pt-4">
               <button
                 onClick={() => navigate("/order-now")}
-                className="px-10 py-4 bg-[#10B981] text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-lg"
+                className="px-10 py-4 bg-[#10B981]  text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-lg"
               >
                 Order Now
               </button>
@@ -63,14 +64,15 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div data-aos="flip-right" className="flex justify-center  ">
             <img
               src={img}
               alt="food"
-              className="rounded-3xl shadow-2xl border-4 border-[#10B981] hover:scale-105 transition duration-500"
+              className=" duration-200 rounded-e-2xl  "
             />
           </div>
         </div>
+       </div>
       </section>
 
       {/* ================= FEATURED ================= */}

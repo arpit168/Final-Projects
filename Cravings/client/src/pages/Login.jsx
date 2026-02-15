@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import ForgetPasswordModal from "../components/publicModals/ForgetPasswordModal";
 import Loading from "../components/Loading";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
@@ -84,7 +85,7 @@ const Login = () => {
     <>
       <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
 
-        <div className="w-full max-w-md backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
+        <div data-aos="flip-right" className="w-full  max-w-md backdrop-bur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
 
           {/* Header */}
           <div className="text-center mb-8">
@@ -162,10 +163,13 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 py-3 rounded-lg bg-[#f97316] hover:bg-[#ea580c] text-white font-semibold shadow-lg transition transform hover:scale-[1.02]"
+                  className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg  disabled:opacity-60 hover:translate-x-0.5  hover:-translate-y-0.5 transistion duration-200"
                 >
                   {isLoading ? "Loading..." : "Login"}
                 </button>
+              </div>
+              <div className="text-center text-white">
+                <h2>I have no account. <Link  className="text-blue-400 hover:text-blue-500" to={"/register"}>Register here!</Link></h2>
               </div>
             </div>
           </form>

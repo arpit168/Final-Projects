@@ -33,11 +33,19 @@ const Header = () => {
   const closeMobileMenu = () => setShowHeader(false);
 
   return (
-    <header data-aos="fade-down" className="sticky top-0 z-50 bg-slate-900 text-white shadow-md">
+    <header
+      data-aos="fade-down"
+      className="sticky top-0 z-50 bg-slate-900 text-white shadow-md"
+    >
       {/* Top Navbar */}
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          to="/"
+          className="flex items-center gap-2"
+        >
           <img
             src={tranparentLogo}
             alt="Cravings Logo"
@@ -59,16 +67,13 @@ const Header = () => {
           >
             {({ isActive }) => (
               <>
-                 {isActive && (
+                {isActive && (
                   <FaHome
                     data-aos="zoom-in"
                     className="text-lg mb-1 absolute top-2 border h-5 rounded-full shadow-md w-5 shadow-red-500"
                   />
                 )}
-                <span className="z-100 bg-gray-900 rounded-full">
-                 
-                 Home
-                </span>
+                <span className="z-100 bg-gray-900 rounded-full">Home</span>
               </>
             )}
           </NavLink>
@@ -92,10 +97,7 @@ const Header = () => {
                     className="text-lg mb-1 absolute top-2 border h-5 rounded-full shadow-md w-5 shadow-red-500"
                   />
                 )}
-                <span className="z-100 bg-gray-900 rounded-full">
-                 
-                 About
-                </span>
+                <span className="z-100 bg-gray-900 rounded-full">About</span>
               </>
             )}
           </NavLink>
@@ -120,10 +122,7 @@ const Header = () => {
                     className="text-lg mb-1 absolute top-2 border h-5  rounded-full shadow-md w-5 shadow-red-500"
                   />
                 )}
-                <span className="z-100 bg-gray-900 rounded-full">
-                 
-                  Contact
-                </span>
+                <span className="z-100 bg-gray-900 rounded-full">Contact</span>
               </>
             )}
           </NavLink>
@@ -147,7 +146,6 @@ const Header = () => {
                   />
                 )}
                 <span className="z-100 bg-gray-900 rounded-full">
-                 
                   Order Now
                 </span>
               </>
