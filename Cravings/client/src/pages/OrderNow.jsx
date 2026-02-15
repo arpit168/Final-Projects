@@ -39,23 +39,23 @@ const OrderNow = () => {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {restaurants.map((restaurant) => (
+        {restaurants.map((EachRestaurant, idx) => (
           <div
-            key={restaurant._id}
+            key={EachRestaurant._id}
             className="group bg-gray-300 rounded-2xl shadow-9xl hover:shadow-blue-950 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
           >
             {/* Image Section */}
             <div className="relative h-52 overflow-hidden">
               <img
-                src={restaurant.photo?.url}
-                alt={restaurant.restaurantName}
+                src={EachRestaurant.photo?.url}
+                alt={EachRestaurant.restaurantName}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
               <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
               <h2 className="absolute bottom-4 text-orange-600 tracking-widest border-b-2 left-4 text-xl font-semibold drop-shadow-md">
-                {restaurant.restaurantName}
+                {EachRestaurant.restaurantName}
               </h2>
             </div>
 
@@ -63,27 +63,26 @@ const OrderNow = () => {
             <div className="p-5 space-y-3">
               <div className="flex flex-wrap gap-2">
                 <div className="bg-indigo-600/10 text-indigo-600 text-xs px-3 py-1 rounded-full font-medium">
-                  {restaurant.cuisine}
+                  {EachRestaurant.cuisine}
                 </div>
 
                 <div className="bg-orange-500/10 text-orange-500 text-xs px-3 py-1 rounded-full font-medium">
-                  {restaurant.city}
+                  {EachRestaurant.city}
                 </div>
               </div>
 
-             <div className="grid gap-2">
-               <div className="bg-gray-500/10 text-green-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
-                {restaurant.address}
-              </div>
-               <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
-                {restaurant.isActive}
-              </div>
+              <div className="grid gap-2">
+                <div className="bg-gray-500/10 text-green-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
+                  {EachRestaurant.address}
+                </div>
+                <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
+                  {EachRestaurant.isActive}
+                </div>
 
-              <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
-                {restaurant.mobileNumber}
+                <div className="bg-gray-500/10 text-red-500 text-xs px-3 py-1 rounded-full font-medium w-fit">
+                  {EachRestaurant.mobileNumber}
+                </div>
               </div>
-              
-             </div>
 
               <div className="flex justify-end items-center text-orange-500 font-semibold gap-2 transition-all duration-300 group-hover:gap-3">
                 Explore Menu
