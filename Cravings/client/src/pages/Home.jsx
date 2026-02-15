@@ -29,7 +29,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-[#10B981] opacity-5"></div>
 
        <div className="border py-10 mx-2 border-gray-400 ">
-         <div  className="max-w-7xl mx-auto md:flex items-center relative z-10 shadow-2xl shadow-orange-900  ">
+         <div  className="max-w-7xl mx-auto md:flex items-center rounded-2xl relative z-10 shadow-2xl shadow-orange-900  ">
 
           <div data-aos="flip-left" className="space-y-6 p-5 rounded-s-2xl">
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">

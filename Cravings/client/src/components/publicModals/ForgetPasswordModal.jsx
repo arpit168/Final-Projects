@@ -12,10 +12,7 @@ const ForgetPasswordModal = ({ onClose }) => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(1); 
-  // 1 = Email
-  // 2 = OTP
-  // 3 = New Password
+  const [step, setStep] = useState(1);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +28,6 @@ const ForgetPasswordModal = ({ onClose }) => {
     try {
       setLoading(true);
 
-      // STEP 1: Send OTP
       if (step === 1) {
         if (!formData.email) {
           toast.error("Email is required");
@@ -46,7 +42,6 @@ const ForgetPasswordModal = ({ onClose }) => {
         setStep(2);
       }
 
-      // STEP 2: Verify OTP
       else if (step === 2) {
         if (!formData.otp) {
           toast.error("OTP is required");
@@ -62,7 +57,6 @@ const ForgetPasswordModal = ({ onClose }) => {
         setStep(3);
       }
 
-      // STEP 3: Update Password
       else if (step === 3) {
         if (!formData.newPassword || !formData.cfNewPassword) {
           toast.error("Both password fields are required");
@@ -90,29 +84,28 @@ const ForgetPasswordModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-background/70 flex justify-center items-center">
-      <div className="bg-background w-full max-w-lg rounded-xl shadow-lg border border-buttons">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center px-4">
+      <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-gray-200">
 
         {/* Header */}
-        <div className="flex justify-between items-center px-6 py-4 border-b border-buttons">
-          <h2 className="text-xl font-semibold text-text">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+          <h2 className="text-xl font-semibold text-gray-800">
             Reset Password
           </h2>
           <button
             onClick={onClose}
-            className="text-text hover:text-primary text-xl"
+            className="text-gray-500 hover:text-red-500 text-xl transition"
           >
-            ⊗
+            ✕
           </button>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
 
-          {/* Step 1 - Email */}
           {step === 1 && (
             <div>
-              <label className="block text-sm text-text mb-1">
+              <label className="block text-sm text-gray-600 mb-1">
                 Email Address
               </label>
               <input
@@ -121,15 +114,14 @@ const ForgetPasswordModal = ({ onClose }) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Enter your registered email"
-                className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               />
             </div>
           )}
 
-          {/* Step 2 - OTP */}
           {step === 2 && (
             <div>
-              <label className="block text-sm text-text mb-1">
+              <label className="block text-sm text-gray-600 mb-1">
                 Enter OTP
               </label>
               <input
@@ -138,16 +130,15 @@ const ForgetPasswordModal = ({ onClose }) => {
                 value={formData.otp}
                 onChange={handleInputChange}
                 placeholder="Enter OTP"
-                className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               />
             </div>
           )}
 
-          {/* Step 3 - Passwords */}
           {step === 3 && (
             <>
               <div>
-                <label className="block text-sm text-text mb-1">
+                <label className="block text-sm text-gray-600 mb-1">
                   New Password
                 </label>
                 <input
@@ -156,12 +147,12 @@ const ForgetPasswordModal = ({ onClose }) => {
                   value={formData.newPassword}
                   onChange={handleInputChange}
                   placeholder="Enter new password"
-                  className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-text mb-1">
+                <label className="block text-sm text-gray-600 mb-1">
                   Confirm Password
                 </label>
                 <input
@@ -170,7 +161,7 @@ const ForgetPasswordModal = ({ onClose }) => {
                   value={formData.cfNewPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm new password"
-                  className="w-full p-2 rounded-md border border-buttons bg-background text-text focus:outline-none focus:border-primary"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
               </div>
             </>
@@ -180,7 +171,7 @@ const ForgetPasswordModal = ({ onClose }) => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 bg-primary hover:bg-primary-hover text-text rounded-md transition disabled:opacity-50 flex justify-center items-center gap-2"
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200 disabled:opacity-50 flex justify-center items-center gap-2"
           >
             {loading ? (
               <>
