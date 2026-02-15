@@ -127,7 +127,7 @@ const Header = () => {
             )}
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/orderNowCopy"
             className={({ isActive }) =>
               `flex flex-col items-center transition duration-200 ${
@@ -150,7 +150,7 @@ const Header = () => {
                 </span>
               </>
             )}
-          </NavLink>
+          </NavLink> */}
         </nav>
 
         {/* Desktop Auth */}
