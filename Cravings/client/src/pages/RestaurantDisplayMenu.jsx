@@ -8,7 +8,7 @@ const RestaurantDisplayMenu = () => {
 
   const [loading, setLoading] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
-  const [count, setCount] = useState(0);
+  const [quantities, setQuantities] = useState([{}]); 
 
   const fetchMenuItems = async () => {
     if (!data?._id) return;
@@ -28,14 +28,29 @@ const RestaurantDisplayMenu = () => {
     fetchMenuItems();
   }, [data]);
 
-  const increase = () => {
-    setCount(count + 1);
+  const increase = (id) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
   };
 
-  const decrease = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
+ 
+  const decrease = (id) => {
+    setQuantities((prev) => {
+      const current = prev[id] || 0;
+
+      if (current <= 1) {
+        const updated = { ...prev };
+        delete updated[id]; // remove item when quantity = 0
+        return updated;
+      }
+
+      return {
+        ...prev,
+        [id]: current - 1,
+      };
+    });
   };
 
   return (
@@ -54,8 +69,9 @@ const RestaurantDisplayMenu = () => {
         </div>
       </div>
 
+      {/* Menu Title */}
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold  text-[#0F172A] border-b-4 border-[#F97316] pb-2 inline-block">
+        <h2 className="text-2xl font-semibold text-[#0F172A] border-b-4 border-[#F97316] pb-2 inline-block">
           Menu
         </h2>
         <span className="text-sm bg-[#F97316] text-white px-4 py-1 rounded-full shadow">
@@ -69,11 +85,11 @@ const RestaurantDisplayMenu = () => {
         </div>
       )}
 
-      <div className="w-full space-y-6 ">
+      <div className="w-full space-y-6">
         {menuItems.map((item) => (
           <div
             key={item._id}
-            className="w-full bg-white rounded-2xl shadow-md p-6 flex justify-between gap-8 border border-gray-100 hover:shadow-xl hover:scale-101 transition duration-300  hover:shadow-blue-300"
+            className="w-full bg-white rounded-2xl shadow-md p-6 flex justify-between gap-8 border border-gray-100 hover:shadow-xl transition duration-300"
           >
             <div className="flex gap-6">
               <img
@@ -118,25 +134,32 @@ const RestaurantDisplayMenu = () => {
                 ₹{item?.price}
               </span>
 
-
-
-              {/* -------------------------------------------------------------------------------------- */}
-              <div className="bg-orange-400 px-2 flex items-center gap-3 font-bold font-2xl rounded text-white">
-                <button onClick={decrease} className=" text-2xl font-bold">
-                  -
-                </button>{" "}
-                {count}
-                <button onClick={increase} className="text-2xl font-bold">
-                  +
+              {!quantities[item._id] ? (
+                <button
+                  onClick={() => increase(item._id)}
+                  className="bg-orange-400 text-white px-6 py-2 rounded hover:bg-orange-500 transition"
+                >
+                  Add to Cart
                 </button>
-              </div>
-              {/* ------------------------------------------------------------------------------------- */}
+              ) : (
+                <div className="bg-orange-400 px-4 py-2 flex items-center gap-4 font-bold rounded text-white">
+                  <button
+                    onClick={() => decrease(item._id)}
+                    className="text-xl"
+                  >
+                    -
+                  </button>
 
+                  <span>{quantities[item._id]}</span>
 
-
-              <button className="bg-orange-400 text-white px-6 py-2 rounded hover:bg-orange-500 transition">
-                Add to Cart
-              </button>
+                  <button
+                    onClick={() => increase(item._id)}
+                    className="text-xl"
+                  >
+                    +
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))}
