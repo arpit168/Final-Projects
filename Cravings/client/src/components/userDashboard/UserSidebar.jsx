@@ -35,16 +35,17 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-between bg-[#111827] border-r border-[#1F2937] px-3 py-4">
-      
+    <div
+      data-aos="fade-right"
+      className="h-full flex flex-col justify-between bg-[#111827] border-r border-[#1F2937] px-3 py-4"
+    >
       {/* Top Section */}
       <div className="flex flex-col h-full justify-between">
-        
         <div>
           {/* Header */}
           <div className="flex items-center gap-4 mb-6 text-gray-200">
             <button
-              className="hover:scale-105 transition duration-300"
+              className="hover:scale-105 ms-2 transition duration-300"
               onClick={() => setIsCollapsed(!isCollapsed)}
             >
               {!isCollapsed ? (
@@ -55,50 +56,48 @@ const UserSideBar = ({ active, setActive, isCollapsed, setIsCollapsed }) => {
             </button>
 
             {!isCollapsed && (
-              <h1 className="text-lg font-semibold tracking-wide">
+              <h1 className="text-lg font-semibold tracking-wide text-nowrap ">
                 User Dashboard
               </h1>
             )}
           </div>
 
-          <div className="h-px bg-[#1F2937] mb-4" />
+          <div className="h-px  bg-[#1F2937] mb-4" />
 
-       <div className="flex flex-col h-full justify-between">
-           {/* Menu */}
-          <div className="space-y-2">
-            {menuItems.map((item, idx) => {
-              const isActive = active === item.key;
+          <div className="flex flex-col h-full text-nowrap justify-between">
+            {/* Menu */}
+            <div className="space-y-2 ">
+              {menuItems.map((item, idx) => {
+                const isActive = active === item.key;
 
-              return (
-                <button
-                  key={idx}
-                  onClick={() => setActive(item.key)}
-                  className={`flex items-center gap-3 w-full h-11 rounded-xl px-3 text-sm font-medium transition-all duration-300
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActive(item.key)}
+                    className={`flex items-center gap-3 w-full h-11 rounded-xl px-3 text-xl font-medium transition-all duration-300
                   ${
                     isActive
                       ? "bg-[#2563EB] text-white shadow-lg"
-                      : "text-gray-300 hover:bg-[#1F2937] hover:text-white"
+                      : "text-gray-300  hover:bg-[#1F2937] hover:text-white"
                   }`}
-                >
-                  <span className="text-lg">{item.icon}</span>
-                  {!isCollapsed && <span>{item.title}</span>}
-                </button>
-              );
-            })}
-          </div>
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                    {!isCollapsed && <span>{item.title}</span>}
+                  </button>
+                );
+              })}
+            </div>
             {/* Logout */}
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-3 w-full h-11 rounded-xl px-3 text-sm font-medium
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-3 w-full h-11 rounded-xl px-3 text-sm font-medium
                      text-gray-400 hover:bg-[#1F2937] hover:text-white transition-all duration-300"
-        >
-          <MdLogout className="text-lg" />
-          {!isCollapsed && <span>Logout</span>}
-        </button>
-       </div>
+            >
+              <MdLogout className="text-lg" />
+              {!isCollapsed && <span>Logout</span>}
+            </button>
+          </div>
         </div>
-
-      
       </div>
     </div>
   );

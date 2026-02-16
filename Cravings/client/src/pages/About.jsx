@@ -5,7 +5,6 @@ import { FaUtensils, FaTruck, FaUsers, FaStar } from "react-icons/fa";
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-slate-800">
-
       {/* Hero Section */}
       <section className="py-24 px-6 text-center bg-slate-800 text-white">
         <motion.h1
@@ -26,11 +25,8 @@ const About = () => {
       {/* Mission Section */}
       <section className="py-20 px-6 md:px-20 bg-gray-50">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          
-          <div>
-            <h2 className="text-3xl font-bold mb-6">
-              Our Mission
-            </h2>
+          <div data-aos="fade-down">
+            <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
 
             <p className="mb-4 text-gray-600">
               At Craving Food Zone, our mission is simple — to satisfy every
@@ -43,10 +39,11 @@ const About = () => {
             </p>
           </div>
 
-          <div className="bg-cyan-900 text-white p-10 rounded-3xl shadow-lg">
-            <h3 className="text-2xl font-semibold mb-6">
-              Why Choose Us?
-            </h3>
+          <div
+            data-aos="fade-down"
+            className="bg-cyan-900 text-white p-10 rounded-3xl shadow-lg"
+          >
+            <h3 className="text-2xl font-semibold mb-6">Why Choose Us?</h3>
 
             <ul className="space-y-4">
               <li>✔ Fast & Reliable Delivery</li>
@@ -55,7 +52,6 @@ const About = () => {
               <li>✔ 24/7 Customer Support</li>
             </ul>
           </div>
-
         </div>
       </section>
 
@@ -66,35 +62,58 @@ const About = () => {
         </h2>
 
         <div className="grid md:grid-cols-4 gap-10 text-center">
-          <FeatureCard
-            icon={<FaUtensils size={28} />}
-            title="Quality Food"
-            desc="Only trusted restaurants with top hygiene standards."
-          />
-          <FeatureCard
-            icon={<FaTruck size={28} />}
-            title="Fast Delivery"
-            desc="Get your food delivered in record time."
-          />
-          <FeatureCard
-            icon={<FaUsers size={28} />}
-            title="Happy Customers"
-            desc="Thousands of satisfied food lovers."
-          />
-          <FeatureCard
-            icon={<FaStar size={28} />}
-            title="Top Ratings"
-            desc="Highly rated service and restaurants."
-          />
+          <div data-aos="flip-left">
+            <FeatureCard
+              icon={<FaUtensils size={28} />}
+              title="Quality Food"
+              desc="Only trusted restaurants with top hygiene standards."
+            />
+          </div>
+          <div data-aos="flip-left">
+            <FeatureCard
+              icon={<FaTruck size={28} />}
+              title="Fast Delivery"
+              desc="Get your food delivered in record time."
+            />
+          </div>
+          <div data-aos="flip-left">
+            <FeatureCard
+              icon={<FaUsers size={28} />}
+              title="Happy Customers"
+              desc="Thousands of satisfied food lovers."
+            />
+          </div>
+          <div data-aos="flip-left">
+            <FeatureCard
+              icon={<FaStar size={28} />}
+              title="Top Ratings"
+              desc="Highly rated service and restaurants."
+            />
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-20 px-6 md:px-20 bg-gray-50">
-        <div className="grid md:grid-cols-3 gap-10 text-center">
-          <StatCard number="10K+" label="Orders Delivered" />
-          <StatCard number="500+" label="Partner Restaurants" />
-          <StatCard number="98%" label="Customer Satisfaction" />
+        <div
+         
+          className="grid md:grid-cols-3 gap-10 text-center"
+        >
+          <div  data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000">
+            <StatCard number="10K+" label="Orders Delivered" />
+          </div>
+          <div  data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000">
+            <StatCard number="500+" label="Partner Restaurants" />
+          </div>
+          <div  data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000">
+            <StatCard number="98%" label="Customer Satisfaction" />
+          </div>
         </div>
       </section>
 
@@ -108,7 +127,6 @@ const About = () => {
           Explore Restaurants
         </button>
       </section>
-
     </div>
   );
 };
@@ -119,9 +137,7 @@ const FeatureCard = ({ icon, title, desc }) => (
     whileHover={{ scale: 1.05 }}
     className="bg-white p-8 rounded-3xl shadow-md transition"
   >
-    <div className="flex justify-center mb-4 text-orange-500">
-      {icon}
-    </div>
+    <div className="flex justify-center mb-4 text-orange-500">{icon}</div>
 
     <h3 className="font-semibold text-lg mb-3">{title}</h3>
     <p className="text-sm text-gray-600">{desc}</p>
@@ -131,9 +147,7 @@ const FeatureCard = ({ icon, title, desc }) => (
 /* Stat Card */
 const StatCard = ({ number, label }) => (
   <div className="bg-orange-500 text-white p-10 rounded-3xl shadow-md">
-    <h3 className="text-3xl font-bold mb-3">
-      {number}
-    </h3>
+    <h3 className="text-3xl font-bold mb-3">{number}</h3>
     <p>{label}</p>
   </div>
 );

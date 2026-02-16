@@ -53,13 +53,13 @@ const OrderNow = () => {
      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {restaurants.map((restaurant) => (
-          <div
+          <div data-aos="fade-up"
             key={restaurant._id}
             onClick={() => handleRestaurantClick(restaurant)}
             className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 cursor-pointer overflow-hidden"
           >
            
-            <div className="relative h-52 overflow-hidden">
+            <div   className="relative h-52 overflow-hidden">
               <img
                 src={restaurant.photo?.url}
                 alt={restaurant.restaurantName}

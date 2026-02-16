@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import useUiStore from "../stores/useUiStore";
 import { useAuth } from "../context/AuthContext";
 import tranparentLogo from "../assets/transparentLogo.png";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { FaUtensils } from "react-icons/fa";
@@ -156,12 +156,28 @@ const Header = () => {
         {/* Desktop Auth */}
         <div className="hidden md:flex items-center gap-4">
           {isLogin ? (
-            <button
-              onClick={handleDashboardRedirect}
-              className="font-semibold hover:text-orange-400 transition"
-            >
-              {user?.fullName || "Dashboard"}
-            </button>
+             <NavLink
+            to="/userdashboard"
+            className={({ isActive }) =>
+              `flex flex-col items-center transition duration-200 ${
+                isActive
+                  ? "text-orange-500"
+                  : "text-slate-300 hover:text-orange-400"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <FaUser
+                    data-aos="zoom-in"
+                    className="text-lg mb-1 absolute top-2 border h-5  rounded-full shadow-md w-5 shadow-red-500"
+                  />
+                )}
+                <span className="z-100 bg-gray-900 font-bold rounded-full">{user?.fullName || "Dashboard"}</span>
+              </>
+            )}
+          </NavLink>
           ) : (
             <>
               <button

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./context/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -17,6 +18,7 @@ import RestaurantDisplayMenu from "./pages/RestaurantDisplayMenu";
 import NotFound from "./pages/NotFound";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const App = () => {
   useEffect(() => {
@@ -29,6 +31,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Toaster />
+      <ScrollToTop/>
       <Header />
 
       <Routes>
@@ -44,6 +47,9 @@ const App = () => {
         <Route path="/order-now" element={<OrderNow />} />
         <Route path="/restaurant/:id" element={<RestaurantDisplayMenu />} />
         <Route path="/restaurantMenu" element={<RestaurantDisplayMenu />} />
+        <Route path="/checkout-page" element={<CheckoutPage />} />
+      
+
 
         <Route path="*" element={<NotFound />} />
       </Routes>
