@@ -67,7 +67,7 @@ const OrderNow = () => {
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
-              <h2 className="absolute bottom-4 left-4 text-white text-xl font-semibold">
+              <h2 className="absolute bottom-4 left-4 text-orange-500 leading-relaxed tracking-wider text-xl font-semibold">
                 {restaurant.restaurantName}
               </h2>
             </div>

@@ -8,7 +8,7 @@ const RestaurantDisplayMenu = () => {
 
   const [loading, setLoading] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
-  const [quantities, setQuantities] = useState([{}]); 
+  const [quantities, setQuantities] = useState([{}]);
 
   const fetchMenuItems = async () => {
     if (!data?._id) return;
@@ -35,7 +35,6 @@ const RestaurantDisplayMenu = () => {
     }));
   };
 
- 
   const decrease = (id) => {
     setQuantities((prev) => {
       const current = prev[id] || 0;
@@ -83,7 +82,7 @@ const RestaurantDisplayMenu = () => {
         <div className="text-center py-10 text-[#F97316] font-semibold text-lg">
           Loading menu...
         </div>
-      )}
+      )}-
 
       <div className="w-full space-y-6">
         {menuItems.map((item) => (
