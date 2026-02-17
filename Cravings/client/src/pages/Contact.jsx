@@ -90,25 +90,25 @@ const Contact = () => {
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <div  className="relative w-full h-[75vh]">
+      <div className="relative w-full h-[75vh]">
         <img src={img} alt="Contact" className="w-full h-full object-cover" />
 
-        <div  className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center px-4">
           <div data-aos="zoom-in-down">
-            <h1  className="text-5xl md:text-7xl font-extrabold text-orange-500 tracking-wide drop-shadow-lg">
-            Contact Us
-          </h1>
-          <p className="mt-6 text-lg text-gray-200 max-w-2xl">
-            Have questions, feedback or bookings? We’re always ready to serve
-            you with love and delicious food.
-          </p>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-orange-500 tracking-wide drop-shadow-lg">
+              Contact Us
+            </h1>
+            <p className="mt-6 text-lg text-gray-200 max-w-2xl">
+              Have questions, feedback or bookings? We’re always ready to serve
+              you with love and delicious food.
+            </p>
           </div>
         </div>
       </div>
 
       {/* ---------------- MAIN SECTION ---------------- */}
-      <div  className="bg-[#111111] py-20 px-4">
-        <div  className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 bg-[#1c1c1c] rounded-3xl shadow-2xl p-10 border border-orange-500/20">
+      <div className="bg-[#111111] py-20 px-4">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 bg-[#1c1c1c] rounded-3xl shadow-2xl p-10 border border-orange-500/20">
           {/* LEFT SIDE */}
           <div
             data-aos="fade-right"
@@ -217,11 +217,12 @@ const Contact = () => {
         {/* ---------------- INFO CARDS ---------------- */}
         <div className="grid md:grid-cols-4 gap-8 mt-20 max-w-6xl mx-auto">
           {[IoLocation, FaPhoneAlt, MdEmail, FaGlobeAsia].map((Icon, i) => (
-            <div data-aos="fade-up"
+            <div
+              data-aos="fade-up"
               key={i}
               className="bg-[#1c1c1c] border border-orange-500/20 p-8 rounded-3xl text-center hover:-translate-y-2 hover:shadow-orange-500/20 hover:shadow-xl transition duration-300"
             >
-              <Icon className="text-orange-500 text-5xl mx-auto mb-6" />
+              <Icon className="text-orange-500  text-5xl mx-auto mb-6" />
 
               <p className="text-gray-300 text-sm leading-relaxed">
                 {i === 0 && "Location: Churhat, Sidhi, MP"}
