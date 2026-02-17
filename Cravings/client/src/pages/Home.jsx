@@ -44,20 +44,20 @@ const Home = () => {
             <div className="flex gap-5 pt-4">
               <button
                 onClick={() => navigate("/order-now")}
-                className="px-10 py-4 bg-[#10B981]  text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-lg"
+                className="px-10 py-4 text-nowrap bg-[#10B981]  text-white rounded-2xl font-bold hover:bg-[#059669] transition shadow-lg"
               >
                 Order Now
               </button>
 
               <button
                 onClick={() => navigate("/contact")}
-                className="px-10 py-4 border-2 border-[#10B981] text-[#10B981] rounded-2xl font-semibold hover:bg-[#10B981] hover:text-white transition"
+                className="px-10 py-4 text-nowrap border-2 border-[#10B981] text-[#10B981] rounded-2xl font-semibold hover:bg-[#10B981] hover:text-white transition"
               >
                 Contact Us
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 pt-12">
+            <div className="grid grid-cols-3 shadow-2xl rounded-2xl md:shadow-none shadow-gray-500   text-center gap-8 p-2 pt-12">
               <Stat number="500+" label="Restaurants" />
               <Stat number="50K+" label="Happy Customers" />
               <Stat number="24/7" label="Support" />
@@ -76,7 +76,7 @@ const Home = () => {
       </section>
 
       {/* ================= FEATURED ================= */}
-      <section className="py-24 bg-[#F1F5F9]">
+      <section className="py-24 text-nowrap bg-[#F1F5F9]">
         <div className="max-w-7xl mx-auto px-6">
 
           <SectionHeader

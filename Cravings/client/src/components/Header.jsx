@@ -237,13 +237,13 @@ const Header = () => {
               >
                 Contact
               </Link>
-              <Link
+              {/* <Link
                 to="/orderNowCopy"
                 onClick={closeMobileMenu}
                 className="hover:text-orange-400"
               >
                 Order Now
-              </Link>
+              </Link> */}
 
               {!isLogin ? (
                 <>

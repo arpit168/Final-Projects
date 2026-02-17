@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { FaUtensils, FaTruck, FaUsers, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -124,7 +125,7 @@ const About = () => {
         </h2>
 
         <button className="px-10 py-4 rounded-2xl bg-cyan-700 hover:bg-cyan-900 transition font-semibold">
-          Explore Restaurants
+         <Link to="/order-now"> Explore Restaurants</Link>
         </button>
       </section>
     </div>
