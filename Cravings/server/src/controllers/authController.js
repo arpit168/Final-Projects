@@ -1,4 +1,3 @@
-
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import { genOtpToken, genToken } from "../utils/authToken.js";
@@ -18,7 +17,7 @@ export const UserRegister = async (req, res, next) => {
       return next(error);
     }
 
-    console.log({ fullName, email, mobileNumber, password });
+    console.log({ fullName, email, mobileNumber, password,role });
 
     //Check for duplaicate user before registration
     const existingUser = await User.findOne({ email });
@@ -107,6 +106,8 @@ export const UserLogout = async (req, res, next) => {
     next(error);
   }
 };
+
+// --------------------------------------------------------------------
 
 export const UserGenOTP = async (req, res, next) => {
   try {

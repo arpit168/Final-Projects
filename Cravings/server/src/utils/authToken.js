@@ -24,6 +24,8 @@ export const genToken =  (user, res) => {
   }
 };
 
+
+
 export const genOtpToken = (user,res)=>{
   try {
     const payload={
