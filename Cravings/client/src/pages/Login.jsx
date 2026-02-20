@@ -92,6 +92,7 @@ const Login = () => {
             <h1 className="text-4xl font-bold text-white mb-2">
               Welcome Back
             </h1>
+              priya.customer@gmail.com Customer@123
             <p className="text-gray-300 text-sm">
               Login to continue to Craving Food Zone
             </p>
@@ -186,6 +187,7 @@ const Login = () => {
           onClose={() => setIsForgetPasswordModelOpen(false)}
         />
       )}
+    
     </>
   );
 };

@@ -139,7 +139,7 @@ const CheckoutPage = () => {
       const res = await api.post("/user/placeorder",payload)
       toast.success(res.data.message);
       localStorage.removeItem("cart");
-      navigate("/user-dashboard", { state: { tab: "orders" } });
+      navigate("/userDashboard", { state: { tab: "orders" } });
     } catch (error) {
       console.error("Order placement error:", error);
       toast.error(error?.response?.data?.message || "Failed to place order");
@@ -312,11 +312,12 @@ const CheckoutPage = () => {
                 value={promoCode}
                 disabled={appliedPromo}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="w-full border border-[#E5E7EB] rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB] disabled:bg-gray-100"
+                className="w-full border border-[#E5E7EB] rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-[#2563EB] disabled:bg-gray-100 disabled:cursor-not-allowed"
               />
               <button
                 onClick={handlePromoCodeApply}
-                className="w-full bg-[#2563EB] text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:text-gray-300"
+                 disabled={appliedPromo}
+                className="w-full bg-[#2563EB] text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-blue-400 disabled:cursor-not-allowed disabled:text-gray-200"
               >
                 Apply Promo
               </button>
