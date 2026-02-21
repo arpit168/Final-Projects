@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../config/Api";
 import toast from "react-hot-toast";
 import Loading from "../Loading";
-import ViewReceivedOrder from "./modals/ViewReceivedOrder";
+import ViewReceivedOrder from "../restaurantDashboard/modals/ViewRecievedOrder"
 
 const RestaurantOrders = () => {
   const [isLoading, setIsLoading] = useState(false);

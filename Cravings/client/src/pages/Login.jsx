@@ -58,6 +58,7 @@ const Login = () => {
         case "customer":
           setRole("customer");
           navigate("/userDashboard");
+          navigate("/userDashboard",{state: {tab: "overview"}})
           break;
         case "admin":
           setRole("admin");
