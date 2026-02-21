@@ -25,15 +25,14 @@ const UserOverview = () => {
   }
 
   const totalOrders = orders.length;
-  const completed = orders.filter(o => o.status === "Completed").length;
-  const pending = orders.filter(o => o.status === "Pending").length;
-  const cancelled = orders.filter(o => o.status === "Cancelled").length;
+  const completed = orders.filter((o) => o.status === "Completed").length;
+  const pending = orders.filter((o) => o.status === "Pending").length;
+  const cancelled = orders.filter((o) => o.status === "Cancelled").length;
   const totalSpent = orders.reduce((acc, curr) => acc + curr.amount, 0);
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-gray-200 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
-
         {/* Welcome */}
         <div className="bg-[#1e293b] border border-gray-700 rounded-2xl p-6 shadow-lg">
           <h1 className="text-2xl font-bold text-white">Welcome Back 👋</h1>
@@ -60,16 +59,12 @@ const UserOverview = () => {
 
           <div className="bg-[#1e293b] border border-gray-700 rounded-2xl p-6 text-center">
             <h2 className="text-sm text-gray-400">Pending</h2>
-            <p className="text-3xl font-bold text-yellow-400 mt-2">
-              {pending}
-            </p>
+            <p className="text-3xl font-bold text-yellow-400 mt-2">{pending}</p>
           </div>
 
           <div className="bg-[#1e293b] border border-gray-700 rounded-2xl p-6 text-center">
             <h2 className="text-sm text-gray-400">Cancelled</h2>
-            <p className="text-3xl font-bold text-red-400 mt-2">
-              {cancelled}
-            </p>
+            <p className="text-3xl font-bold text-red-400 mt-2">{cancelled}</p>
           </div>
         </div>
 
@@ -101,7 +96,7 @@ const UserOverview = () => {
               </thead>
 
               <tbody>
-                {orders.map(order => (
+                {orders.map((order) => (
                   <tr
                     key={order.id}
                     className="border-b border-gray-800 hover:bg-[#243045] transition"
@@ -114,8 +109,8 @@ const UserOverview = () => {
                           order.status === "Completed"
                             ? "bg-green-900 text-green-400"
                             : order.status === "Pending"
-                            ? "bg-yellow-900 text-yellow-400"
-                            : "bg-red-900 text-red-400"
+                              ? "bg-yellow-900 text-yellow-400"
+                              : "bg-red-900 text-red-400"
                         }`}
                       >
                         {order.status}
@@ -128,11 +123,9 @@ const UserOverview = () => {
             </table>
           </div>
         </div>
-
       </div>
     </div>
   );
 };
 
 export default UserOverview;
-  

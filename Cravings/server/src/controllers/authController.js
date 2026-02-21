@@ -91,7 +91,7 @@ export const UserLogin = async (req, res, next) => {
     genToken(existingUser, res);
 
     //send message to Frontend
-    res.status(200).json({ message: "Login Successfull", data: existingUser });
+    res.status(200).json({ message: "Login Successful", data: existingUser });
     //End
   } catch (error) {
     next(error);
