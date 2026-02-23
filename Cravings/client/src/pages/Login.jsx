@@ -58,7 +58,7 @@ const Login = () => {
         case "customer":
           setRole("customer");
           navigate("/userDashboard");
-          navigate("/userDashboard",{state: {tab: "overview"}})
+          navigate("/userDashboard", { state: { tab: "overview" } });
           break;
         case "admin":
           setRole("admin");
@@ -85,15 +85,14 @@ const Login = () => {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]">
-
-        <div data-aos="flip-right" className="w-full  max-w-md backdrop-bur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
-
+        <div
+          data-aos="flip-right"
+          className="w-full  max-w-md backdrop-bur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8"
+        >
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-2">
-              Welcome Back
-            </h1>
-              priya.customer@gmail.com Customer@123
+            <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
+            aman.partner1@gmail.com     Partner@123
             <p className="text-gray-300 text-sm">
               Login to continue to Craving Food Zone
             </p>
@@ -102,7 +101,6 @@ const Login = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} onReset={handleClearForm}>
             <div className="space-y-5">
-
               {/* Email */}
               <div>
                 <label className="block text-gray-300 text-sm mb-2">
@@ -171,7 +169,15 @@ const Login = () => {
                 </button>
               </div>
               <div className="text-center text-white">
-                <h2>I have no account. <Link  className="text-blue-400 hover:text-blue-500" to={"/register"}>Register here!</Link></h2>
+                <h2>
+                  I have no account.{" "}
+                  <Link
+                    className="text-blue-400 hover:text-blue-500"
+                    to={"/register"}
+                  >
+                    Register here!
+                  </Link>
+                </h2>
               </div>
             </div>
           </form>
@@ -188,7 +194,6 @@ const Login = () => {
           onClose={() => setIsForgetPasswordModelOpen(false)}
         />
       )}
-    
     </>
   );
 };
