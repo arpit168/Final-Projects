@@ -11,8 +11,8 @@ const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
   const navigate = useNavigate();
 
-  const [isForgetPasswordModelOpen, setIsForgetPasswordModelOpen] =
-    useState(false);
+    const [isForgetPasswordModelOpen, setIsForgetPasswordModelOpen] =
+      useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -141,13 +141,13 @@ const Login = () => {
 
               {/* Forget Password */}
               <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsForgetPasswordModelOpen(true)}
-                  className="text-[#f97316] hover:text-[#fb923c] text-sm font-medium transition"
-                >
-                  Forgot Password?
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsForgetPasswordModelOpen(true)}
+                    className="text-[#f97316] hover:text-[#fb923c] text-sm font-medium transition"
+                  >
+                    Forgot Password?
+                  </button>
               </div>
 
               {/* Buttons */}

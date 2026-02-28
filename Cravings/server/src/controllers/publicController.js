@@ -45,7 +45,7 @@ export const GetAllRestaurants = async (req, res, next) => {
   }
 };
 
-export const GetRetaurantMenuData = async (req, res, next) => {
+export const  GetRetaurantMenuData = async (req, res, next) => {
   try {
     const { id } = req.params;
 
